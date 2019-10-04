@@ -21,7 +21,7 @@
   
   //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
   
-  //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
+  $send = "{\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
 
   
   $event_details = array();
@@ -46,11 +46,13 @@
   if(!$read){die("Error reading\n");}
 
   // render to view
-  $json = json_encode($read);
+  $json = json_decode($read, true);
 
-  echo $json;
+  print_r($json);
 
-  $name = $json['x']
+  echo $json['name'];
+
+  //$name = $json['x']
 
   //$res->render('main', 'home', ['value' => $read]);
 
