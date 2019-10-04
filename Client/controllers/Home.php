@@ -46,8 +46,7 @@
   if(!$read){die("Error reading\n");}
 
   // render to view
-  $json = json_decode($read, true);
-
+  $json = (array) json_decode($read, true);
   print_r($json);
 
   echo $json['name'];
