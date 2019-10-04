@@ -1,9 +1,9 @@
-# Redirect all requests [excluding to /rapid-starter-project/assets/*]
+# Redirect all requests [excluding to /Client/assets/*]
 # to index.php for processing. Note when using REQUEST_URI we obtain the
 # full request path (from the domain / document root), not just from the
 # local folder
 RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/rapid-starter-project/assets/.+
+RewriteCond %{REQUEST_URI} !^/Client/assets/.+
 RewriteRule (.*) index.php [QSA,L]
 
 # Directory indexing in assets is still possible, turn it off
