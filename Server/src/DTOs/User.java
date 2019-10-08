@@ -11,12 +11,12 @@ import java.util.Objects;
  *
  * @author racheldhc
  */
-public class Student{
+public class User{
     
-    private int student_id;
+    private int user_id;
     private String name;
     private int age;
-    private int gender;
+    private String gender;
     private String email;
     private String car;
     private double est_pay;
@@ -24,8 +24,8 @@ public class Student{
     private int location_id;
     private int timetable_id;
 
-    public Student(int student_id, String name, int age, int gender, String email, String car, double est_pay, String college, int location_id, int timetable_id) {
-        this.student_id = student_id;
+    public User(int user_id, String name, int age, String gender, String email, String car, double est_pay, String college, int location_id, int timetable_id) {
+        this.user_id = user_id;
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -36,11 +36,11 @@ public class Student{
         this.location_id = location_id;
         this.timetable_id = timetable_id;
     }
-    public Student() {
-        this.student_id = 0;
+    public User() {
+        this.user_id = 0;
         this.name = "";
         this.age = 0;
-        this.gender = 0;
+        this.gender = "";
         this.email = "";
         this.car = "";
         this.est_pay = 0.0;
@@ -50,11 +50,11 @@ public class Student{
     }
 
     public int getStudent_id() {
-        return student_id;
+        return user_id;
     }
 
     public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+        this.user_id = student_id;
     }
 
     public String getName() {
@@ -73,11 +73,11 @@ public class Student{
         this.age = age;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -132,10 +132,10 @@ public class Student{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.student_id;
+        hash = 37 * hash + this.user_id;
         hash = 37 * hash + Objects.hashCode(this.name);
         hash = 37 * hash + this.age;
-        hash = 37 * hash + this.gender;
+        hash = 37 * hash + Objects.hashCode(this.gender);
         hash = 37 * hash + Objects.hashCode(this.email);
         hash = 37 * hash + Objects.hashCode(this.car);
         hash = 37 * hash + (int) (Double.doubleToLongBits(this.est_pay) ^ (Double.doubleToLongBits(this.est_pay) >>> 32));
@@ -159,8 +159,8 @@ public class Student{
         {
             return false;
         }
-        final Student other = (Student) obj;
-        if (this.student_id != other.student_id)
+        final User other = (User) obj;
+        if (this.user_id != other.user_id)
         {
             return false;
         }
@@ -205,8 +205,8 @@ public class Student{
 
     @Override
     public String toString() {
-        return "Student{" + "student_id=" + student_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", car=" + car + ", est_pay=" + est_pay + ", college=" + college + ", location_id=" + location_id + ", timetable_id=" + timetable_id + '}';
-    }
-    
+        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", car=" + car + ", est_pay=" + est_pay + ", college=" + college + ", location_id=" + location_id + ", timetable_id=" + timetable_id + '}';
+    } 
+   
     
 }
