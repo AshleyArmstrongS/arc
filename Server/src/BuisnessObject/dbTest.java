@@ -19,7 +19,7 @@ public class dbTest
     public static void main(String[] args) throws DaoException
     {
         StudentDaoInterface IStudentDao = new PsqlStudentDao();
-        IStudentDao.findAllStudents();
+        IStudentDao.returnAllUsers();
     }    
 }
 

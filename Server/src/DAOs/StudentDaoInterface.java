@@ -5,7 +5,9 @@
  */
 package DAOs;
 
+import DTOs.User;
 import Exceptions.DaoException;
+import java.util.List;
 
 /**
  *
@@ -13,5 +15,5 @@ import Exceptions.DaoException;
  */
 public interface StudentDaoInterface
 {
-    public void findAllStudents() throws DaoException;
+    public List<User> returnAllUsers() throws DaoException;
 }

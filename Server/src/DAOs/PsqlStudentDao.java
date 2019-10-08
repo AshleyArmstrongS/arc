@@ -23,7 +23,9 @@ import java.util.logging.Logger;
  */
 public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
 
-    public void findAllStudents() throws DaoException {
+    
+    @Override
+    public List<User> returnAllUsers() throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -38,7 +40,7 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
 
             while (rs.next())
             {
-                int user_id = rs.getInt("ID");
+                int user_id = rs.getInt("student_id");
                 String name = rs.getString("title");
                 int age = rs.getInt("genre");
                 String gender = rs.getString("director");
@@ -48,8 +50,10 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
                 String college = rs.getString("college");
                 int location_id = rs.getInt("college");
                 int timetable_id = rs.getInt("college");
+                String description = rs.getString("");
+                String student_type = rs.getString("");
                 
-                User u = new User(user_id, name, age, gender, email, car, est_pay, college, location_id, timetable_id);
+                User u = new User(user_id, name, age, gender, email, car, est_pay, college, location_id, timetable_id, description, student_type);
                 users.add(u);
             }
         } catch (SQLException ex)

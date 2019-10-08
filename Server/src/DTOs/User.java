@@ -23,8 +23,10 @@ public class User{
     private String college;
     private int location_id;
     private int timetable_id;
+    private String description;
+    private String student_type;
 
-    public User(int user_id, String name, int age, String gender, String email, String car, double est_pay, String college, int location_id, int timetable_id) {
+    public User(int user_id, String name, int age, String gender, String email, String car, double est_pay, String college, int location_id, int timetable_id, String description, String student_type) {
         this.user_id = user_id;
         this.name = name;
         this.age = age;
@@ -35,7 +37,10 @@ public class User{
         this.college = college;
         this.location_id = location_id;
         this.timetable_id = timetable_id;
+        this.description = description;
+        this.student_type = student_type;
     }
+
     public User() {
         this.user_id = 0;
         this.name = "";
@@ -47,6 +52,32 @@ public class User{
         this.college = "";
         this.location_id = 0;
         this.timetable_id = 0;
+        this.description = "";
+        this.student_type = "";
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStudent_type() {
+        return student_type;
+    }
+
+    public void setStudent_type(String student_type) {
+        this.student_type = student_type;
     }
 
     public int getStudent_id() {
