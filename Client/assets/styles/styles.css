@@ -16,11 +16,9 @@ align-content: center;
 }
 
 .card{
-height: 370px;
 margin-top: auto;
 margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
+background-color: rgba(0,0,0,0.6) !important;
 }
 
 .social_icon span{
@@ -54,7 +52,6 @@ border:0 !important;
 input:focus{
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
-
 }
 
 .remember{
