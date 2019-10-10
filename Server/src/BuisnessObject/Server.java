@@ -1,12 +1,24 @@
 package BuisnessObject;
 
+import DAOs.PsqlStudentDao;
+import DAOs.StudentDaoInterface;
+import DTOs.User;
+import Exceptions.DaoException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 /**
  *
@@ -86,9 +98,10 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
+                    StudentDaoInterface IUserDao = new PsqlStudentDao();
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(message+"\r\n");
+                    socketWriter.println(returnAllUsers(IUserDao)+"\r\n");
                     System.out.println("printed to client");
                 }
                 if (socketClose)
@@ -99,8 +112,37 @@ public class Server {
             } catch (IOException ex)
             {
                 System.out.println(ex);
+            } catch (DaoException ex)
+            {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("Server: (ClientHandler): Handler for Client " + clientNumber + " is terminating .....");
         }
     }
+     public static JsonObject jsonFromString(String jsonObjectStr) {
+        JsonObject object;
+        try (JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr)))
+        {
+            object = jsonReader.readObject();
+        }
+
+        return object;
+    }
+     
+     public static String returnAllUsers(StudentDaoInterface IUserDao) throws DaoException{
+         ArrayList<User> users = IUserDao.returnAllUsers();
+         if(users != null){
+             return jsonFormatter(users);
+         }
+         else
+         {
+             return "{\"type\": \"message\", \"message\": \"There are no users\"}";
+         }
+     }
+     public static String jsonFormatter(ArrayList users){
+         for(int i = 0; i < users.size(); i++){
+             
+         }
+         return "";
+     }
 }

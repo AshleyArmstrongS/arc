@@ -25,6 +25,9 @@
             exit();
         }
     }
+
+
+    
     $close = false; 
     
     if($close){

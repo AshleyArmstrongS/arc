@@ -5,15 +5,10 @@
  */
 package DAOs;
 
-import DTOs.User;
-import Exceptions.DaoException;
-import java.util.ArrayList;
-
 /**
  *
- * @author racheldhc
+ * @author Administrator
  */
-public interface StudentDaoInterface
-{
-    public ArrayList<User> returnAllUsers() throws DaoException;
+class Arraylist<T> {
+    
 }

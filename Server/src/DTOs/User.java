@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DTOs;
 
 import java.util.Objects;
 
 /**
  *
- * @author racheldhc
+ * @author 
  */
 public class User{
     
@@ -236,8 +231,10 @@ public class User{
 
     @Override
     public String toString() {
-        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", car=" + car + ", est_pay=" + est_pay + ", college=" + college + ", location_id=" + location_id + ", timetable_id=" + timetable_id + '}';
-    } 
+        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", car=" + car + ", est_pay=" + est_pay + ", college=" + college + ", location_id=" + location_id + ", timetable_id=" + timetable_id + ", description=" + description + ", student_type=" + student_type + '}';
+    }
+
+  
    
     
 }

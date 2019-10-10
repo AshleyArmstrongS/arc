@@ -25,11 +25,11 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
 
     
     @Override
-    public List<User> returnAllUsers() throws DaoException {
+    public ArrayList<User> returnAllUsers() throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<User> users = new ArrayList<>();
+        ArrayList<User> users = new ArrayList<>();
 
         try
         {
@@ -79,6 +79,8 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
             {
                 throw new DaoException("findAllStudents() " + e.getMessage());
             }
+            return users;
         }
     }
 }
+
