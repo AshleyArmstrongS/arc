@@ -3,7 +3,7 @@
 # full request path (from the domain / document root), not just from the
 # local folder
 RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/Client/assets/.+
+RewriteCond %{REQUEST_URI} !^/arc/Client/assets/.+
 RewriteRule (.*) index.php [QSA,L]
 
 # Directory indexing in assets is still possible, turn it off
