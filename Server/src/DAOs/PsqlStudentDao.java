@@ -7,10 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,19 +37,16 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
             while (rs.next())
             {
                 int user_id = rs.getInt("student_id");
-                String name = rs.getString("title");
-                int age = rs.getInt("genre");
-                String gender = rs.getString("director");
-                String email = rs.getString("runtime");
-                String car = rs.getString("rating");
-                double est_pay = rs.getDouble("starring");
+                String name = rs.getString("name");
+                int age = rs.getInt("age");
+                String gender = rs.getString("gender");
+                String email = rs.getString("email");
                 String college = rs.getString("college");
-                int location_id = rs.getInt("college");
-                int timetable_id = rs.getInt("college");
-                String description = rs.getString("");
-                String student_type = rs.getString("");
+                String user_type = rs.getString("user_type");
+                String description = rs.getString("description");
+                int location_id = rs.getInt("location_id");
                 
-                User u = new User(user_id, name, age, gender, email, car, est_pay, college, location_id, timetable_id, description, student_type);
+                User u = new User(user_id, name, age, gender, email, college, user_type, description, location_id);
                 users.add(u);
             }
         } catch (SQLException ex)
