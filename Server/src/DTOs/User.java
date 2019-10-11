@@ -2,10 +2,6 @@ package DTOs;
 
 import java.util.Objects;
 
-/**
- *
- * @author 
- */
 public class User{
     
     private int user_id;
@@ -13,42 +9,49 @@ public class User{
     private int age;
     private String gender;
     private String email;
-    private String car;
-    private double est_pay;
+    private String password;
     private String college;
-    private int location_id;
-    private int timetable_id;
     private String description;
-    private String student_type;
+    private String user_type;
+    private int location_id;
 
-    public User(int user_id, String name, int age, String gender, String email, String car, double est_pay, String college, int location_id, int timetable_id, String description, String student_type) {
+    public User(int user_id, String name, int age, String gender, String email, String password, String college, String description, String user_type, int location_id) {
         this.user_id = user_id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.email = email;
-        this.car = car;
-        this.est_pay = est_pay;
+        this.password = password;
         this.college = college;
-        this.location_id = location_id;
-        this.timetable_id = timetable_id;
         this.description = description;
-        this.student_type = student_type;
+        this.user_type = user_type;
+        this.location_id = location_id;
+    }
+    
+    public User(int user_id, String name, int age, String gender, String email, String college, String description, String user_type, int location_id) {
+        this.user_id = user_id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.password = "";
+        this.college = college;
+        this.description = description;
+        this.user_type = user_type;
+        this.location_id = location_id;
     }
 
-    public User() {
+     public User() {
         this.user_id = 0;
         this.name = "";
         this.age = 0;
         this.gender = "";
         this.email = "";
-        this.car = "";
-        this.est_pay = 0.0;
+        this.password = "";
         this.college = "";
-        this.location_id = 0;
-        this.timetable_id = 0;
         this.description = "";
-        this.student_type = "";
+        this.user_type = "";
+        this.location_id = 0;
     }
 
     public int getUser_id() {
@@ -57,30 +60,6 @@ public class User{
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStudent_type() {
-        return student_type;
-    }
-
-    public void setStudent_type(String student_type) {
-        this.student_type = student_type;
-    }
-
-    public int getStudent_id() {
-        return user_id;
-    }
-
-    public void setStudent_id(int student_id) {
-        this.user_id = student_id;
     }
 
     public String getName() {
@@ -115,20 +94,12 @@ public class User{
         this.email = email;
     }
 
-    public String getCar() {
-        return car;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCar(String car) {
-        this.car = car;
-    }
-
-    public double getEst_pay() {
-        return est_pay;
-    }
-
-    public void setEst_pay(double est_pay) {
-        this.est_pay = est_pay;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCollege() {
@@ -139,6 +110,22 @@ public class User{
         this.college = college;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
+    }
+
     public int getLocation_id() {
         return location_id;
     }
@@ -147,27 +134,24 @@ public class User{
         this.location_id = location_id;
     }
 
-    public int getTimetable_id() {
-        return timetable_id;
-    }
-
-    public void setTimetable_id(int timetable_id) {
-        this.timetable_id = timetable_id;
+    @Override
+    public String toString() {
+        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", password=" + password + ", college=" + college + ", description=" + description + ", user_type=" + user_type + ", location_id=" + location_id + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.user_id;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + this.age;
-        hash = 37 * hash + Objects.hashCode(this.gender);
-        hash = 37 * hash + Objects.hashCode(this.email);
-        hash = 37 * hash + Objects.hashCode(this.car);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.est_pay) ^ (Double.doubleToLongBits(this.est_pay) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.college);
-        hash = 37 * hash + this.location_id;
-        hash = 37 * hash + this.timetable_id;
+        hash = 61 * hash + this.user_id;
+        hash = 61 * hash + Objects.hashCode(this.name);
+        hash = 61 * hash + this.age;
+        hash = 61 * hash + Objects.hashCode(this.gender);
+        hash = 61 * hash + Objects.hashCode(this.email);
+        hash = 61 * hash + Objects.hashCode(this.password);
+        hash = 61 * hash + Objects.hashCode(this.college);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.user_type);
+        hash = 61 * hash + this.location_id;
         return hash;
     }
 
@@ -194,19 +178,7 @@ public class User{
         {
             return false;
         }
-        if (this.gender != other.gender)
-        {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.est_pay) != Double.doubleToLongBits(other.est_pay))
-        {
-            return false;
-        }
         if (this.location_id != other.location_id)
-        {
-            return false;
-        }
-        if (this.timetable_id != other.timetable_id)
         {
             return false;
         }
@@ -214,11 +186,15 @@ public class User{
         {
             return false;
         }
+        if (!Objects.equals(this.gender, other.gender))
+        {
+            return false;
+        }
         if (!Objects.equals(this.email, other.email))
         {
             return false;
         }
-        if (!Objects.equals(this.car, other.car))
+        if (!Objects.equals(this.password, other.password))
         {
             return false;
         }
@@ -226,14 +202,17 @@ public class User{
         {
             return false;
         }
+        if (!Objects.equals(this.description, other.description))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.user_type, other.user_type))
+        {
+            return false;
+        }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", car=" + car + ", est_pay=" + est_pay + ", college=" + college + ", location_id=" + location_id + ", timetable_id=" + timetable_id + ", description=" + description + ", student_type=" + student_type + '}';
-    }
-
+   
   
    
     
