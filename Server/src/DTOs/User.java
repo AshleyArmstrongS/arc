@@ -2,10 +2,6 @@ package DTOs;
 
 import java.util.Objects;
 
-/**
- *
- * @author 
- */
 public class User{
     
     private int user_id;
@@ -136,6 +132,85 @@ public class User{
 
     public void setLocation_id(int location_id) {
         this.location_id = location_id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "user_id=" + user_id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", email=" + email + ", password=" + password + ", college=" + college + ", description=" + description + ", user_type=" + user_type + ", location_id=" + location_id + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + this.user_id;
+        hash = 61 * hash + Objects.hashCode(this.name);
+        hash = 61 * hash + this.age;
+        hash = 61 * hash + Objects.hashCode(this.gender);
+        hash = 61 * hash + Objects.hashCode(this.email);
+        hash = 61 * hash + Objects.hashCode(this.password);
+        hash = 61 * hash + Objects.hashCode(this.college);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.user_type);
+        hash = 61 * hash + this.location_id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.user_id != other.user_id)
+        {
+            return false;
+        }
+        if (this.age != other.age)
+        {
+            return false;
+        }
+        if (this.location_id != other.location_id)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.gender, other.gender))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.college, other.college))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.user_type, other.user_type))
+        {
+            return false;
+        }
+        return true;
     }
    
   
