@@ -7,7 +7,9 @@ package BuisnessObject;
 
 import DAOs.PsqlStudentDao;
 import DAOs.StudentDaoInterface;
+import DTOs.User;
 import Exceptions.DaoException;
+import java.util.ArrayList;
 
 
 /**
@@ -19,7 +21,11 @@ public class dbTest
     public static void main(String[] args) throws DaoException
     {
         StudentDaoInterface IStudentDao = new PsqlStudentDao();
-        IStudentDao.returnAllUsers();
+        ArrayList<User> bobs = IStudentDao.returnNonDrivers();
+        
+        for(User b : bobs){
+            b.toString();
+        }
     }    
 }
 
