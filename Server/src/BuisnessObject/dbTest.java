@@ -22,9 +22,9 @@ public class dbTest
     {
         StudentDaoInterface IStudentDao = new PsqlStudentDao();
         ArrayList<User> bobs = IStudentDao.returnNonDrivers();
-        
+        IStudentDao.returnp();
         for(User b : bobs){
-            b.toString();
+            System.out.println(b.toString());
         }
     }    
 }

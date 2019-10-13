@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -58,7 +60,6 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
                 
                 User u = new User(user_id, name, age, gender, email, password, college, description, user_type, location_id);
                 users.add(u);
-                return users;
             }
         } catch (SQLException ex)
         {
@@ -86,5 +87,31 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
             return users;
         }
     }
-}
+     @Override
+    public void returnp() throws DaoException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+              System.out.println("Before Connection");
+            con = this.getConnection();
+            System.out.println("After Connection");
+            String query = "SELECT user_id FROM users where user_id = 1 ";
+            System.out.println("After query");
+            ps = con.prepareStatement(query);
+            System.out.println("after ps");
+            rs = ps.executeQuery();
+            System.out.println("after rs");
+            while (rs.next())
+            {
+                System.out.println(rs.getInt("user_id"));
+            }
+        } catch (SQLException ex)
+       {
+           Logger.getLogger(PsqlStudentDao.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    
+}}
 
