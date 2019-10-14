@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
 
     
-    @Override
-    public ArrayList<User> returnAllUsers() throws DaoException {
+   @Override
+    public ArrayList<User> returnNonDrivers() throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -30,28 +30,39 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
         try
         {
             con = this.getConnection();
-            String query = "SELECT * FROM student";
+            String query = "SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id FROM users where user_type = 'P'";
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
-
             while (rs.next())
             {
-                int user_id = rs.getInt("student_id");
+                int user_id = rs.getInt("user_id");
+                System.out.println(user_id);
                 String name = rs.getString("name");
+                System.out.println(name);
                 int age = rs.getInt("age");
+                System.out.println(age);
                 String gender = rs.getString("gender");
+                System.out.println(gender);
                 String email = rs.getString("email");
+                System.out.println(email);
+                String password = rs.getString("password");
+                System.out.println(password);
                 String college = rs.getString("college");
-                String user_type = rs.getString("user_type");
+                System.out.println(college);
                 String description = rs.getString("description");
+                System.out.println(description);
+                String user_type = rs.getString("user_type");
+                System.out.println(user_type);
                 int location_id = rs.getInt("location_id");
+                System.out.println(location_id);
                 
-                User u = new User(user_id, name, age, gender, email, college, user_type, description, location_id);
+                User u = new User(user_id, name, age, gender, email, password, college, description, user_type, location_id);
                 users.add(u);
+                return users;
             }
         } catch (SQLException ex)
         {
-            throw new DaoException("findAllMovies() " + ex.getMessage());
+            throw new DaoException("returnNonDrivers() " + ex.getMessage());
         } finally
         {
             try
@@ -70,7 +81,7 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
                 }
             } catch (SQLException e)
             {
-                throw new DaoException("findAllStudents() " + e.getMessage());
+                throw new DaoException("returnNonDrivers() " + e.getMessage());
             }
             return users;
         }

@@ -15,5 +15,5 @@ import java.util.ArrayList;
  */
 public interface StudentDaoInterface
 {
-    public ArrayList<User> returnAllUsers() throws DaoException;
+    public ArrayList<User> returnNonDrivers() throws DaoException;
 }

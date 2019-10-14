@@ -130,7 +130,7 @@ public class Server {
     }
      
      public static String returnAllUsers(StudentDaoInterface IUserDao) throws DaoException{
-         ArrayList<User> users = IUserDao.returnAllUsers();
+         ArrayList<User> users = IUserDao.returnNonDrivers();
          if(users != null){
              return jsonFormatter(users);
          }
