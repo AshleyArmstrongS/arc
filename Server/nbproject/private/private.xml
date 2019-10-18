@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/udp_arc/Server/src/DAOs/PsqlStudentDao.java</file>
             <file>file:/C:/xampp/htdocs/udp_arc/Server/src/BuisnessObject/Server.java</file>
+            <file>file:/C:/xampp/htdocs/udp_arc/Server/src/DTOs/User.java</file>
             <file>file:/C:/xampp/htdocs/udp_arc/Server/src/BuisnessObject/dbTest.java</file>
             <file>file:/C:/xampp/htdocs/udp_arc/Server/src/DAOs/StudentDaoInterface.java</file>
         </group>
