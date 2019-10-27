@@ -21,11 +21,34 @@ public class dbTest
     public static void main(String[] args) throws DaoException
     {
         StudentDaoInterface IStudentDao = new PsqlStudentDao();
-        ArrayList<User> bobs = IStudentDao.returnNonDrivers();
-        IStudentDao.returnp();
-        for(User b : bobs){
-            System.out.println(b.toString());
+        ArrayList<User> nonDrivers = IStudentDao.returnNonDrivers();
+        User addTest = new User("Rachel", 19, 'F', "me@gmail.com", "HelloWorld", "Dundalk Institute of Technology", "None", 'P', 3 );
+        
+        System.out.println("Before add");
+        for(User u : nonDrivers){
+            System.out.println(u.toString());
         }
+        
+        //IStudentDao.addUser(addTest);
+        
+        System.out.println("\n\nAfter add");
+        for(User u : nonDrivers){
+            System.out.println(u.toString());
+        }
+        
+        User updateTest = new User(9, "Rachel", 20, 'F', "me@gmail.com", "HelloWorld", "Dundalk Institute of Technology", "None", 'P', 3 );
+
+        //IStudentDao.updateUser(updateTest);
+        System.out.println("\n\nUpdated user");
+        System.out.println(updateTest.toString());
+        
+        //IStudentDao.deleteUser(8);
+        
+        System.out.println("\n\nAfter delete");
+        for(User u : nonDrivers){
+            System.out.println(u.toString());
+        }
+        
     }    
 }
 

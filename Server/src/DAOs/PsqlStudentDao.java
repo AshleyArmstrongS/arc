@@ -32,33 +32,22 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
         try
         {
             con = this.getConnection();
-            String query = "SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id FROM users where user_type = 'P'";
+            String query = "SELECT user_id, name, age, gender, email, college, description, user_type, location_id FROM users where user_type = 'P'";
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next())
             {
                 int user_id = rs.getInt("user_id");
-                System.out.println(user_id);
                 String name = rs.getString("name");
-                System.out.println(name);
                 int age = rs.getInt("age");
-                System.out.println(age);
-                String gender = rs.getString("gender");
-                System.out.println(gender);
+                char gender = rs.getString("gender").charAt(0);
                 String email = rs.getString("email");
-                System.out.println(email);
-                String password = rs.getString("password");
-                System.out.println(password);
                 String college = rs.getString("college");
-                System.out.println(college);
                 String description = rs.getString("description");
-                System.out.println(description);
-                String user_type = rs.getString("user_type");
-                System.out.println(user_type);
+                char user_type = rs.getString("user_type").charAt(0);
                 int location_id = rs.getInt("location_id");
-                System.out.println(location_id);
                 
-                User u = new User(user_id, name, age, gender, email, password, college, description, user_type, location_id);
+                User u = new User(user_id, name, age, gender, email, college, description, user_type, location_id);
                 users.add(u);
             }
         } catch (SQLException ex)
@@ -84,10 +73,13 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
             {
                 throw new DaoException("returnNonDrivers() " + e.getMessage());
             }
-            return users;
+            
         }
+        return users;
     }
-     @Override
+     
+    
+    @Override
     public void returnp() throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
@@ -113,5 +105,158 @@ public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
            Logger.getLogger(PsqlStudentDao.class.getName()).log(Level.SEVERE, null, ex);
        }
     
-}}
+}
+
+    @Override
+    public void addUser(User u) throws DaoException
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            con = this.getConnection();
+            String query = "insert into users(name, age, gender, email, password, college, description, user_type, location_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, u.getName());
+            ps.setInt(2, u.getAge());
+            ps.setString(3, String.valueOf(u.getGender()));
+            ps.setString(4,u.getEmail());
+            ps.setString(5, u.getPassword());
+            ps.setString(6, u.getCollege());
+            ps.setString(7, u.getDescription());
+            ps.setString(8, String.valueOf(u.getUser_type()));
+            ps.setInt(9, u.getLocation_id());
+            
+            int affectedRows = ps.executeUpdate();
+            
+            if (affectedRows > 0) 
+            {
+                System.out.println("User Added");
+            }
+        } catch (SQLException ex)
+        {
+            throw new DaoException("AddUser() " + ex.getMessage());
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                throw new DaoException("AddUser() " + e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void updateUser(User u) throws DaoException
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            con = this.getConnection();
+            String query = "update users set name = ?, age = ?, gender = ?, email = ?, password = ?, college = ?, description = ?, user_type = ?, location_id = ? where user_id = ?;";
+            ps = con.prepareStatement(query);
+            
+            ps.setString(1, u.getName());
+            ps.setInt(2, u.getAge());
+            ps.setString(3, String.valueOf(u.getGender()));
+            ps.setString(4,u.getEmail());
+            ps.setString(5, u.getPassword());
+            ps.setString(6, u.getCollege());
+            ps.setString(7, u.getDescription());
+            ps.setString(8, String.valueOf(u.getUser_type()));
+            ps.setInt(9, u.getLocation_id());
+            ps.setInt(10, u.getUser_id());
+            
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) 
+            {
+                System.out.println("User Updated");
+            }
+        } catch (SQLException ex)
+        {
+            throw new DaoException("UpdateUser() " + ex.getMessage());
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                throw new DaoException("UpdateUser() " + e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void deleteUser(int id) throws DaoException
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try
+        {
+            con = this.getConnection();
+
+            String query = "delete from users where user_id = ? ";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e)
+        {
+            throw new DaoException("deleteUser() " + e.getMessage());
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                throw new DaoException("deleteUser() " + e.getMessage());
+            }
+        }
+    }
+}
 
