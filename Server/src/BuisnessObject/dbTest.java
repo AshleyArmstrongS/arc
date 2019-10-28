@@ -6,10 +6,10 @@
 package BuisnessObject;
 
 import DAOs.PsqlUserDao;
+import DAOs.UserDaoInterface;
 import DTOs.User;
 import Exceptions.DaoException;
 import java.util.ArrayList;
-import DAOs.UserDaoInterface;
 
 
 /**
@@ -20,12 +20,34 @@ public class dbTest
 {
     public static void main(String[] args) throws DaoException
     {
-        UserDaoInterface IStudentDao = new PsqlUserDao();
-        ArrayList<User> bobs = IStudentDao.returnNonDrivers();
+        UserDaoInterface IUserDao = new PsqlUserDao();
+        ArrayList<User> nonDrivers = IUserDao.returnNonDrivers();
+        User addTest = new User("Rachel", 19, 'F', "me@gmail.com", "HelloWorld", "Dundalk Institute of Technology", "None", 'P', 3 );
         
-        for(User b : bobs){
-            b.toString();
+        System.out.println("Before add");
+        for(User u : nonDrivers){
+            System.out.println(u.toString());
         }
+        
+        //IUserDao.addUser(addTest);
+        
+//        System.out.println("\n\nAfter add");
+//        for(User u : nonDrivers){
+//            System.out.println(u.toString());
+//        }
+//        
+        //User updateTest = new User(11, "Rachel", 20, 'F', "me@gmail.com", "HelloWorld", "Dundalk Institute of Technology", "None", 'P', 3 );
+
+        //IUserDao.updateUser(updateTest);
+//        System.out.println("\n\nUpdated user");
+//        System.out.println(updateTest.toString());
+        
+        //IUserDao.deleteUser(11);
+        
+//        System.out.println("\n\nAfter delete");
+//        for(User u : nonDrivers){
+//            System.out.println(u.toString());
+//        }
+        
     }    
 }
-
