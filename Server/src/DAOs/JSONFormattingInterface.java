@@ -5,15 +5,13 @@
  */
 package DAOs;
 
-import DTOs.User;
-import Exceptions.DaoException;
 import java.util.ArrayList;
 
 /**
  *
- * @author racheldhc
+ * @author Administrator
  */
-public interface StudentDaoInterface
-{
-    public ArrayList<User> returnNonDrivers() throws DaoException;
+public interface JSONFormattingInterface {
+    
+     public String jsonFormatter(ArrayList users);
 }

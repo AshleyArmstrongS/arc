@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author racheldhc
  */
-public class PsqlStudentDao extends PsqlDao implements StudentDaoInterface {
+public class PsqlUserDao extends PsqlDao implements UserDaoInterface {
 
     
    @Override

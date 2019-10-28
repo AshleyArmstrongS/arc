@@ -1,7 +1,7 @@
 package BuisnessObject;
 
-import DAOs.PsqlStudentDao;
-import DAOs.StudentDaoInterface;
+import DAOs.JSONFormattingInterface;
+import DAOs.UserStudentDao;
 import DTOs.User;
 import Exceptions.DaoException;
 import java.io.BufferedReader;
@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import DAOs.UserDaoInterface;
 
 /**
  *
@@ -76,6 +77,7 @@ public class Server {
             try
             {
                 InputStreamReader isReader = new InputStreamReader(clientSocket.getInputStream());
+                
                 this.socketReader = new BufferedReader(isReader);
 
                 OutputStream os = clientSocket.getOutputStream();
@@ -98,10 +100,11 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
-                    StudentDaoInterface IUserDao = new PsqlStudentDao();
+                    UserDaoInterface IUserDao = new UserStudentDao();
+                    JSONFormattingInterface IJSONDao = new JSONFormattingInterface() {};
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(returnAllUsers(IUserDao)+"\r\n");
+                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+"\r\n");
                     System.out.println("printed to client");
                 }
                 if (socketClose)
@@ -129,20 +132,14 @@ public class Server {
         return object;
     }
      
-     public static String returnAllUsers(StudentDaoInterface IUserDao) throws DaoException{
+     public static String returnAllUsers(UserDaoInterface IUserDao, JSONFormattingInterface IJSONDao) throws DaoException{
          ArrayList<User> users = IUserDao.returnNonDrivers();
          if(users != null){
-             return jsonFormatter(users);
+             return IJSONDao.jsonFormatter(users);
          }
          else
          {
              return "{\"type\": \"message\", \"message\": \"There are no users\"}";
          }
-     }
-     public static String jsonFormatter(ArrayList users){
-         for(int i = 0; i < users.size(); i++){
-             
-         }
-         return "";
      }
 }
