@@ -20,7 +20,7 @@ public class PsqlDao {
 //        String driver = "org.psql.jdbc.Driver";
         String url = "jdbc:postgresql://localhost:5432/gocollege";
         String username = "postgres";
-        String password = "pass";
+        String password = "password";
         Connection con = null;
         
         try 
