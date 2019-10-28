@@ -13,14 +13,14 @@ public class Driver extends User implements JSONFormattingInterface{
     private double est_pay;
     private String available; 
 
-    public Driver(String car, double est_pay, String available, int user_id, String name, int age, String gender, String email, String password, String college, String description, String user_type, int location_id) {
+    public Driver(String car, double est_pay, String available, int user_id, String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
         super(user_id, name, age, gender, email, password, college, description, user_type, location_id);
         this.car = car;
         this.est_pay = est_pay;
         this.available = available;
     }
 
-    public Driver(String car, double est_pay, String available, int user_id, String name, int age, String gender, String email, String college, String description, String user_type, int location_id) {
+    public Driver(String car, double est_pay, String available, int user_id, String name, int age, char gender, String email, String college, String description, char user_type, int location_id) {
         super(user_id, name, age, gender, email, college, description, user_type, location_id);
         this.car = car;
         this.est_pay = est_pay;
