@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author racheldhc
  */
-public interface StudentDaoInterface
+public interface UserDaoInterface
 {
     public ArrayList<User> returnNonDrivers() throws DaoException;
 }

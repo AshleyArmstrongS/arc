@@ -1,8 +1,9 @@
 package BuisnessObject;
 
-import DAOs.PsqlStudentDao;
-import DAOs.StudentDaoInterface;
+import DAOs.JSONFormattingInterface;
+import DAOs.PsqlUserDao;
 import DTOs.User;
+import DTOs.Driver;
 import Exceptions.DaoException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import DAOs.UserDaoInterface;
 
 /**
  *
@@ -66,7 +68,8 @@ public class Server {
 
     public class ClientHandler implements Runnable // each ClientHandler communicates with one Client
     {
-        final static String CRLF = "\r\n";
+
+        static final String CRLF = "/r/n";
         BufferedReader socketReader;
         PrintWriter socketWriter;
         Socket socket;
@@ -76,6 +79,7 @@ public class Server {
             try
             {
                 InputStreamReader isReader = new InputStreamReader(clientSocket.getInputStream());
+                
                 this.socketReader = new BufferedReader(isReader);
 
                 OutputStream os = clientSocket.getOutputStream();
@@ -98,10 +102,13 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
-                    StudentDaoInterface IUserDao = new PsqlStudentDao();
+                    UserDaoInterface IUserDao = new PsqlUserDao();
+                    JSONFormattingInterface IJSONDao = new User();
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(returnAllUsers(IUserDao)+CRLF);
+
+                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+CRLF);
+
                     System.out.println("printed to client");
                 }
                 if (socketClose)
@@ -129,20 +136,14 @@ public class Server {
         return object;
     }
      
-     public static String returnAllUsers(StudentDaoInterface IUserDao) throws DaoException{
+     public static String returnAllUsers(UserDaoInterface IUserDao, JSONFormattingInterface IJSONDao) throws DaoException{
          ArrayList<User> users = IUserDao.returnNonDrivers();
          if(users != null){
-             return jsonFormatter(users);
+             return IJSONDao.jsonFormatter(users);
          }
          else
          {
              return "{\"type\": \"message\", \"message\": \"There are no users\"}";
          }
-     }
-     public static String jsonFormatter(ArrayList users){
-         for(int i = 0; i < users.size(); i++){
-             
-         }
-         return "";
      }
 }

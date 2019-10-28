@@ -1,8 +1,12 @@
 package DTOs;
 
+import DAOs.JSONFormattingInterface;
+import DAOs.UserDaoInterface;
+import Exceptions.DaoException;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class User{
+public class User implements JSONFormattingInterface{
     
     private int user_id;
     private String name;
@@ -212,8 +216,12 @@ public class User{
         }
         return true;
     }
-   
-  
-   
     
+   public String jsonFormatter(ArrayList users){
+         for(int i = 0; i < users.size(); i++){
+             
+         }
+         return "";
+     }
+   
 }
