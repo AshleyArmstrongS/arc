@@ -108,7 +108,7 @@ public class Server {
                     socketWriter.flush();
 
                     socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+CRLF);
-
+                    socketWriter.println(message);
                     System.out.println("printed to client");
                 }
                 if (socketClose)
@@ -137,13 +137,13 @@ public class Server {
     }
      
      public static String returnAllUsers(UserDaoInterface IUserDao, JSONFormattingInterface IJSONDao) throws DaoException{
-         ArrayList<User> users = IUserDao.returnNonDrivers();
-         if(users != null){
-             return IJSONDao.jsonFormatter(users);
-         }
-         else
-         {
+         //ArrayList<User> users = IUserDao.returnNonDrivers();
+        // if(users != null){
+            // return IJSONDao.jsonFormatter(users);
+        // }
+        // else
+         //{
              return "{\"type\": \"message\", \"message\": \"There are no users\"}";
-         }
+         //}
      }
 }
