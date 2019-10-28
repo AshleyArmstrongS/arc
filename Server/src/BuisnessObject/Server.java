@@ -68,6 +68,7 @@ public class Server {
 
     public class ClientHandler implements Runnable // each ClientHandler communicates with one Client
     {
+
         static final String CRLF = "/r/n";
         BufferedReader socketReader;
         PrintWriter socketWriter;
@@ -105,7 +106,9 @@ public class Server {
                     JSONFormattingInterface IJSONDao = new User();
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+ CRLF);
+
+                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+CRLF);
+
                     System.out.println("printed to client");
                 }
                 if (socketClose)
