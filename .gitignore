@@ -14,3 +14,6 @@ nb-configuration.xml
 *.jar
 *.war
 *.ear
+
+# Java files #
+Server/src/DAOs/PsqlDao.java
