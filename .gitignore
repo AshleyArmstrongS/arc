@@ -1,3 +1,13 @@
 /Server/dist/
 
-Server/src/DAOs/PsqlDao.java
+**/nbproject/private/
+*/nbproject/Makefile-.mk
+*/nbproject/Package-.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+/Server/src/DAOs/PsqlDao.java
