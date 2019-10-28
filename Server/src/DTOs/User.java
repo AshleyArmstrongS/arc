@@ -1,8 +1,10 @@
 package DTOs;
 
+import DAOs.JSONFormattingInterface;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class User{
+public class User implements JSONFormattingInterface{
     
     private int user_id;
     private String name;
@@ -226,6 +228,11 @@ public class User{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String jsonFormatter(ArrayList T) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 
