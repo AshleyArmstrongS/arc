@@ -1,25 +1,21 @@
 package DTOs;
 
-import DAOs.JSONFormattingInterface;
-import DAOs.UserDaoInterface;
-import Exceptions.DaoException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class User implements JSONFormattingInterface{
+public class User{
     
     private int user_id;
     private String name;
     private int age;
-    private String gender;
+    private char gender;
     private String email;
     private String password;
     private String college;
     private String description;
-    private String user_type;
+    private char user_type;
     private int location_id;
 
-    public User(int user_id, String name, int age, String gender, String email, String password, String college, String description, String user_type, int location_id) {
+    public User(int user_id, String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
         this.user_id = user_id;
         this.name = name;
         this.age = age;
@@ -32,29 +28,44 @@ public class User implements JSONFormattingInterface{
         this.location_id = location_id;
     }
     
-    public User(int user_id, String name, int age, String gender, String email, String college, String description, String user_type, int location_id) {
+    public User(int user_id, String name, int age, char gender, String email, String college, String description, char user_type, int location_id) {
         this.user_id = user_id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.email = email;
-        this.password = "";
         this.college = college;
         this.description = description;
         this.user_type = user_type;
         this.location_id = location_id;
     }
+    
+     public User(String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.email = email;
+        this.password = password;
+        this.college = college;
+        this.description = description;
+        this.user_type = user_type;
+        this.location_id = location_id;
+    }
+    
+    
+    
+    
 
      public User() {
         this.user_id = 0;
         this.name = "";
         this.age = 0;
-        this.gender = "";
+        this.gender = 'F';
         this.email = "";
         this.password = "";
         this.college = "";
         this.description = "";
-        this.user_type = "";
+        this.user_type = 'P';
         this.location_id = 0;
     }
 
@@ -82,11 +93,11 @@ public class User implements JSONFormattingInterface{
         this.age = age;
     }
 
-    public String getGender() {
+    public char getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(char gender) {
         this.gender = gender;
     }
 
@@ -122,11 +133,11 @@ public class User implements JSONFormattingInterface{
         this.description = description;
     }
 
-    public String getUser_type() {
+    public char getUser_type() {
         return user_type;
     }
 
-    public void setUser_type(String user_type) {
+    public void setUser_type(char user_type) {
         this.user_type = user_type;
     }
 
@@ -216,12 +227,5 @@ public class User implements JSONFormattingInterface{
         }
         return true;
     }
-    
-   public String jsonFormatter(ArrayList users){
-         for(int i = 0; i < users.size(); i++){
-             
-         }
-         return "";
-     }
-   
 }
+
