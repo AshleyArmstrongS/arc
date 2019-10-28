@@ -1,8 +1,9 @@
 package BuisnessObject;
 
 import DAOs.JSONFormattingInterface;
-import DAOs.UserStudentDao;
+import DAOs.PsqlUserDao;
 import DTOs.User;
+import DTOs.Driver;
 import Exceptions.DaoException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class Server {
 
     public class ClientHandler implements Runnable // each ClientHandler communicates with one Client
     {
-
+        static final String CRLF = "/r/n";
         BufferedReader socketReader;
         PrintWriter socketWriter;
         Socket socket;
@@ -100,11 +101,11 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
-                    UserDaoInterface IUserDao = new UserStudentDao();
-                    JSONFormattingInterface IJSONDao = new JSONFormattingInterface() {};
+                    UserDaoInterface IUserDao = new PsqlUserDao();
+                    JSONFormattingInterface IJSONDao = new User();
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+"\r\n");
+                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+ CRLF);
                     System.out.println("printed to client");
                 }
                 if (socketClose)

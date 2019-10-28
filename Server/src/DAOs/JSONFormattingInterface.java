@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public interface JSONFormattingInterface {
     
-     public String jsonFormatter(ArrayList users);
+     public String jsonFormatter(ArrayList T);
 }

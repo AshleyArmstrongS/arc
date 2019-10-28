@@ -1,6 +1,9 @@
 package DTOs;
 
-public class Timetable {
+import DAOs.JSONFormattingInterface;
+import java.util.ArrayList;
+
+public class Timetable implements JSONFormattingInterface{
     
     private int user_id;
     private int mon_in;
@@ -185,6 +188,10 @@ public class Timetable {
         }
         return true;
     }
-    
+
+    @Override
+    public String jsonFormatter(ArrayList users) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -216,10 +216,12 @@ public class User implements JSONFormattingInterface{
         }
         return true;
     }
+    
    public String jsonFormatter(ArrayList users){
          for(int i = 0; i < users.size(); i++){
              
          }
          return "";
      }
+   
 }

@@ -1,12 +1,14 @@
 package DTOs;
 
+import DAOs.JSONFormattingInterface;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
  * @author Administrator
  */
-public class Driver extends User {
+public class Driver extends User implements JSONFormattingInterface{
     private String car;
     private double est_pay;
     private String available; 
@@ -99,4 +101,10 @@ public class Driver extends User {
         return true;
     }
     
+     public String jsonFormatter(ArrayList users){
+         for(int i = 0; i < users.size(); i++){
+             
+         }
+         return "";
+     }
 }
