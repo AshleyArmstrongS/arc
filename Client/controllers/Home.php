@@ -33,18 +33,9 @@
     'start' => $date
   ];
   
-  //$send = json_encode(['Event:' =>$eventArray]);
-  
+  $read = socketRequest($send, $socket); 
 
- //write the string to the socket
- 
-  $written = socket_write($socket, $send, strlen($send));
-  if(!$written){die("error writing\n");}
- 
-  //wait for repsonse
-  $read = socket_read($socket, 2048 );
-  if(!$read){die("Error reading\n");}
-
+  echo $read;
   // render to view
   $json = (array) json_decode($read, true);
   print_r($json);
