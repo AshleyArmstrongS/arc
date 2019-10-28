@@ -66,7 +66,7 @@ public class Server {
 
     public class ClientHandler implements Runnable // each ClientHandler communicates with one Client
     {
-
+        final static String CRLF = "\r\n";
         BufferedReader socketReader;
         PrintWriter socketWriter;
         Socket socket;
@@ -101,7 +101,7 @@ public class Server {
                     StudentDaoInterface IUserDao = new PsqlStudentDao();
                     System.out.println(message);
                     socketWriter.flush();
-                    socketWriter.println(returnAllUsers(IUserDao)+"\r\n");
+                    socketWriter.println(returnAllUsers(IUserDao)+CRLF);
                     System.out.println("printed to client");
                 }
                 if (socketClose)
