@@ -8,8 +8,12 @@
                     <h3 class="panel-title">Please sign up for GoCollege</h3>
                 </div>
             </div>
-            
+            <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+  </button>
             <?php
+            
     $form_error_messages = $locals['form_error_messages'];
     if (count($form_error_messages) > 0) {
         foreach ($form_error_messages as $error_message) {
@@ -19,8 +23,9 @@
         }
     }
     ?>
+    </div>
              <div class="card-body">
-                <form role="form">
+             <form id='signup_form' action='' method='post'>
                  <div class="input-group form-group">
                         <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                     </div>
