@@ -25,8 +25,19 @@
             exit();
         }
     }
-
-
+    function socketRequest($request, $socket){
+        $written = socket_write($socket, $request, strlen($request));
+        if(!$written){
+            return "{\"error\": \"Cannot write to server\"}";
+        }
+   
+    //wait for repsonse
+        $read = socket_read($socket, 2048 );
+        if(!$read){
+            return "{\"error\": \"Cannot recieve from server\"}";
+        }
+        return $read;   
+    }
     
     $close = false; 
     

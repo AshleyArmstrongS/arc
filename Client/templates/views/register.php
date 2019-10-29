@@ -25,7 +25,7 @@
     ?>
     </div>
              <div class="card-body">
-             <form id='signup_form' action='' method='post'>
+             <form action='' method='post' class="form">
                  <div class="input-group form-group">
                         <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                     </div>

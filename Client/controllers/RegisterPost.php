@@ -1,7 +1,7 @@
 
 <?php return function($req, $res) {
  require('lib/FormUtils.php');
-require_once('lib/Socket.php');
+ require_once('lib/Socket.php');
 
 
     $form_was_posted = [];
@@ -62,33 +62,20 @@ require_once('lib/Socket.php');
     }
 
     
-        
-
-        if(!$form_was_posted || count($form_error_messages) > 0) {
+    if(count($form_error_messages) > 0) 
+    {
             $res->render('main', 'register', [
               'pageTitle' => 'Register',
               'form_error_messages'   => $form_error_messages
             ]);
-        }
-    
-        else {
+    }
+    else
+    {
+        $send = "{\"request\":\"createUser\", \"name\":\"" . $name['value'] . "\", \"password\":\"" . $password['value'] . "\"}".PHP_EOL;
 
-            $send = "{\"request\":\"createUser\", \"name\":\"" . $name . "\", \"age\":\"" . $age . "\"}".PHP_EOL;
-            $written = socket_write($socket, $send, strlen($send));
-            if(!$written){die("error writing\n");}
- 
-            //wait for repsonse
-            $read = socket_read($socket, 2048 );
-            if(!$read){die("Error reading\n");}
-
-            // render to view
-            $json = (array) json_decode($read, true);
-            print_r($json);
-            //close socket 
-            $close = true;
-
-           
-        }
+        // send to server to validate whether the user exists and has correct passsword
+        $read = socketRequest($send, $socket); 
+    }
         
 
 
