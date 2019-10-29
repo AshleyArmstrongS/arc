@@ -10,8 +10,11 @@
   
 
   if($req->body('email') !== NULL || $req->body('password') !== NULL){
-    $username = $req->body('username');
-    $password = $req->body('password');
+    //$username = $req->body('username');
+    //$password = $req->body('password');
+
+    $username = "Aisling";
+    $password = "PaSSword1!";
 
     $send = "{\"request\":\"login\", \"username\":\"" . $username . "\", \"password\":\"" . $password . "\"}".PHP_EOL;
 
