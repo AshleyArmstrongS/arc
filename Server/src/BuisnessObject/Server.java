@@ -115,7 +115,7 @@ public class Server {
                     
                     if (clientReq == "login")
                     {
-                        clientResponse = login(fromClient);
+                        clientResponse = login(IUserDao, fromClient);
                     }
                     else if (clientReq == "register")
                     {
@@ -125,6 +125,7 @@ public class Server {
                     {
                         socketWriter.println(returnAllUsers(IUserDao, IJSONDao) + CRLF);
                     }
+                    socketWriter.write(clientResponse);
                     System.out.println("printed to client");
 
                 }
