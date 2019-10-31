@@ -1,5 +1,5 @@
 <?php return function($req, $res) {
-    
+     require_once('lib/Socket.php');
     //$db = \Rapid\Database::getPDO();  
     //require('./models/User.php');
     //require('./lib/utils/FormUtils.php');
@@ -9,7 +9,7 @@
     
   
 
-  if($req->body('email') !== NULL || $req->body('password') !== NULL){
+  //if($req->body('email') !== NULL || $req->body('password') !== NULL){
     $username = $req->body('username');
     $password = $req->body('password');
 
@@ -23,15 +23,17 @@
     // if all ok redirect to home
     // else render the login page again with an error message
 
-    $res->redirect('/home');
+    $read = socketRequest($send, $socket); 
 
-  }
+  //$res->redirect('/home');
 
-  else{
-    $res->render('main', 'login', [
-      'form_error_messages' => 'Incorrect Username or password'
-    ]);
-  }
+  //}
+  //
+  // else{
+  //$res->render('main', 'login', [
+  //    'form_error_messages' => 'Incorrect Username or password'
+  // ]);
+  //  }
 
  
 

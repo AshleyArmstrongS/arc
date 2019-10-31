@@ -79,7 +79,7 @@ public class Server {
             try
             {
                 InputStreamReader isReader = new InputStreamReader(clientSocket.getInputStream());
-                
+
                 this.socketReader = new BufferedReader(isReader);
 
                 OutputStream os = clientSocket.getOutputStream();
@@ -102,14 +102,31 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
+                   
+                    System.out.println("***************************************\n");
+                    System.out.println(message);
+                    System.out.println("***************************************\n");
                     UserDaoInterface IUserDao = new PsqlUserDao();
                     JSONFormattingInterface IJSONDao = new User();
-                    System.out.println(message);
+                    JsonObject fromClient = jsonFromString(message);
+                     String clientReq = fromClient.getString("request");
+                     String clientResponse = "{\"type\" : \"status\", \"status\" : \"001\"}";
                     socketWriter.flush();
+                    
+                    if (clientReq == "login")
+                    {
+                        clientResponse = login(fromClient);
+                    }
+                    else if (clientReq == "register")
+                    {
 
-                    socketWriter.println(returnAllUsers(IUserDao, IJSONDao)+CRLF);
-                    socketWriter.println(message);
+                    }
+                    else
+                    {
+                        socketWriter.println(returnAllUsers(IUserDao, IJSONDao) + CRLF);
+                    }
                     System.out.println("printed to client");
+
                 }
                 if (socketClose)
                 {
@@ -126,7 +143,8 @@ public class Server {
             System.out.println("Server: (ClientHandler): Handler for Client " + clientNumber + " is terminating .....");
         }
     }
-     public static JsonObject jsonFromString(String jsonObjectStr) {
+
+    public static JsonObject jsonFromString(String jsonObjectStr) {
         JsonObject object;
         try (JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr)))
         {
@@ -135,15 +153,27 @@ public class Server {
 
         return object;
     }
-     
-     public static String returnAllUsers(UserDaoInterface IUserDao, JSONFormattingInterface IJSONDao) throws DaoException{
-         //ArrayList<User> users = IUserDao.returnNonDrivers();
+
+    public static String returnAllUsers(UserDaoInterface IUserDao, JSONFormattingInterface IJSONDao) throws DaoException {
+        //ArrayList<User> users = IUserDao.returnNonDrivers();
         // if(users != null){
-            // return IJSONDao.jsonFormatter(users);
+        // return IJSONDao.jsonFormatter(users);
         // }
         // else
-         //{
-             return "{\"type\": \"message\", \"message\": \"There are no users\"}";
-         //}
-     }
+        //{
+        return "{\"type\": \"message\", \"message\": \"There are no users\"}";
+        //}
+    }
+     public static String login(UserDaoInterface IUserDao, JsonObject fromClient) throws DaoException {
+         String email = fromClient.getString("email");
+         String password = IUserDao.getHashByEmail(email);
+         if(password !="")
+         {
+         return "{\"type\":\"login\", \"password\":\"" + "" + "\"}";
+         }
+         else
+        {
+        return "{\"type\": \"loginFail\"}";
+        }
+    }
 }
