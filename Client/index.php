@@ -11,7 +11,8 @@
   $app->GET('/home',      'Home');
   $app->GET('/login',     'LoginGet');
   $app->POST('/login',    'LoginPost');
-  $app->GET('/register',  'Register');
+  $app->GET('/register',  'RegisterGet');
+  $app->POST('/register',  'RegisterPost');
 
   // Process the request
   $app->dispatch();
