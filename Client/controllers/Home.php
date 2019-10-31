@@ -2,54 +2,56 @@
   //opens a socket and connects to java
   require_once('lib/Socket.php');
 
-  //create the string to be sent to java 
-  // going to be json
+  echo("Welcome");
 
-  // make an array 
+  // //create the string to be sent to java 
+  // // going to be json
+
+  // // make an array 
 
 
-  //$send ='Wow i did it'.PHP_EOL;
-
-  
-  $name = "Conor";
-  $gender = "male";
-  
-  // There will be different commands
-  //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
-  
-  //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
-  
-  //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
-  
-  $send = "{\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
+  // //$send ='Wow i did it'.PHP_EOL;
 
   
-  $event_details = array();
-  $day = "fsda";
-  $date = "21/12/12";
-
-  $eventArray = [
-    'title' => $day,
-    'start' => $date
-  ];
+  // $name = "Conor";
+  // $gender = "male";
   
-  $read = socketRequest($send, $socket); 
+  // // There will be different commands
+  // //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
+  
+  // //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
+  
+  // //$send = "{\"request\": \"createUser\," "\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
+  
+  // $send = "{\"name\":\"" . $name . "\", \"gender\":\"" . $gender . "\"}".PHP_EOL;
 
-  echo $read;
-  // render to view
-  $json = (array) json_decode($read, true);
-  print_r($json);
+  
+  // $event_details = array();
+  // $day = "fsda";
+  // $date = "21/12/12";
 
-  echo $json['name'];
+  // $eventArray = [
+  //   'title' => $day,
+  //   'start' => $date
+  // ];
+  
+  // $read = socketRequest($send, $socket); 
 
-  //$name = $json['x']
+  // echo $read;
+  // // render to view
+  // $json = (array) json_decode($read, true);
+  // print_r($json);
 
-  //$res->render('main', 'home', ['value' => $read]);
+  // echo $json['name'];
 
-  //close socket 
-  $close = true;
+  // //$name = $json['x']
 
-  //$send = "{""Name":"" . $name . "', Gender:'" . $gender . "'}".PHP_EOL;
+  // //$res->render('main', 'home', ['value' => $read]);
+
+  // //close socket 
+  // $close = true;
+
+  // //$send = "{""Name":"" . $name . "', Gender:'" . $gender . "'}".PHP_EOL;
   
 } ?>
 
