@@ -74,34 +74,54 @@ public class PsqlUserDao extends PsqlDao implements UserDaoInterface {
         return users;
     }
      
-    
-//    @Override
-//    public void returnp() throws DaoException {
-//        Connection con = null;
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try
-//        {
-//              System.out.println("Before Connection");
-//            con = this.getConnection();
-//            System.out.println("After Connection");
-//            String query = "SELECT user_id FROM users where user_id = 1 ";
-//            System.out.println("After query");
-//            ps = con.prepareStatement(query);
-//            System.out.println("after ps");
-//            rs = ps.executeQuery();
-//            System.out.println("after rs");
-//            while (rs.next())
-//            {
-//                System.out.println(rs.getInt("user_id"));
-//            }
-//        } catch (SQLException ex)
-//       {
-//           Logger.getLogger(PsqlUserDao.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-//    
-//}
+    @Override
+    public String getHashByEmail(String email) throws DaoException
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String pass = "";
+        
+        try
+        {
+            con = this.getConnection();
+            String query = "SELECT password from users where email = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                pass = rs.getString("Password");
+            }
+            
+        }
+        catch(SQLException ex) {
+            throw new DaoException("getHashByEmail() " + ex.getMessage());
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                throw new DaoException("getHashByEmail() " + e.getMessage());
+            }
+        }
+        return pass;
+    }
+
 
     @Override
     public void addUser(User u) throws DaoException
@@ -255,11 +275,6 @@ public class PsqlUserDao extends PsqlDao implements UserDaoInterface {
         }
     }
 
-    @Override
-    public void returnp() throws DaoException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
 
