@@ -29,6 +29,9 @@ public class dbTest
             System.out.println(u.toString());
         }
         
+        String password = IUserDao.getHashByEmail("emmaiscool@gmail.com");
+        
+        System.out.println(password);
         //IUserDao.addUser(addTest);
         
 //        System.out.println("\n\nAfter add");
