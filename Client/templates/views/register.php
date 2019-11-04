@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="password1" id="password" class="form-control" placeholder="Password">
+                                <input type="text" name="password1" id="password1" class="form-control" placeholder="Password">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -44,7 +44,7 @@
                         <input type="text" name="college" id="college" class="form-control input-sm" placeholder="Name Of College">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="descritpion" id="descritpion" class="form-control input-sm" placeholder="Description of yourself">
+                        <input type="text" name="description" id="description" class="form-control input-sm" placeholder="Description of yourself">
                     </div>
 
                     <div class="row">
