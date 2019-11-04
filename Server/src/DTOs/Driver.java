@@ -11,17 +11,24 @@ import java.util.Objects;
 public class Driver extends User implements JSONFormattingInterface{
     private String car;
     private double est_pay;
-    private String available; 
+    private char available; 
 
-    public Driver(String car, double est_pay, String available, int user_id, String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
+    public Driver(String car, double est_pay, char available, int user_id, String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
         super(user_id, name, age, gender, email, password, college, description, user_type, location_id);
         this.car = car;
         this.est_pay = est_pay;
         this.available = available;
     }
 
-    public Driver(String car, double est_pay, String available, int user_id, String name, int age, char gender, String email, String college, String description, char user_type, int location_id) {
+    public Driver(String car, double est_pay, char available, int user_id, String name, int age, char gender, String email, String college, String description, char user_type, int location_id) {
         super(user_id, name, age, gender, email, college, description, user_type, location_id);
+        this.car = car;
+        this.est_pay = est_pay;
+        this.available = available;
+    }
+    
+    public Driver(String car, double est_pay, char available, String name, int age, char gender, String email, String password, String college, String description, char user_type, int location_id) {
+        super(name, age, gender, email, password, college, description, user_type, location_id);
         this.car = car;
         this.est_pay = est_pay;
         this.available = available;
@@ -30,7 +37,7 @@ public class Driver extends User implements JSONFormattingInterface{
     public Driver() {
         this.car = "";
         this.est_pay = 0.0;
-        this.available = "";
+        this.available = 'Y';
     }
 
     public String getCar() {
@@ -49,11 +56,11 @@ public class Driver extends User implements JSONFormattingInterface{
         this.est_pay = est_pay;
     }
 
-    public String getAvailable() {
+    public char getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(char available) {
         this.available = available;
     }
 
