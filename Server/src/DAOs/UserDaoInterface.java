@@ -5,6 +5,7 @@
  */
 package DAOs;
 
+import DTOs.Driver;
 import DTOs.User;
 import Exceptions.DaoException;
 import java.util.ArrayList;
@@ -17,8 +18,11 @@ public interface UserDaoInterface
 {
     public ArrayList<User> returnNonDrivers() throws DaoException;
     public String getHashByEmail(String email) throws DaoException;
-    public void addUser(User u) throws DaoException;
-    public void updateUser(User u) throws DaoException;
+    public void addPassenger(User u) throws DaoException;
+    public void addDriver(Driver u) throws DaoException;
+    public void updatePassengerById(User u) throws DaoException;
+    public void updateDriverById(Driver d) throws DaoException;
     public void deleteUser(int id) throws DaoException;
+    public boolean ifUserExists(String email) throws DaoException;
     
 }

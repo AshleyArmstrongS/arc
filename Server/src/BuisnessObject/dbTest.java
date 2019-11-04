@@ -7,6 +7,7 @@ package BuisnessObject;
 
 import DAOs.PsqlUserDao;
 import DAOs.UserDaoInterface;
+import DTOs.Driver;
 import DTOs.User;
 import Exceptions.DaoException;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class dbTest
         String password = IUserDao.getHashByEmail("emmaiscool@gmail.com");
         
         System.out.println(password);
+        
+        Driver addTest2 = new Driver("Honda", 15.00, 'N', "testAddDriver", 19, 'F', "me@gmail.com", "HelloWorld", "Dundalk Institute of Technology", "None", 'P', 3 );
+        IUserDao.addDriver(addTest2);
         //IUserDao.addUser(addTest);
         
 //        System.out.println("\n\nAfter add");
@@ -51,6 +55,7 @@ public class dbTest
 //        for(User u : nonDrivers){
 //            System.out.println(u.toString());
 //        }
-        
+        System.out.println(IUserDao.ifUserExists("emmaiscool@gmail.com")); // in db
+        System.out.println(IUserDao.ifUserExists("bob@gmail.com")); // not in db
     }    
 }
