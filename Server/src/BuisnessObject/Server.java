@@ -178,4 +178,26 @@ public class Server {
             return "{\"type\": \"message\",\"message\": \"Something went wrong! Try Again later\"}";
         }
     }
+
+    public static String createUser(UserDaoInterface IUserDao, JsonObject fromClient) throws DaoException {
+        User register = new User(
+                fromClient.getString("name"),
+                fromClient.getInt("age"),
+                fromClient.getString("gender").charAt(0),
+                fromClient.getString("email"),
+                fromClient.getString("password"),
+                fromClient.getString("college"),
+                fromClient.getString("description"),
+                fromClient.getString("user_type").charAt(0),
+                fromClient.getInt("location_id")
+        );
+        IUserDao.addUser(register);
+        if(register.getEmail().equals(fromClient.getString("email"))){
+            return "{\"type\": \"RegisterSuccess\"}";
+        }
+        else{
+             return "{\"type\": \"message\",\"message\": \"Something went wrong! Try Again later\"}";
+        }
+            
+    }
 }
