@@ -102,17 +102,17 @@ public class Server {
             {
                 while ((message = socketReader.readLine()) != null)
                 {
-                   
+
                     System.out.println("***************************************\n");
                     System.out.println(message);
                     System.out.println("***************************************\n");
                     UserDaoInterface IUserDao = new PsqlUserDao();
                     JSONFormattingInterface IJSONDao = new User();
                     JsonObject fromClient = jsonFromString(message);
-                     String clientReq = fromClient.getString("request");
-                     String clientResponse = "{\"type\" : \"status\", \"status\" : \"001\"}";
+                    String clientReq = fromClient.getString("request");
+                    String clientResponse = "{\"type\" : \"status\", \"status\" : \"001\"}";
                     socketWriter.flush();
-                    
+
                     if (clientReq == "login")
                     {
                         clientResponse = login(IUserDao, fromClient);
@@ -162,19 +162,20 @@ public class Server {
         // }
         // else
         //{
-        return "{\"type\": \"message\", \"message\": \"There are no users\"}";
+        return "{\"type\": \"message\", \"message\": \"Something went wrong! Try Again later\"}";
         //}
     }
-     public static String login(UserDaoInterface IUserDao, JsonObject fromClient) throws DaoException {
-         String email = fromClient.getString("email");
-         String password = IUserDao.getHashByEmail(email);
-         if(password !="")
-         {
-         return "{\"type\":\"login\", \"password\":\"" + "" + "\"}";
-         }
-         else
+
+    public static String login(UserDaoInterface IUserDao, JsonObject fromClient) throws DaoException {
+        String email = fromClient.getString("email");
+        String password = IUserDao.getHashByEmail(email);
+        if (password != "")
         {
-        return "{\"type\": \"loginFail\"}";
+            return "{\"type\":\"login\", \"password\":\"" + password + "\"}";
+        }
+        else
+        {
+            return "{\"type\": \"message\",\"message\": \"Something went wrong! Try Again later\"}";
         }
     }
 }
