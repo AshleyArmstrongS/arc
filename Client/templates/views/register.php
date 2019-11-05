@@ -30,12 +30,12 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="password1" id="password1" class="form-control" placeholder="Password">
+                                <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                                <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
                             </div>
                         </div>
                     </div>
