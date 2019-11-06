@@ -5,9 +5,32 @@ import java.util.Objects;
 public class Location {
     private int location_id;
     private String address;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
 
+    public Location(int location_id, String address, double latitude, double longitude)
+    {
+        this.location_id = location_id;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    
+    public Location(String address, double latitude, double longitude)
+    {
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    
+    public Location()
+    {
+        this.location_id = 0;
+        this.address = "N/A";
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+    
     public int getLocation_id() {
         return location_id;
     }
@@ -24,19 +47,19 @@ public class Location {
         this.address = address;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
