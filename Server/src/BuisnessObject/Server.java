@@ -191,7 +191,31 @@ public class Server {
                 fromClient.getString("user_type").charAt(0),
                 fromClient.getInt("location_id")
         );
-        IUserDao.addUser(register);
+        IUserDao.addPassenger(register);
+        if(register.getEmail().equals(fromClient.getString("email"))){
+            return "{\"type\": \"RegisterSuccess\"}";
+        }
+        else{
+             return "{\"type\": \"message\",\"message\": \"Something went wrong! Try Again later\"}";
+        }
+            
+    }
+    public static String createDriver(UserDaoInterface IUserDao, JsonObject fromClient) throws DaoException {
+        Driver register = new Driver(
+                fromClient.getString("car"),
+                fromClient.getInt("est_pay"),
+                fromClient.getString("available").charAt(0),
+                fromClient.getString("name"),
+                fromClient.getInt("age"),
+                fromClient.getString("gender").charAt(0),
+                fromClient.getString("email"),
+                fromClient.getString("password"),
+                fromClient.getString("college"),
+                fromClient.getString("description"),
+                fromClient.getString("user_type").charAt(0),
+                fromClient.getInt("location_id")
+        );
+        IUserDao.addDriver(register);
         if(register.getEmail().equals(fromClient.getString("email"))){
             return "{\"type\": \"RegisterSuccess\"}";
         }
