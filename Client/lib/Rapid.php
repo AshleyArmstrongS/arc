@@ -590,7 +590,7 @@
         }
 
         // Attempt connection (note: exceptions are allowed to throw onward)
-        Database::$pdo = new \PDO("mysql:host=$host;dbname=$name;charset=utf8mb4", $user, $pass);
+        Database::$pdo = new \PDO("pgsql:host=$host;port=5432;dbname=$name;user=$user;password=$pass");
       }
 
       // Return the PDO object

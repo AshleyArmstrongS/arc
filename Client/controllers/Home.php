@@ -1,6 +1,5 @@
 <?php return function($req, $res) {
   //opens a socket and connects to java
-  require_once('lib/Socket.php');
 
   echo("Welcome");
 

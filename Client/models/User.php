@@ -1,4 +1,4 @@
-<<?php require_once('Model.php'); ?>
+<?php require_once('Model.php'); ?>
 <?php
 
 class User {
@@ -50,7 +50,7 @@ class User {
     }
     public function getEmail()
     {
-        return $this->Email;
+        return $this->email;
     }public function getHash()
     {
         return $this->hash;
@@ -69,7 +69,7 @@ class User {
     }
     public function getLocation()
     {
-        return $this->location;
+        return $this->location_id;
     }
     public function getAvailable()
     {
@@ -179,16 +179,17 @@ class User {
     {
         $statement = $db->prepare("INSERT into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
         $statement->execute([
-            'name'         => $this->getName(),
-            'age'          => $this->getAge(),
-            'gender'       => $this->getGender(),
-            'email'        => $this->getEmail(),
-            'hash'         => $this->getHash(),
-            'college'      => $this->getCollege(),
-            'description'  => $this->getDescription(),
-            'user_type'    => $this->getUser_type(),
-            'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y'
+
+            'name'         => $user->getName(),
+            'age'          => $user->getAge(),
+            'gender'       => $user->getGender(),
+            'email'        => $user->getEmail(),
+            'password'     => $user->getHash(),
+            'college'      => $user->getCollege(),
+            'description'  => $user->getDescription(),
+            'user_type'    => $user->getUser_type(),
+            'location_id'  => $user->getLocation(),  // thisll have to become a getLocation_id thing
+            'available'    => $user->getAvailable() ?? 'Y',
         ]);
         $statement->closeCursor();
     }
@@ -205,8 +206,8 @@ class User {
             'college'      => $this->getCollege(),
             'description'  => $this->getDescription(),
             'user_type'    => $this->getUser_type(),
-            'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y'
+             'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
+            'available'    => $this->getAvailable() ?? 'Y',
         ]);
         $statement = cursorClose();
     }
