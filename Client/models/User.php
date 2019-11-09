@@ -13,61 +13,67 @@ class User {
     private $description;
     private $user_type;
     private $location_id;
+    private $available;
 //constructor
     public function __construct($args) {
         if(!is_array($args)) {
             throw new Exception('User constructor requires an array');
         }
-        $this->user_id      = $args['user_id'] ?? NULL;
-        $this->name         = $args['name'] ?? NULL;
-        $this->age          = $args['age'] ?? NULL;
-        $this->gender       = $args['gender'] ?? NULL;
-        $this->email        = $args['email'] ?? NULL;
-        $this->hash         = $args['hash'] ?? NULL;
-        $this->college      = $args['college'] ?? NULL;
+        $this->user_id      = $args['user_id']     ?? NULL;
+        $this->name         = $args['name']        ?? NULL;
+        $this->age          = $args['age']         ?? NULL;
+        $this->gender       = $args['gender']      ?? NULL;
+        $this->email        = $args['email']       ?? NULL;
+        $this->hash         = $args['hash']        ?? NULL;
+        $this->college      = $args['college']     ?? NULL;
         $this->description  = $args['description'] ?? NULL;
-        $this->user_type    = $args['user_type'] ?? NULL;
+        $this->user_type    = $args['user_type']   ?? NULL;
         $this->location_id  = $args['location_id'] ?? NULL;
+        $this->available    = $args['available']   ?? 'Y'; 
     }
 //getters
-    public function getUser_id ()
+    public function getUser_id()
     {
         return $this->user_id;
     }
-    public function getName ()
+    public function getName()
     {
         return $this->name;
     }
-    public function getAge ()
+    public function getAge()
     {
         return $this->age;
     }
-    public function getGender ()
+    public function getGender()
     {
         return $this->gender;
     }
     public function getEmail()
     {
         return $this->Email;
-    }public function getHash ()
+    }public function getHash()
     {
         return $this->hash;
     }
-    public function getCollege ()
+    public function getCollege()
     {
-        return $this->college ;
+        return $this->college;
     }
-    public function getDescription ()
+    public function getDescription()
     {
-        return $this->description ;
+        return $this->description;
     }
     public function getUser_type()
     {
-        return $this->user_type ;
+        return $this->user_type;
     }
-    public function getLocation ()
+    public function getLocation()
     {
         return $this->location;
+    }
+    public function getAvailable()
+    {
+        return $this->available;
     }
 //setters
     public function setUser_id($user_id)
@@ -118,7 +124,7 @@ class User {
         }
         $this->hash = $hash;
     }
-    public function setCollege()
+    public function setCollege($college)
     {
         if ($college === NULL) {
             $this->college = NULL;
@@ -149,5 +155,68 @@ class User {
             return;
         }
         $this->location_id = $location_id;
+    }
+    public function setAvailable($available)
+    {
+        if ($available === NULL) {
+            $this->available = NULL;
+            return;
+        }
+        $this->available = $available;
+    }
+
+// gets
+    public static function getAllUsers($db)
+    {
+        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id;");
+        $statement->execute();
+        $users = $statement->fetchAll();
+        $statement->closeCursor();
+        return $users;
+    }
+
+    public static function addUser($db, $user)
+    {
+        $statement = $db->prepare("insert into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
+        $statement->execute([
+            'name'         => $user['name'],
+            'age'          => $user['age'],
+            'gender'       => $user['gender'],
+            'email'        => $user['email'],
+            'password'     => $user['hash'],
+            'college'      => $user['college'],
+            'description'  => $user['description'],
+            'user_type'    => $user['user_type'],
+            'location_id'  => $user['location_id'],  // thisll have to become a getLocation_id thing
+            'available'    => $user['available'] ?? 'Y',
+        ]);
+        $statement->closeCursor();
+    }
+
+    public static function updateUser($db, $user)
+    {
+        $statement = $db->prepare("update users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
+        $statement->execute([
+            'name'         => $user['name'],
+            'age'          => $user['age'],
+            'gender'       => $user['gender'],
+            'email'        => $user['email'],
+            'password'     => $user['hash'],
+            'college'      => $user['college'],
+            'description'  => $user['description'],
+            'user_type'    => $user['user_type'],
+            'location_id'  => $user['location_id'],  // thisll have to become a getLocation_id thing
+            'available'    => $user['available'] ?? 'Y',
+        ]);
+        $statement = cursorClose();
+    }
+
+    public static function deleteUser($db, $user_id)
+    {
+        $statement = $db->prepare("delete from users where user_id = :user_id");
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $statement->closeCursor();
     }
 }
