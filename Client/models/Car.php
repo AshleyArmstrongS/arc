@@ -7,13 +7,24 @@ class Car {
     var $est_pay;
     var $make;
     var $colour;
+    var $monday;
+    var $Tuesday;
+    var $Wednesday;
+    var $Thursday;
+    var $Friday;
+
 //constructor
     public function __construct($args) {
-        $this->car_id     = $args['car_id'] ?? NULL;
-        $this->driver_id     = $args['driver_id'] ?? NULL;
-        $this->est_pay     = $args['est_pay'] ?? NULL;
-        $this->make     = $args['make'] ?? NULL;
-        $this->colour     = $args['colour'] ?? NULL;
+        $this->car_id    = $args['car_id'] ?? NULL;
+        $this->driver_id = $args['driver_id'] ?? NULL;
+        $this->est_pay   = $args['est_pay'] ?? NULL;
+        $this->make      = $args['make'] ?? NULL;
+        $this->colour    = $args['colour'] ?? NULL;
+        $this->Monday    = $args['Monday'] ?? NULL;
+        $this->Tuesday   = $args['Tuesday'] ?? NULL;
+        $this->Wednesday = $args['Wednesday'] ?? NULL;
+        $this->Thursday  = $args['Thursday'] ?? NULL;
+        $this->Friday    = $args['Friday'] ?? NULL;
     }
 //getters
     public function getCar_id()
@@ -36,6 +47,27 @@ class Car {
     {
         return $this->color;
     }
+//weekDayGetters
+    public function getMonday()
+    {
+        return $this->Monday;
+    }
+    public function getTuesday()
+    {
+        return $this->Tuesday;
+    }
+    public function getWednesday()
+    {
+        return $this->Wednesday;
+    }
+    public function getThursday()
+    {
+        return $this->Thursday;
+    }
+    public function getFriday()
+    {
+        return $this->Friday;
+    }
 
 //setters
     public function setCar_id($car_id)
@@ -46,7 +78,7 @@ class Car {
         }
         $this->car_id = $car_id;
     }
-    public function set($driver_id)
+    public function setDriver_id($driver_id)
     {
         if ($driver_id === NULL) {
             $this->driver_id = NULL;
@@ -54,7 +86,7 @@ class Car {
         }
             $this->driver_id = $driver_id;
     }
-    public function set($est_pay)
+    public function setEst_pay($est_pay)
     {
         if ($est_pay === NULL) {
             $this->est_pay = NULL;
@@ -62,7 +94,7 @@ class Car {
         }
         $this->est_pay = $est_pay;
     }
-    public function set($make)
+    public function setMake($make)
     {
         if ($make === NULL) {
             $this->make = NULL;
@@ -70,7 +102,7 @@ class Car {
         }
         $this->make = $make;
     }
-    public function set($color)
+    public function setColor($color)
     {
         if ($color === NULL) {
             $this->color = NULL;
@@ -78,4 +110,45 @@ class Car {
         }
         $this->color = $color;
     }
+//weekDaySetters
+    public function setMonday($Monday)
+        {
+            if (!is_array($Monday)) {
+                $this->Monday = NULL;
+                return;
+            }
+            $this->Monday = $Monday;
+        }
+        public function setTuesday($Tuesday)
+        {
+            if (!is_array($Tuesday)) {
+                $this->Tuesday = NULL;
+                return;
+            }
+            $this->Tuesday = $Tuesday;
+        }
+        public function set($)
+        {
+            if (!is_arrayWednesday($Wednesday)) {
+                $this->Wednesday = NULL;
+                return;
+            }
+            $this->Wednesday = $Wednesday;
+        }
+        public function setThursday($Thursday)
+        {
+            if (!is_array($Thursday)) {
+                $this->Thursday = NULL;
+                return;
+            }
+            $this->Thursday = $Thursday;
+        }
+        public function setFriday($Friday)
+        {
+            if (!is_array($Friday)) {
+                $this->Friday = NULL;
+                return;
+            }
+            $this->Friday = $Friday;
+        }
 }
