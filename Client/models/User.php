@@ -177,8 +177,9 @@ class User {
 
     public static function addUser($db, $user)
     {
-        $statement = $db->prepare("insert into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
+        $statement = $db->prepare("INSERT into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
         $statement->execute([
+
             'name'         => $user->getName(),
             'age'          => $user->getAge(),
             'gender'       => $user->getGender(),
@@ -195,17 +196,17 @@ class User {
 
     public static function updateUser($db, $user)
     {
-        $statement = $db->prepare("update users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
+        $statement = $db->prepare("UPDATE users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
         $statement->execute([
             'name'         => $this->getName(),
             'age'          => $this->getAge(),
             'gender'       => $this->getGender(),
             'email'        => $this->getEmail(),
-            'password'     => $this->getHash(),
+            'hash'         => $this->getHash(),
             'college'      => $this->getCollege(),
             'description'  => $this->getDescription(),
             'user_type'    => $this->getUser_type(),
-            'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
+             'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
             'available'    => $this->getAvailable() ?? 'Y',
         ]);
         $statement = cursorClose();
@@ -215,7 +216,7 @@ class User {
     {
         $statement = $db->prepare("delete from users where user_id = :user_id");
         $statement->execute([
-            'user_id' => $user_id
+            'user_id' => $this->getUser_id()
         ]);
         $statement->closeCursor();
     }
