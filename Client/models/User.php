@@ -13,7 +13,7 @@ class User {
     private $description;
     private $user_type;
     private $location_id;
-
+//constructor
     public function __construct($args) {
         if(!is_array($args)) {
             throw new Exception('User constructor requires an array');
@@ -29,46 +29,47 @@ class User {
         $this->user_type    = $args['user_type'] ?? NULL;
         $this->location_id  = $args['location_id'] ?? NULL;
     }
-
+//getters
     public function getUser_id ()
     {
-        return$this->user_id;
+        return $this->user_id;
     }
     public function getName ()
     {
-        return$this->name;
+        return $this->name;
     }
     public function getAge ()
     {
-        return$this->age;
+        return $this->age;
     }
     public function getGender ()
     {
-        return$this->gender;
+        return $this->gender;
     }
     public function getEmail()
     {
-        return$this->Email;
+        return $this->Email;
     }public function getHash ()
     {
-        return$this->hash;
+        return $this->hash;
     }
     public function getCollege ()
     {
-        return$this->college ;
+        return $this->college ;
     }
     public function getDescription ()
     {
-        return$this->description ;
+        return $this->description ;
     }
     public function getUser_type()
     {
-        return$this->user_type ;
+        return $this->user_type ;
     }
     public function getLocation ()
     {
-        return$this->location;
+        return $this->location;
     }
+//setters
     public function setUser_id($user_id)
     {
         if ($user_id === NULL) {
