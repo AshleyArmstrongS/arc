@@ -179,16 +179,16 @@ class User {
     {
         $statement = $db->prepare("insert into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
         $statement->execute([
-            'name'         => $user['name'],
-            'age'          => $user['age'],
-            'gender'       => $user['gender'],
-            'email'        => $user['email'],
-            'password'     => $user['hash'],
-            'college'      => $user['college'],
-            'description'  => $user['description'],
-            'user_type'    => $user['user_type'],
-            'location_id'  => $user['location_id'],  // thisll have to become a getLocation_id thing
-            'available'    => $user['available'] ?? 'Y',
+            'name'         => $this->getName(),
+            'age'          => $this->getAge(),
+            'gender'       => $this->getGender(),
+            'email'        => $this->getEmail(),
+            'password'     => $this->getHash(),
+            'college'      => $this->getCollege(),
+            'description'  => $this->getDescription(),
+            'user_type'    => $this->getUser_type(),
+            'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
+            'available'    => $this->getAvailable() ?? 'Y',
         ]);
         $statement->closeCursor();
     }
@@ -197,16 +197,16 @@ class User {
     {
         $statement = $db->prepare("update users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
         $statement->execute([
-            'name'         => $user['name'],
-            'age'          => $user['age'],
-            'gender'       => $user['gender'],
-            'email'        => $user['email'],
-            'password'     => $user['hash'],
-            'college'      => $user['college'],
-            'description'  => $user['description'],
-            'user_type'    => $user['user_type'],
-            'location_id'  => $user['location_id'],  // thisll have to become a getLocation_id thing
-            'available'    => $user['available'] ?? 'Y',
+            'name'         => $this->getName(),
+            'age'          => $this->getAge(),
+            'gender'       => $this->getGender(),
+            'email'        => $this->getEmail(),
+            'password'     => $this->getHash(),
+            'college'      => $this->getCollege(),
+            'description'  => $this->getDescription(),
+            'user_type'    => $this->getUser_type(),
+            'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
+            'available'    => $this->getAvailable() ?? 'Y',
         ]);
         $statement = cursorClose();
     }
