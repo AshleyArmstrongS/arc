@@ -14,8 +14,10 @@
   $app->GET('/home',      'Home');
   $app->GET('/login',     'LoginGet');
   $app->POST('/login',    'LoginPost');
-  $app->GET('/register',  'RegisterGet');
-  $app->POST('/register',  'RegisterPost');
+  $app->GET('/passRegister',  'PassRegisterGet');
+  $app->POST('/passRegister',  'PassRegisterPost');
+  $app->GET('/driverRegister',  'DriverRegisterGet');
+  $app->POST('/driverRegister',  'DriverRegisterPost');
   $app->GET('/userType',  'UserTypeGet');
 
 
