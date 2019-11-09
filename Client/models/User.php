@@ -188,7 +188,7 @@ class User {
             'description'  => $this->getDescription(),
             'user_type'    => $this->getUser_type(),
             'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y',
+            'available'    => $this->getAvailable() ?? 'Y'
         ]);
         $statement->closeCursor();
     }
@@ -206,7 +206,7 @@ class User {
             'description'  => $this->getDescription(),
             'user_type'    => $this->getUser_type(),
             'location_id'  => $this->getLocation_id(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y',
+            'available'    => $this->getAvailable() ?? 'Y'
         ]);
         $statement = cursorClose();
     }
