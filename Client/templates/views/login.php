@@ -14,11 +14,14 @@
 			</div>
 			<div class="card-body">
 			<form id='signup_form' action='' method='post'>
+			<?php foreach($locals['form_error_messages'] as $errors) { ?>
+				<p><?= $errors ?></p>
+			<?php } ?>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" name='username' value='<?= $username ?>' placeholder="username">
+						<input type="text" class="form-control" name='email' value='<?= $email ?>' placeholder="email">
 						
 					</div>
 					<div class="input-group form-group">
