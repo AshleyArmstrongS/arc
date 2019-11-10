@@ -175,6 +175,23 @@ class User {
         return $users;
     }
 
+    public static function getUserByEmail($emailTest, $db)
+    {
+        // if(!($db instanceof PDO)) 
+        // {
+        //     throw new Exception('Invalid PDO object for user findOneById');
+        // }
+
+        $statement = $db->prepare("select * from users where email = :email");
+        $statement->execute([
+            'email' => $emailTest
+        ]);
+        $user = $statement->fetch();
+        print_r($user);
+        return $user !== FALSE ? new User($row) : NULL;
+    
+    }
+
     public static function addUser($db, $user)
     {
         $statement = $db->prepare("INSERT into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
