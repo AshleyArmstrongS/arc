@@ -24,7 +24,7 @@ class User {
         $this->age          = $args['age']         ?? NULL;
         $this->gender       = $args['gender']      ?? NULL;
         $this->email        = $args['email']       ?? NULL;
-        $this->hash         = $args['hash']        ?? NULL;
+        $this->hash         = $args['password']    ?? NULL;
         $this->college      = $args['college']     ?? NULL;
         $this->description  = $args['description'] ?? NULL;
         $this->user_type    = $args['user_type']   ?? NULL;
@@ -175,21 +175,19 @@ class User {
         return $users;
     }
 
-    public static function getUserByEmail($emailTest, $db)
+    public static function getUserByEmail($email, $db)
     {
         // if(!($db instanceof PDO)) 
         // {
         //     throw new Exception('Invalid PDO object for user findOneById');
         // }
 
-        $statement = $db->prepare("select * from users where email = :email");
+        $statement = $db->prepare('SELECT name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
         $statement->execute([
-            'email' => $emailTest
+            'email' => $email
         ]);
         $user = $statement->fetch();
-        print_r($user);
-        return $user !== FALSE ? new User($row) : NULL;
-    
+        return $user !== FALSE ? new User($user) : NULL;
     }
 
     public static function addUser($db, $user)
