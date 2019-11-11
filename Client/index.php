@@ -14,13 +14,17 @@
   try{
   // Define some routes. Here: requests to / will be
   // processed by the controller at controllers/Home.php
-  $app->GET('/home',      'Home');
+  $app->GET('/home',      '');
   $app->GET('/login',     'LoginGet');
   $app->POST('/login',    'LoginPost');
   $app->GET('/passRegister',  'PassRegisterGet');
   $app->POST('/passRegister',  'PassRegisterPost');
   $app->GET('/driverRegister',  'DriverRegisterGet');
   $app->POST('/driverRegister',  'DriverRegisterPost');
+  $app->GET('/inbox',  'InboxGet');
+  $app->POST('/inbox',  'InboxPost');
+  $app->GET('/message',  'messageGet');
+  $app->POST('/message',  'messageGet');
   $app->GET('/userType',  'UserTypeGet');
 
 
