@@ -86,7 +86,7 @@ else
             'age' => $age['value'],
             'gender' => $gender['value'],
             'email' => $email['value'],
-            'password' => $passwordhash,
+            'hash' => $passwordhash,
             'college' => $college['value'],
             'description' => $description['value'],
             'user_type' => $userType['value'],
@@ -94,8 +94,8 @@ else
         ]);
 
         User::addUser($db, $user);
-
-        $res->redirect('/home');
+        print_r($user);
+        //$res->redirect('/home');
     }
 }
 ?>
