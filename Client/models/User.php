@@ -28,7 +28,7 @@ class User {
         $this->college      = $args['college']     ?? NULL;
         $this->description  = $args['description'] ?? NULL;
         $this->user_type    = $args['user_type']   ?? NULL;
-        $this->location_id  = $args['location_id'] ?? NULL;
+        $this->location_id  = $args['location_id'] ?? 1;
         $this->available    = $args['available']   ?? 'Y'; 
     }
 //getters
@@ -206,7 +206,7 @@ class User {
             'description'  => $user->getDescription(),
             'user_type'    => $user->getUser_type(),
             'location_id'  => $user->getLocation(),  // thisll have to become a getLocation_id thing
-            'available'    => $user->getAvailable() ?? 'Y',
+            'available'    => $user->getAvailable() ?? 'Y'
         ]);
         $statement->closeCursor();
     }
@@ -223,8 +223,8 @@ class User {
             'college'      => $this->getCollege(),
             'description'  => $this->getDescription(),
             'user_type'    => $this->getUser_type(),
-             'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y',
+            'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
+            'available'    => $this->getAvailable() ?? 'Y'
         ]);
         $statement = cursorClose();
     }
