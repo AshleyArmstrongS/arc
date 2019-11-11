@@ -21,9 +21,49 @@
   
    <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
   
-  
-</head>
-<body>
-  <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="">GoCollege</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/home"><span class="fas fa-home"></span> Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/login"><span class = "fas fa-users"></span> Log in</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/register"><span class = "fas fa-user-cog"></span>Register</a>
+                    </li>
+                    
+                     
+
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+    <body>
+
+
+<div class='container'>
+    <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
+</div>
+
 </body>
+
+
+
+<footer class="footer mt-auto py-5 ">
+    <div class="container ">
+        <span class="text-muted">GoCollege &copy 2019</span>
+    </div>
+</footer>
+
 </html>
