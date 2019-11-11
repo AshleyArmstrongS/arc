@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-image: url('/arc/Client/assets/images/img.jpg');
+background-color: lightslategray;
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -13,6 +13,10 @@ font-family: 'Numans', sans-serif;
 .container{
 height: 100%;
 align-content: center;
+}
+
+.big-icon {
+    font-size: 32px;
 }
 
 .card{
@@ -84,3 +88,30 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+#regLink
+{
+    color:#FFC312;
+
+}
+
+
+form p.error {
+    background-color: rgb(235, 97, 97);
+    color: white;
+    padding: 0.25em 0.75em;
+    margin-bottom: 0.25em;
+  }
+  form p.error:last-of-type {
+    margin-bottom: 1em;
+  }
+  
+  form p.error {
+    background-color: rgb(235, 97, 97);
+    color           : white;
+    padding         : 0.25em 0.75em;
+    margin-bottom   : 0.25em;
+  }
+  form p.error:last-of-type {
+    margin-bottom   : 1em;
+  }
