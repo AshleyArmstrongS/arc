@@ -8,6 +8,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
+config.php
 
 /Server/src/DAOs/PsqlDao.java
