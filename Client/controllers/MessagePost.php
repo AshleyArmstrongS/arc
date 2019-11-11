@@ -3,4 +3,5 @@
   require('./models/Model.php');
   require('./models/User.php');
   $db = \Rapid\Database::getPDO();
+  
 }

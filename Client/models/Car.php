@@ -2,16 +2,16 @@
 <?php
 
 class Car {
-    var $car_id;
-    var $driver_id;
-    var $est_pay;
-    var $make;
-    var $colour;
-    var $monday;
-    var $Tuesday;
-    var $Wednesday;
-    var $Thursday;
-    var $Friday;
+    private $car_id;
+    private $driver_id;
+    private $est_pay;
+    private $make;
+    private $colour;
+    private $monday;
+    private $Tuesday;
+    private $Wednesday;
+    private $Thursday;
+    private $Friday;
 
 //constructor
     public function __construct($args) {
