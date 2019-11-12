@@ -9,13 +9,12 @@ $form_error_messages = [];
 
 $form_was_posted = $req->body('name') !== NULL;
 
-
+$driver_id = FormUtils::getPostInt($req->body('seats'));
 $make = FormUtils::getPostString($req->body('make'));
 $model = FormUtils::getPostString($req->body('model'));
 $colour = FormUtils::getPostString($req->body('colour'));
 $seats =  FormUtils::getPostInt($req->body('seats'));
 $payment = FormUtils::getPostString($req->body('payment'));
-$avail = FormUtils::getPostString($req->body('available'));
 
      if (!$make['is_valid']) 
     {
@@ -35,9 +34,6 @@ $avail = FormUtils::getPostString($req->body('available'));
     if (!$payment['is_valid']) {
         $form_error_messages['payment'] = "A valid payment required";
     }
-    if (!$avail['is_valid']) {
-        $form_error_messages['available'] = "Yes or no is required for availability";
-    }
     
 
 # Display form
@@ -53,6 +49,11 @@ else
     {
         
         $car = new Car([
+            'driver_id'    => $car->getDriver_id(),
+            'estimated_pay'=> $car->getEstimated_pay(),
+            'gender'       => $car->getMake(),
+            'email'        => $car->getColour(),
+
             
         ]);
 

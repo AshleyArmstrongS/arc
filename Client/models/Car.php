@@ -20,11 +20,17 @@ class Car {
         $this->estimated_pay   = $args['estimated_pay'] ?? NULL;
         $this->make            = $args['make']          ?? NULL;
         $this->colour          = $args['colour']        ?? NULL;
-        $this->Monday          = $args['Monday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
-        $this->Tuesday         = $args['Tuesday']       ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
-        $this->Wednesday       = $args['Wednesday']     ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
-        $this->Thursday        = $args['Thursday']      ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
-        $this->Friday          = $args['Friday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        $this->Monday          = $args['Monday']          ?? NULL;
+        $this->Monday          = $args['Monday']          ?? NULL;
+        $this->Tuesday          = $args['Tuesday']          ?? NULL;
+        $this->Wednesday          = $args['Wednesday']          ?? NULL;
+        $this->Thursday          = $args['Thursday']          ?? NULL;
+        $this->Friday          = $args['Friday']          ?? NULL;
+        // $this->Monday          = $args['Monday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Tuesday         = $args['Tuesday']       ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Wednesday       = $args['Wednesday']     ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Thursday        = $args['Thursday']      ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Friday          = $args['Friday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
     }
 //getters
     public function getCar_id()
