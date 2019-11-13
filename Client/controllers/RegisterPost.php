@@ -20,7 +20,7 @@ $college = FormUtils::getPostString($req->body('college'));
 $description = FormUtils::getPostString($req->body('description'));
 $startAddress = FormUtils::getPostString($req->body('starting_location'));
 $userType = FormUtils::getPostString($req->body('userType'));
-
+$available =  FormUtils::getPostString($req->body('avail'));
 $passwordhash = password_hash($password['value'],PASSWORD_BCRYPT,['cost' => 12]);
 
 if(!($password['value'] === $confirmPass['value']))
@@ -67,6 +67,9 @@ else
     if (!$userType['is_valid']) {
         $form_error_messages['userType'] = "A valid user type is required";
     }
+    if (!$available['is_valid']) {
+        $form_error_messages['avail'] = "A valid available value required";
+    }
 
 
 # Display form
@@ -86,19 +89,22 @@ else
             'age' => $age['value'],
             'gender' => $gender['value'],
             'email' => $email['value'],
-            'hash' => $passwordhash,
+            'password' => $passwordhash,
             'college' => $college['value'],
             'description' => $description['value'],
             'user_type' => $userType['value'],
-            'location' => $startAddress['value']
+            'location' => $startAddress['value'],
+            'available' => $available['value']
         ]);
         User::addUser($db, $user);
 
          if($userType['value'] == 'D')
          {
              
-            $res->redirect('/carDetails');
-
+            $res->render('main', 'carDetails', [
+                'pageTitle' => 'Car Details',
+                'user' =>$user
+            ]);
          }
          else
          {

@@ -166,8 +166,8 @@ class Car {
 
             'driver_id'    => $car->getDriver_id(),
             'estimated_pay'=> $car->getEstimated_pay(),
-            'gender'       => $car->getMake(),
-            'email'        => $car->getColour(),
+            'make'       => $car->getMake(),
+            'colour'        => $car->getColour()
         ]);
         $statement->closeCursor();
     }
