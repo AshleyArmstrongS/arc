@@ -34,9 +34,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <input type="text" name="college" id="college" class="form-control input-sm" placeholder="Name Of College">
+                    <select name="college"  class="form-control">
+                            <option value="">College</option>
+                            <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
+                    </select>
                     </div>
                     <div class="form-group">
                         <input type="text" name="description" id="description" class="form-control input-sm" placeholder="Description of yourself">
@@ -70,6 +72,13 @@
                     </select>
                     </div>
                     
+                    <div class="form-group">
+                    <select name="avail"  class="form-control">
+                            <option value="">Available?</option>
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                    </select>
+                    </div>
                     <input type="submit" value="Register" class="btn btn-info btn-block">
                 
                 </form>
