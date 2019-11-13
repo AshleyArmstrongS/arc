@@ -38,12 +38,28 @@ insert into passengersPerDayForCar(car_id, user_id, day) values (1, 1, 'Tuesday'
 insert into timetable (user_id, mon_in, mon_out, tue_in, tue_out) values (1, '09:00:00', '15:00:00', '11:00:00', '17:00:00');
 insert into timetable (user_id, mon_in, mon_out, tue_in, tue_out) values (2, '09:00:00', '17:00:00', '09:00:00', '14:00:00');
 
-create table groups(id serial primary key, group_id int, member_id int, foreign key (member_id) references users(user_id));
-create table messages(message_id serial primary key, from_id int, message text, foreign key (from_id) references users(user_id));
-create table messageRecipients(message_id int, group_id int, time_sent timestamp, foreign key (message_id) references messages(message_id), foreign key (group_id) references groups(group_id));
+-- messages stuff 
 
-insert into messages(from_id, message) values (1, 'Hi my name is jeff');
-insert into messages(from_id, message) values (2, 'Bob is my soul mate');
-insert into messageRecipients(message_id, to_id, time_sent) values (1, 3, current_timestamp);
-insert into messageRecipients(message_id, to_id, time_sent) values (1, 3, current_timestamp);
-insert into messageRecipients(message_id, to_id, time_sent) values (2, 1, current_timestamp);
+create table groups(group_id serial primary key, admin_id int, foreign key (admin_id) references users(user_id));
+create table usersPerGroup(group_id int, user_id int, foreign key (group_id) references groups(group_id), foreign key (user_id) references users(user_id));
+create table messages(message_id serial primary key, from_id int, to_id int, message text, foreign key (from_id) references users(user_id), foreign key (to_id) references groups(group_id));
+
+insert into groups(admin_id) values (5), (6);
+insert into usersPerGroup values (1, 1), (1, 2), (1, 3);
+insert into usersPerGroup values (2, 4);
+
+insert into messages(from_id, to_id, message) values (5, 1, 'Hey, heard youre all looking for lifts. I can collect you at the church if thats g?');
+insert into messages(from_id, to_id, message) values (1, 1, 'Yeah that sounds great! What time are you leaving at?');
+insert into messages(from_id, to_id, message) values (5, 1, 'Thats good to me!');
+insert into messages(from_id, to_id, message) values (3, 1, 'My house is just past there, would you be able to lift me there instead? it''s on the way');
+insert into messages(from_id, to_id, message) values (5, 1, 'Sure no problem, pm me your address or just send it here');
+
+-- select u.name, m.message from users u inner join messages m on u.user_id = m.from_id;
+--  name  |                                         message                                          
+-- -------+------------------------------------------------------------------------------------------
+--  Sammy | Hey, heard youre all looking for lifts. I can collect you at the church if thats g?
+--  Emma  | Yeah that sounds great! What time are you leaving at?
+--  Sammy | Thats good to me!
+--  Evan  | My house is just past there, would you be able to lift me there instead? it's on the way
+--  Sammy | Sure no problem, pm me your address or just send it here
+-- (5 rows)
