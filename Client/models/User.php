@@ -190,6 +190,26 @@ class User {
         return $user !== FALSE ? new User($user) : NULL;
     }
 
+    public static function getPassengers($db)
+    {
+        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
+        $statement->execute();
+        $passengers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $passengers;
+    }
+
+    public static function getDrivers($db)
+    {
+        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
+        $statement->execute();
+        $drivers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $drivers;
+    }
+
+
+    // CRUD
     public static function addUser($db, $user)
     {
         $statement = $db->prepare("INSERT into users(name, age, gender, email, password, college, description, user_type, location_id, available) values (:name, :age, :gender, :email, :password, :college, :description, :user_type, :location_id, :available); ");
