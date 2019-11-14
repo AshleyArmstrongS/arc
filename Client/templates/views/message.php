@@ -43,9 +43,11 @@
       <li class="list-group-item text-muted">Inbox</li>
 
       <tbody id="items">
-        <?php foreach ($locals['messages'] as $messages) {?>
-          <li class="list-group-item text-right"><a href="#" class="pull-left">Message goes here</a> <!-- Maybe insert date here --></li>
-        <?php }?>
+        <!-- <?php //foreach ($locals['messages'] as $messages) {?>
+          <li class="list-group-item text-right"><a href="#" class="pull-left">Message goes here</a>  Maybe insert date here </li>
+        <?php //}?> -->
+
+          
       </tbody> 
       
       <!-- <li class="list-group-item text-left"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
