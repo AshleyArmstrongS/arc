@@ -66,7 +66,9 @@ class Group {
             if ($saved) {
                 $group->setGroup_id($db->lastInsertId());
             }
+
             $recipient_ids_temp = $group->getRecipient_ids();
+
             foreach($recipient_ids_temp['user_id'] as $recipient){
                 $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
                 $statement2->execute([
@@ -74,7 +76,7 @@ class Group {
                     'user_id' => $recipient
                 ]);
             }
-            $saved = $statement->rowCount() === size_of($recipient_ids_temp);
+            $saved = $statement->rowCount() === sizeof($recipient_ids_temp);
             if($saved)
             {
                 return TRUE;
@@ -97,13 +99,34 @@ class Group {
         {
             $user_id = (int)$user_id;
 
+<<<<<<< HEAD
             
             $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;');
+=======
+            $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;'););
+>>>>>>> 0d8501ebb8f5999c42f652a2f067c19ca688d4da
             $query->execute([
                 'user_id' => $user_id
             ]);
+<<<<<<< HEAD
             $inbox = $query->fetchAll();
+=======
+            $groups = $query->fetchAll();
             
-            return $inbox;
+            return $groups;
+        }
+        
+        public function deleteGroupByGroup_id($group, $db)
+        {
+            $statement = $db->prepare('DELETE FROM groups WHERE group_id = :group_id');
+            $statement = $db->execute([
+                'group_' => $group->getGroup_id()
+            ]);
+            
+        }
+        public function addUserToGroup()
+        {
+>>>>>>> 0d8501ebb8f5999c42f652a2f067c19ca688d4da
+            
         }
     }
