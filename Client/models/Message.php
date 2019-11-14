@@ -115,9 +115,9 @@ class Message {
             $group_id = (int)$group_id;
 
             
-            $query1 = $db->prepare('SELECT user_id, group_id from userspergroup where group_id = :group_id;'););
+            $query1 = $db->prepare('SELECT user_id, group_id from userspergroup where group_id = :group_id;');
             $query1->execute([
-                'group_id' => $group_id;
+                'group_id' => $group_id
             ]);
             $inbox = array_push($query1->fetchAll());
             
@@ -128,11 +128,11 @@ class Message {
             $user_id = (int)$user_id;
 
             
-            $query1 = $db->prepare('SELECT group_id, user_id from userspergroup where user_id = :user_id;'););
+            $query1 = $db->prepare('SELECT group_id, user_id from userspergroup where user_id = :user_id;');
             $query1->execute([
-                'user_id' => $user_id;
+                'user_id' => $user_id
             ]);
-            $inbox = array_push($query1->fetchAll());
+            $inbox = $query1->fetchAll();
             
             return $inbox;
         }
@@ -140,8 +140,7 @@ class Message {
         {
             $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT * from messages m inner join groups g on m.to_id = g.group_id where g.group_id = :group_id;
-            ';);
+            $query = $db->prepare('SELECT * from messages m inner join groups g on m.to_id = g.group_id where g.group_id = :group_id;');
             $query->execute([
                 'group_id' => $group_id
             ]);
