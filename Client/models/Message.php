@@ -110,14 +110,27 @@ class Message {
             }
             return $saved;
         }
-        public function getGroupUsersByUser_id($user_id, $db)
+        public function getUsersByGroup_id($group_id, $db)
+        {
+            $group_id = (int)$group_id;
+
+            
+            $query1 = $db->prepare('SELECT user_id, group_id from userspergroup where group_id = :group_id;'););
+            $query1->execute([
+                'group_id' => $group_id;
+            ]);
+            $inbox = array_push($query1->fetchAll());
+            
+            return $inbox;
+        }
+        public function getGroupsByUser_id($user_id, $db)
         {
             $user_id = (int)$user_id;
 
             
-            $query1 = $db->prepare('SELECT user_id from userspergroup where group_id = 1;'););
+            $query1 = $db->prepare('SELECT group_id, user_id from userspergroup where user_id = :user_id;'););
             $query1->execute([
-                'group_id' => $group_id;
+                'user_id' => $user_id;
             ]);
             $inbox = array_push($query1->fetchAll());
             
