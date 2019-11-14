@@ -23,31 +23,27 @@
     if($email['is_valid'] || $email !== NULL)
     {
       $user = User::getUserByEmail($email['value'], $db);
-      echo $user;
-      // if($user !== NULL)
-      // {
-      //   $userPass = $user->getHash();
-      //   $user_name = $user->getName();
+      if($user !== NULL)
+      {
+        $userPass = $user->getHash();
+        $validUser = false;
 
-      //   echo $passwordEntered;
-      //   echo $userPass;
-      //   echo $user_name;
-      //   // if($passwordEntered == $userPass)
-      //   // {
-      //   //   $validUser = true;
-      //   // }
-      //   // $validUser = password_verify($passwordEntered, $userPass);
+        if($passwordEntered == $userPass)
+        {
+          $validUser = true;
+        }
+        //$validUser = password_verify($passwordEntered, $userPass);
 
-      //   // if($validUser)
-      //   // {
-      //   //   $res->redirect('/home');
-      //   // }
-      // }
+        if($validUser)
+        {
+          $res->redirect('/home');
+        }
+      }
     }
   }
-  // $res->render('main', 'login', [
-  //     'pageTitle' => 'User Login',
-  //     'form_error_messages' => $error
-  // ]);
+  $res->render('main', 'login', [
+      'pageTitle' => 'User Login',
+      'form_error_messages' => $error
+  ]);
 
 } ?>
