@@ -25,10 +25,11 @@
   <!--Custom styles-->
   
    <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
+   <link rel="stylesheet" href="/arc/Client/assets/styles/tab.css">
   
   
 </head>
-<body>
+<body onload="document.getElementById('defaultOpen').click();">
   <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
 </body>
 </html>
