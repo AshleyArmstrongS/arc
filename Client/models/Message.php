@@ -3,7 +3,7 @@
 
 class Message {
     private $message_id;
-    private $to_id;
+    private $group_id;
     private $recipient_ids;
     private $from_id;
     private $time_sent;
@@ -14,7 +14,7 @@ class Message {
             throw new Exception('User constructor requires an array');
         }
         $this->message_id       = $args['message_id'] ?? NULL;
-        $this->to_id            = $args['to_id'] ?? NULL;
+        $this->group_id            = $args['group_id'] ?? NULL;
         $this->recipient_ids    = $args['recipient_ids'] ?? NULL;
         $this->from_id          = $args['from_id'] ?? NULL;
         $this->time_sent        = $args['time_sent'] ?? NULL;
@@ -25,9 +25,9 @@ class Message {
         {
             return $this->message_id;
         }
-        public function getTo_id()
+        public function getGroup_id()
         {
-            return $this->to_id;
+            return $this->group_id;
         }
         public function getRecipient_ids()
         {
@@ -53,13 +53,13 @@ class Message {
             }
             $this->message_id = $message_id;
         }
-        public function setTo_id($to_id)
+        public function setGroup_id($group_id)
         {
-            if ($to_id === NULL) {
-                $this->to_id = NULL;
+            if ($group_id === NULL) {
+                $this->to_igroup_idd = NULL;
                 return;
             }
-            $this->to_id = $to_id;
+            $this->group_id = $group_id;
         }
         public function setRecipient_ids($recipient_ids)
         {
@@ -95,11 +95,10 @@ class Message {
             {
             throw new Exception('Cannot submit a message without contents');
             }
-            $statement = $db->prepare('INSERT into users (to_id, recipients_ids) VALUES ();');
+            $statement = $db->prepare('INSERT into users (group_id, recipients_ids, from_id, time_sent, message) VALUES (:group_id, :from_id, :time_sent, :message);');
             $statement->excecute([
                 
-                'to_id'         => $message->getTo_id(),
-                'recipient_ids' => $message->getRecipient_ids(),
+                'group_id'         => $message->getGroup_id(),
                 'from_id'       => $message->getFrom_id(),
                 'time_sent'     => $message->getTime_sent(),
                 'message'       => $message->getMessage()
@@ -111,29 +110,27 @@ class Message {
             }
             return $saved;
         }
-        public function getInboxByUser_id($user_id, $db)
+        public function getGroupUsersByUser_id($user_id, $db)
         {
             $user_id = (int)$user_id;
-            $query1 = $db->prepare('SELECT to_id, user_id, WHERE $user_id = :user_id';);
-            $query1->execute([
-                'user_id' => $user_id;
-            ]);
-            $query2 = $db->prepare('SELECT , , WHERE $user_id = :user_id ';);
-            $query2->execute([
-                'user_id' => $user_id;
-            ]);
 
+            
+            $query1 = $db->prepare('SELECT user_id from userspergroup where group_id = 1;'););
+            $query1->execute([
+                'group_id' => $group_id;
+            ]);
             $inbox = array_push($query1->fetchAll());
             
             return $inbox;
         }
-        public function getMessagesByTo_id($to_id, $db)
+        public function getMessagesByGroup_id($group_id, $db)
         {
-            $to_id = (int)$to_id;
+            $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT * FROM message WHERE to_id = :to_id';);
+            $query = $db->prepare('SELECT * from messages m inner join groups g on m.to_id = g.group_id where g.group_id = :group_id;
+            ';);
             $query->execute([
-                'to_id' => $to_id
+                'group_id' => $group_id
             ]);
 
             $messages = $query->fetchAll();
