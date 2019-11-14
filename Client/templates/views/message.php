@@ -43,10 +43,27 @@
       <li class="list-group-item text-muted">Inbox</li>
 
       <tbody id="items">
-        <!-- <?php //foreach ($locals['messages'] as $messages) {?>
-          <li class="list-group-item text-right"><a href="#" class="pull-left">Message goes here</a>  Maybe insert date here </li>
-        <?php //}?> -->
 
+        <div class="list-group-item text-left">
+        
+          <?php foreach ($locals['group_users'] as $users) {?>
+            <?php foreach ($users as $user) {?>
+              <?php foreach($locals['messages'] as $messages) { ?>     
+                <div class="row">  
+                  
+                    <li class="list-group-item text-left">
+                      <div class="col"><?= $user['name'] ?></div>
+                      <a href="#" class="pull-left"><div class="col"><?= $messages['message'] ?></div></a>
+                    </li>
+                  
+                </div>           
+              <?php }?>
+            <?php }?> 
+          <?php }?>
+
+        </div>
+
+         
           
       </tbody> 
       
