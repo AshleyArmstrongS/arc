@@ -1,5 +1,5 @@
 <!-- Reference Bootstrap: https://bootsnipp.com/snippets/9Zxl -->
-<?php $u = $locals['user']; ?>
+
 <div class="container">
     <div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -14,9 +14,6 @@
             <?php foreach($locals['form_error_messages'] as $errors) { ?>
             <p class='error' ><?=  $errors ?></p>
             <?php } ?>
-            <div class="form-group">
-            <input type='text' id='user' name='user' readonly="readonly" value='<?= $u->getEmail()  ?>'class="form-control" placeholder = '<?= $u->getEmail() ?>'>
-                    </div>
             <div class="form-group">
                         <input type="text" name="make" id="make" class="form-control" placeholder="Car Make">
                     </div>
@@ -44,6 +41,8 @@
                 </form>
                 </div>
 	    		</div>
+                
+                </div>
     		</div>
     	</div>
     </div>
