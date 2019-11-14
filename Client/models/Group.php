@@ -99,18 +99,10 @@ class Group {
         {
             $user_id = (int)$user_id;
 
-<<<<<<< HEAD
-            
             $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;');
-=======
-            $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;'););
->>>>>>> 0d8501ebb8f5999c42f652a2f067c19ca688d4da
             $query->execute([
                 'user_id' => $user_id
             ]);
-<<<<<<< HEAD
-            $inbox = $query->fetchAll();
-=======
             $groups = $query->fetchAll();
             
             return $groups;
@@ -126,7 +118,6 @@ class Group {
         }
         public function addUserToGroup()
         {
->>>>>>> 0d8501ebb8f5999c42f652a2f067c19ca688d4da
             
         }
     }
