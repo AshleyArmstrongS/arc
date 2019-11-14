@@ -100,11 +100,14 @@ else
 
          if($userType['value'] == 'D')
          {
+            $u = User::getUserByEmail($email['value'], $db);
+            $user_id = $u->getUser_id();
+            $res->redirect("/carDetails?user=$user_id");
              
-            $res->render('main', 'carDetails', [
-                'pageTitle' => 'Car Details',
-                'user' =>$user
-            ]);
+            // $res->render('main', 'carDetails', [
+            //     'pageTitle' => 'Car Details',
+            //     'user' =>$user
+            // ]);
          }
          else
          {
