@@ -21,7 +21,6 @@ class Car {
         $this->make            = $args['make']          ?? NULL;
         $this->colour          = $args['colour']        ?? NULL;
         $this->Monday          = $args['Monday']          ?? NULL;
-        $this->Monday          = $args['Monday']          ?? NULL;
         $this->Tuesday          = $args['Tuesday']          ?? NULL;
         $this->Wednesday          = $args['Wednesday']          ?? NULL;
         $this->Thursday          = $args['Thursday']          ?? NULL;
@@ -51,7 +50,7 @@ class Car {
     }
     public function getColour()
     {
-        return $this->color;
+        return $this->colour;
     }
 //weekDayGetters
     public function getMonday()
@@ -159,7 +158,7 @@ class Car {
     }
 
     //Crud
-    public static function addCar($db, $car)
+    public static function addCar($car, $db)
     {
         $statement = $db->prepare("insert into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
         $statement->execute([
