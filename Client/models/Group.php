@@ -57,9 +57,9 @@ class Group {
         }
         public function addGroup($group, $db)
         {
-            $statement = $db->prepare('INSERT into groups (admin_id) VALUES(:admin_id)')
+            $statement = $db->prepare('INSERT into groups (admin_id) VALUES(:admin_id)');
             $statement->execute([
-                'admin_id' => $$group->getAdmin_id()
+                'admin_id' => $group->getAdmin_id()
             ]);
             $saved = $statement->rowCount() === 1;
 
@@ -68,7 +68,7 @@ class Group {
             }
             $recipient_ids_temp = $group->getRecipient_ids();
             foreach($recipient_ids_temp['user_id'] as $recipient){
-                $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)')
+                $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
                 $statement2->execute([
                     'admin_id' => $group->getAdmin_id(),
                     'user_id' => $recipient
@@ -84,11 +84,11 @@ class Group {
         {
             $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT u.user_id, u.name, p.group_id from userspergroup p inner join users u on p.user_id = u.user_id where p.group_id = :group_id;'););
+            $query = $db->prepare('SELECT u.user_id, u.name, p.group_id from userspergroup p inner join users u on p.user_id = u.user_id where p.group_id = :group_id;');
             $query->execute([
-                'group_id' => $group_id;
+                'group_id' => $group_id
             ]);
-            $users = array_push($query->fetchAll());
+            $users = $query->fetchAll();
             
             return $users;
         }
@@ -98,12 +98,12 @@ class Group {
             $user_id = (int)$user_id;
 
             
-            $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;'););
+            $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;');
             $query->execute([
-                'user_id' => $user_id;
+                'user_id' => $user_id
             ]);
-            $inbox = array_push($query->fetchAll());
+            $inbox = $query->fetchAll();
             
             return $inbox;
         }
-        
+    }
