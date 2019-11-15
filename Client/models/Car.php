@@ -2,29 +2,34 @@
 <?php
 
 class Car {
-    private $car_id;
-    private $driver_id;
-    private $est_pay;
-    private $make;
-    private $colour;
-    private $monday;
-    private $Tuesday;
-    private $Wednesday;
-    private $Thursday;
-    private $Friday;
+    var $car_id;
+    var $driver_id;
+    var $estimated_pay;
+    var $make;
+    var $colour;
+    var $Monday;
+    var $Tuesday;
+    var $Wednesday;
+    var $Thursday;
+    var $Friday;
 
 //constructor
-    public function __construct($args) {
-        $this->car_id    = $args['car_id'] ?? NULL;
-        $this->driver_id = $args['driver_id'] ?? NULL;
-        $this->est_pay   = $args['est_pay'] ?? NULL;
-        $this->make      = $args['make'] ?? NULL;
-        $this->colour    = $args['colour'] ?? NULL;
-        $this->Monday    = $args['Monday'] ?? NULL;
-        $this->Tuesday   = $args['Tuesday'] ?? NULL;
-        $this->Wednesday = $args['Wednesday'] ?? NULL;
-        $this->Thursday  = $args['Thursday'] ?? NULL;
-        $this->Friday    = $args['Friday'] ?? NULL;
+    public function __construct($args, $db) {
+        $this->car_id          = $args['car_id']        ?? NULL;
+        $this->driver_id       = $args['driver_id']     ?? NULL;
+        $this->estimated_pay   = $args['estimated_pay'] ?? NULL;
+        $this->make            = $args['make']          ?? NULL;
+        $this->colour          = $args['colour']        ?? NULL;
+        $this->Monday          = $args['Monday']          ?? NULL;
+        $this->Tuesday          = $args['Tuesday']          ?? NULL;
+        $this->Wednesday          = $args['Wednesday']          ?? NULL;
+        $this->Thursday          = $args['Thursday']          ?? NULL;
+        $this->Friday          = $args['Friday']          ?? NULL;
+        // $this->Monday          = $args['Monday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Tuesday         = $args['Tuesday']       ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Wednesday       = $args['Wednesday']     ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Thursday        = $args['Thursday']      ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
+        // $this->Friday          = $args['Friday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
     }
 //getters
     public function getCar_id()
@@ -35,9 +40,9 @@ class Car {
     {
         return $this->driver_id;
     }
-    public function getEst_pay()
+    public function getEstimated_pay()
     {
-        return $this->est_pay;
+        return $this->estimated_pay;
     }
     public function getMake()
     {
@@ -45,7 +50,7 @@ class Car {
     }
     public function getColour()
     {
-        return $this->color;
+        return $this->colour;
     }
 //weekDayGetters
     public function getMonday()
@@ -112,43 +117,69 @@ class Car {
     }
 //weekDaySetters
     public function setMonday($Monday)
-        {
-            if (!is_array($Monday)) {
-                $this->Monday = NULL;
-                return;
-            }
-            $this->Monday = $Monday;
+    {
+        if (!is_array($Monday)) {
+            $this->Monday = NULL;
+            return;
         }
-        public function setTuesday($Tuesday)
-        {
-            if (!is_array($Tuesday)) {
-                $this->Tuesday = NULL;
-                return;
-            }
-            $this->Tuesday = $Tuesday;
+        $this->Monday = $Monday;
+    }
+    public function setTuesday($Tuesday)
+    {
+        if (!is_array($Tuesday)) {
+            $this->Tuesday = NULL;
+            return;
         }
-        public function set($)
-        {
-            if (!is_arrayWednesday($Wednesday)) {
-                $this->Wednesday = NULL;
-                return;
-            }
-            $this->Wednesday = $Wednesday;
+        $this->Tuesday = $Tuesday;
+    }
+    public function setWednesday($Wednesday)
+    {
+        if (!is_array($Wednesday)) {
+            $this->Wednesday = NULL;
+            return;
         }
-        public function setThursday($Thursday)
-        {
-            if (!is_array($Thursday)) {
-                $this->Thursday = NULL;
-                return;
-            }
-            $this->Thursday = $Thursday;
+        $this->Wednesday = $Wednesday;
+    }
+    public function setThursday($Thursday)
+    {
+        if (!is_array($Thursday)) {
+            $this->Thursday = NULL;
+            return;
         }
-        public function setFriday($Friday)
-        {
-            if (!is_array($Friday)) {
-                $this->Friday = NULL;
-                return;
-            }
-            $this->Friday = $Friday;
+        $this->Thursday = $Thursday;
+    }
+    public function setFriday($Friday)
+    {
+        if (!is_array($Friday)) {
+            $this->Friday = NULL;
+            return;
         }
+        $this->Friday = $Friday;
+    }
+
+    //Crud
+    public static function addCar($car, $db)
+    {
+        $statement = $db->prepare("insert into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
+        $statement->execute([
+
+            'driver_id'    => $car->getDriver_id(),
+            'estimated_pay'=> $car->getEstimated_pay(),
+            'make'       => $car->getMake(),
+            'colour'        => $car->getColour()
+        ]);
+        $statement->closeCursor();
+    }
+
+    // add people to car
+
+    public static function getPeopleInCarForDay($db, $car_id, $day)
+    {
+        $statement = $db->prepare("select user_id from passengersperdayforcar where car_id = :car_id and day = :day;");
+        $statement = execute([
+            'car_id' => $car_id,
+            'day' => $day
+        ]);
+        $statement->closeCursor();
+    }
 }

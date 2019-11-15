@@ -10,13 +10,11 @@
             </div>
             
             <div class="card-body">
-                <form id='signup_form' action='' method='post'>
-            <div class="alert alert-warning alert-dismissible" role="alert">
+            <form id='signup_form' action='' method='post'>
             <?php foreach($locals['form_error_messages'] as $errors) { ?>
-            <p><?= $errors ?></p>
+            <p class='error' ><?=  $errors ?></p>
             <?php } ?>
-            </div>
-                <div class="input-group form-group">
+            <div class="input-group form-group">
                         <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
                     </div>
 
@@ -36,9 +34,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <input type="text" name="college" id="college" class="form-control input-sm" placeholder="Name Of College">
+                    <select name="college"  class="form-control">
+                            <option value="">College</option>
+                            <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
+                    </select>
                     </div>
                     <div class="form-group">
                         <input type="text" name="description" id="description" class="form-control input-sm" placeholder="Description of yourself">
@@ -47,13 +47,15 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="age" id="age" class="form-control" placeholder="Age">
+                                <input type="number" name="age" id="age" class="form-control" placeholder="Age">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <input type="text" name="gender" id="gender" class="form-control" placeholder="Female(F) or Male(M)">
-                            </div>
+                        <select name="gender"  class="form-control">
+                            <option value="">Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                    </select>
                         </div>
                     </div>
                         
@@ -61,13 +63,22 @@
                         <input type="text" name="starting_location" id="starting_location" class="form-control" placeholder="Starting Address">
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" name="userType" id="userType" class="form-control" placeholder="Passenger (P) or Driver(D)">
-                    </div>
-                    <!-- 
-
-                     -->
                     
+                    <div class="form-group">
+                    <select name="userType"  class="form-control">
+                            <option value="">User Type</option>
+                            <option value="D">Driver</option>
+                            <option value="P">Passenger</option>
+                    </select>
+                    </div>
+                    
+                    <div class="form-group">
+                    <select name="avail"  class="form-control">
+                            <option value="">Available?</option>
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                    </select>
+                    </div>
                     <input type="submit" value="Register" class="btn btn-info btn-block">
                 
                 </form>

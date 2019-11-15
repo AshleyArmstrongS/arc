@@ -17,14 +17,14 @@
   $app->GET('/home',      'Home');
   $app->GET('/login',     'LoginGet');
   $app->POST('/login',    'LoginPost');
-  $app->GET('/passRegister',  'PassRegisterGet');
-  $app->POST('/passRegister',  'PassRegisterPost');
-  $app->GET('/driverRegister',  'DriverRegisterGet');
-  $app->POST('/driverRegister',  'DriverRegisterPost');
   $app->GET('/inbox',  'InboxGet');
   $app->POST('/inbox',  'InboxPost');
   $app->GET('/message',  'MessageGet');
   // $app->POST('/message',  'messageGet');
+  $app->GET('/register',  'registerGet');
+  $app->POST('/register',  'registerPost');
+  $app->GET('/carDetails',  'CarDetailsGet');
+  $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
 
 

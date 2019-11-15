@@ -1,10 +1,10 @@
 -- making tables for user relations
 create table college(name varchar(255) primary key);
 create table location(location_id serial primary key, address varchar(255), latitude decimal, longitude decimal);
-create table days(day_id serial primary key, day varchar(9));
+create table days(day varchar(9) primary key);
 create table users(user_id serial primary key, name varchar(150) not null, age int not null, gender char(1) not null, email text not null, password varchar(255) not null, college varchar(255) not null, description text, user_type char(1) not null, location_id int, available char(1), foreign key (location_id) references location(location_id), foreign key (college) references college(name));
 create table car(car_id serial primary key, driver_id int not null, estimated_pay float, make varchar(20), colour varchar(20), foreign key (driver_id) references users(user_id));
-create table passengersPerDayForCar(ppdfc_id serial primary key, car_id int, user_id int, day int, foreign key (car_id) references car(car_id), foreign key (user_id) references users(user_id), foreign key (day) references days(day_id));
+create table passengersPerDayForCar(ppdfc_id serial primary key, car_id int, user_id int, day varchar(9), foreign key (car_id) references car(car_id), foreign key (user_id) references users(user_id), foreign key (day) references days(day));
 create table timetable(user_id int primary key, mon_in time, mon_out time, tue_in time, tue_out time, wed_in time, wed_out time, thurs_in time, thurs_out time, fri_in time, fri_out time, foreign key(user_id) references users(user_id));
 
 -- inserts
@@ -30,12 +30,36 @@ insert into users(name, age, gender, email, password, college, description, user
 insert into car(driver_id, estimated_pay, make, colour) values ((select user_id from users where name = 'Sammy'), 0.00, 'Toyota Yaris', 'Red');
 insert into car(driver_id, estimated_pay, make, colour) values ((select user_id from users where name = 'Sean-og'),5.00, 'Ford Focus', 'Black');
 
-insert into passengersPerDayForCar(car_id, user_id, day) values (2, 3, 1);
-insert into passengersPerDayForCar(car_id, user_id, day) values (2, 4, 1);
-insert into passengersPerDayForCar(car_id, user_id, day) values (1, 2, 1);
-insert into passengersPerDayForCar(car_id, user_id, day) values (1, 1, 1);
+insert into passengersPerDayForCar(car_id, user_id, day) values (2, 3, 'Monday');
+insert into passengersPerDayForCar(car_id, user_id, day) values (2, 4, 'Monday');
+insert into passengersPerDayForCar(car_id, user_id, day) values (1, 2, 'Monday');
+insert into passengersPerDayForCar(car_id, user_id, day) values (1, 1, 'Tuesday');
 
 insert into timetable (user_id, mon_in, mon_out, tue_in, tue_out) values (1, '09:00:00', '15:00:00', '11:00:00', '17:00:00');
 insert into timetable (user_id, mon_in, mon_out, tue_in, tue_out) values (2, '09:00:00', '17:00:00', '09:00:00', '14:00:00');
 
+-- messages stuff 
 
+create table groups(group_id serial primary key, admin_id int, foreign key (admin_id) references users(user_id));
+create table usersPerGroup(group_id int, user_id int, foreign key (group_id) references groups(group_id), foreign key (user_id) references users(user_id));
+create table messages(message_id serial primary key, from_id int, to_id int, time_sent timestamp, message text, foreign key (from_id) references users(user_id), foreign key (to_id) references groups(group_id));
+
+insert into groups(admin_id) values (5), (6);
+insert into usersPerGroup values (1, 1), (1, 2), (1, 3);
+insert into usersPerGroup values (2, 4);
+
+insert into messages(from_id, to_id, time_sent, message) values (5, 1, now(), 'Hey, heard youre all looking for lifts. I can collect you at the church if thats g?');
+insert into messages(from_id, to_id, time_sent, message) values (1, 1, now(), 'Yeah that sounds great! What time are you leaving at?');
+insert into messages(from_id, to_id, time_sent, message) values (5, 1, now(), 'Thats good to me!');
+insert into messages(from_id, to_id, time_sent, message) values (3, 1, now(), 'My house is just past there, would you be able to lift me there instead? it''s on the way');
+insert into messages(from_id, to_id, time_sent, message) values (5, 1, now(), 'Sure no problem, pm me your address or just send it here');
+
+-- select u.name, m.message from users u inner join messages m on u.user_id = m.from_id;
+--  name  |                                         message                                          
+-- -------+------------------------------------------------------------------------------------------
+--  Sammy | Hey, heard youre all looking for lifts. I can collect you at the church if thats g?
+--  Emma  | Yeah that sounds great! What time are you leaving at?
+--  Sammy | Thats good to me!
+--  Evan  | My house is just past there, would you be able to lift me there instead? it's on the way
+--  Sammy | Sure no problem, pm me your address or just send it here
+-- (5 rows)
