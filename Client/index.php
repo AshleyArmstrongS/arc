@@ -18,7 +18,7 @@
   $app->GET('/login',     'LoginGet');
   $app->POST('/login',    'LoginPost');
   $app->GET('/inbox',  'InboxGet');
-  $app->POST('/inbox',  'InboxPost');
+  //$app->POST('/inbox',  'InboxPost');
   $app->GET('/message',  'MessageGet');
   // $app->POST('/message',  'messageGet');
   $app->GET('/register',  'registerGet');
