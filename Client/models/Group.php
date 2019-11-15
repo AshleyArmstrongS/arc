@@ -1,9 +1,9 @@
-<<?php require_once('Model.php'); ?>
+<?php require_once('Model.php'); ?>
 <?php
 
 class Group {
     private $group_id;
-    private $admin_id;
+    private $admin_id = int;
     private $recipients_ids;
 
     public function __construct($args) {
@@ -30,7 +30,7 @@ class Group {
         public function setGroup_id($group_id)
         {
             if ($group_id === NULL) {
-                $this->to_igroup_idd = NULL;
+                $this->group_id = NULL;
                 return;
             }
             $this->group_id = $group_id;
@@ -103,9 +103,8 @@ class Group {
             $query->execute([
                 'user_id' => $user_id
             ]);
-            $groups = $query->fetchAll();
+            return $query->fetchAll();
             
-            return $groups;
         }
         
         public function deleteGroupByGroup_id($group, $db)

@@ -10,7 +10,7 @@
   // get the date
   $user_id = 1;
 
-  $userGroups = Message::getGroupsByUser_id($user_id, $db);
+  $userGroups = Group::getGroupsByUser_id($user_id, $db);
   foreach ($userGroups as $user) {
     foreach ($user as $messages) {      
       print_r($messages);
