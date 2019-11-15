@@ -49,7 +49,7 @@
         </div>
     </nav>
 
-    <body>
+    <body onload="document.getElementById('defaultOpen').click();">
 
             <div class='container'>
             <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
