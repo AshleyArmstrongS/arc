@@ -23,8 +23,8 @@
   $app->POST('/driverRegister',  'DriverRegisterPost');
   $app->GET('/inbox',  'InboxGet');
   $app->POST('/inbox',  'InboxPost');
-  $app->GET('/message',  'messageGet');
-  $app->POST('/message',  'messageGet');
+  $app->GET('/message',  'MessageGet');
+  // $app->POST('/message',  'messageGet');
   $app->GET('/userType',  'UserTypeGet');
 
 

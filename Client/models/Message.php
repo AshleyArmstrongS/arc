@@ -106,7 +106,8 @@ class Message {
             $messages = $query->fetchAll();
             return $messages;
         }
-    }
+
+    
     //the only query for inbox
     public function getLastMessagesByGroup_id($group_id, $db)
     {
@@ -118,9 +119,12 @@ class Message {
             'group_id' => $group_id
         ]);
 
-        $message = $query->fetch();
-        
-        return $message !== FALSE ?? FALSE;
+
+            $message = $query->fetch();
+            
+            return $message !== FALSE ?? FALSE;
+        }
     }
-}
+    
+
 ?>

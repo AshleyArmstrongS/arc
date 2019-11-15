@@ -11,10 +11,15 @@
   $user_id = 1;
 
   $userGroups = Message::getGroupsByUser_id($user_id, $db);
+  foreach ($userGroups as $user) {
+    foreach ($user as $messages) {      
+      print_r($messages);
+    } 
+  }
 
-  $res->render('main', 'home', [
-    'pageTitle' => 'Message',
-    'user' => $userGroups
-  ]);
+  // $res->render('main', 'home', [
+  //   'pageTitle' => 'Message',
+  //   'user' => $userGroups
+  // ]);
 
 } ?>

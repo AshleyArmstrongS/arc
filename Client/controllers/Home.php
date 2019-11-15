@@ -5,6 +5,7 @@
 
   require('./lib/FormUtils.php');
   require('./models/Message.php');
+  require('./models/Group.php');
   require('./models/User.php');
   $db = \Rapid\Database::getPDO();
   
@@ -14,15 +15,18 @@
   // get the date
   $user_id = 1;
 
-  $userGroups = Message::getGroupsByUser_id($user_id, $db);
+  $userGroups = Group::getGroupsByUser_id($user_id, $db);
   //$messages = Message::getMessagesByGroup_id($userGroups['group_id'], $db);
-  print_r($userGroups);
-  echo $userGroups['group_id'];
-  // $res->render('main', 'home', [
-  //   'pageTitle' => 'Message',
-  //   //'messages' => $messages,
-  //   'user' => $userGroups
-  // ]);
+  // print_r($userGroups);
+  // foreach($userGroups as $group)
+  // {
+  //   echo $group['group_id'];
+  // }
+  $res->render('main', 'home', [
+    'pageTitle' => 'Message',
+    //'messages' => $messages,
+    'user' => $userGroups
+  ]);
 
 
   // //create the string to be sent to java 
