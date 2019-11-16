@@ -71,7 +71,7 @@ class Group {
         foreach($recipient_ids_temp['user_id'] as $recipient){
             $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
             $statement2->execute([
-                'admin_id' => $group->getAdmin_id(),
+                'group_id' => $group->getGroup_id(),
                 'user_id' => $recipient
             ]);
         }
@@ -110,8 +110,16 @@ class Group {
             'group_' => $group->getGroup_id()
         ]);    
     }
-    public function addUserToGroup()
+    public function addUserToGroup($group, $user_id, $db)
     {
-            
+        $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
+        $statement2->execute([
+            'group_id' => $group->getGroup_id(),
+            'user_id' => $user_id
+        ]);   
+        if ($saved) {
+            $group->setGroup_id($db->lastInsertId());
+            return TRUE;
+        }
     }
  }
