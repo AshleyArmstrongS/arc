@@ -11,38 +11,41 @@
  // get the last message of that chat
  // get the date
  $user_id = 1;
- $usersInGroup = array();
+ $usersGroup = array();
  $messageInfo = array();
- $userGroups = Group::getGroupsByUser_id($user_id, $db);
+ $group_messages = array();
+ $userInGroup = Group::getGroupsByUser_id($user_id, $db);
  //print_r($userGroups);
 
- //echo("   ++++ ");
-  foreach ($userGroups as $userGroup) {
-    //  foreach ($userGroup as $group_id) {      
-    //    array_push($group_messages, Message::getMessagesByGroup_id($group_id, $db));
-    //  }
-        echo("  ++group  ");
-        echo($userGroup['group_id']);
-        echo("  ++ user  ");
-        echo($userGroup['user_id']);
-        echo("  ++ admin  ");
-        echo($userGroup['admin_id']);
-        echo("  ++  ");
-   // foreach ($userGroup as $group_id) {
-      //array_push($usersInGroup, Group::getUsersByGroup_id($group_id, $db));
-      }
-   // }
-  //foreach ($usersInGroup as $users){
-   // foreach($users as $user){
-   //   $messageInfo = Message::getMessagesByGroup_id($user['group_id'], $db);
-   // }
-  //} 
- 
+  foreach ($userInGroup as $userGroup) {
+      array_push($group_messages, Message::getLastMessagesByGroup_id($userGroup['group_id'], $db));
+      $usersGroup= Group::getUsersByGroup_id($userGroup['group_id'], $db);
+      $messageInfo = Message::getMessagesByGroup_id($userGroup['group_id'], $db);
+   }
 
- //$res->render('main', 'inbox', [
- //'pageTitle' => 'Inbox',
- //'group_users' => $usersInGroup,
- //'messages' => $messageInfo
+   //print_r($group_messages);
+
+   $m = ["hello", "there"];
+   $u = ["sma", "fdsa"];
+
+   //$last_user_with_message = User::getUserById($group_messages['from_id'], $db);
+
+
+//  echo "esdfbgnh";
+//   $messages = Message::getMessage();
+
+
+//$arr = $group_messages['message'];
+//print_r($group_messages);
+foreach($group_messages as $g){
+   $messages = $g->getMessage();
+}
+
+ $res->render('main', 'inbox', [
+ 'pageTitle' => 'Inbox',
+ 'group_users' => $usersGroup,
+ 'message_info' => $group_messages
+//  'user' => $last_user_with_message
  ]);
  
 } ?>

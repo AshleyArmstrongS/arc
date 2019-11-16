@@ -120,9 +120,10 @@ class Message {
         ]);
 
 
-            $message = $query->fetch();
-            
-            return $message !== FALSE ?? FALSE;
+        $message = $query->fetch();
+        
+        //return $message;// !== FALSE ?? FALSE;
+        return $message !== FALSE ? new Message($message) : NULL;
         }
     }
     
