@@ -28,7 +28,7 @@ class User {
         $this->college      = $args['college']     ?? NULL;
         $this->description  = $args['description'] ?? NULL;
         $this->user_type    = $args['user_type']   ?? NULL;
-        $this->location_id  = $args['location_id'] ?? 1;
+        $this->location_id  = $args['location_id'] ?? NULL;
         $this->available    = $args['available']   ?? 'Y'; 
     }
 //getters

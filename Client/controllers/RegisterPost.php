@@ -1,6 +1,7 @@
 <?php return function($req, $res) {
  require('./lib/FormUtils.php');
  require('./models/User.php');
+ require('./models/Location.php');
  $db = \Rapid\Database::getPDO();
  $form_was_posted = [];
 
@@ -83,7 +84,27 @@ if (!$form_was_posted || count($form_error_messages) > 0)
 }
 else
     {
-        
+        // reference = https://www.codeofaninja.com/2014/06/google-maps-geocoding-example-php.html
+        $encodedAddress = urlencode($startAddress['value']);
+        $url = "http://www.mapquestapi.com/geocoding/v1/address?key=lGfENtxACv5ANHh2UWvVkWnnmMRJFHVA&outFormat=json&location=$encodedAddress";
+
+        $resopnse_json = file_get_contents($url);
+        $decoded_response = json_decode($resopnse_json, true);
+
+        $results = $decoded_response['results'];
+        $latitude = $results[0]["locations"][0]["latLng"]["lat"];
+        $longitude = $results[0]["locations"][0]["latLng"]["lng"];
+
+        $location = new Location([
+            'address' => $startAddress['value'],
+            'latitude' => $latitude,
+            'longitude' => $longitude
+        ]);
+
+        Location::addLocation($db, $location);
+        $location_id = Location::returnLocation_idByAddress($db, $startAddress['value']);
+
+
         $user = new User([
             'name' => $name['value'],
             'age' => $age['value'],
@@ -93,9 +114,10 @@ else
             'college' => $college['value'],
             'description' => $description['value'],
             'user_type' => $userType['value'],
-            'location' => $startAddress['value'],
+            'location_id' => $location_id[0],
             'available' => $available['value']
         ]);
+        
         User::addUser($db, $user);
 
          if($userType['value'] == 'D')
