@@ -113,7 +113,8 @@ class Message {
     {
         $group_id = (int)$group_id;
 
-        $query = $db->prepare('SELECT m.* FROM messages m  INNER JOIN (SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id where m.to_id = :group_id;');
+        $query = $db->prepare('SELECT m.message, m.time_sent FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id where m.to_id =   :group_id;
+        ');
         $query->execute([
             'group_id' => $group_id
         ]);
