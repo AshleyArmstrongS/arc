@@ -175,6 +175,21 @@ class User {
         return $users;
     }
 
+    public static function getUserById($user_id, $db)
+    {
+        // if(!($db instanceof PDO)) 
+        // {
+        //     throw new Exception('Invalid PDO object for user findOneById');
+        // }
+
+        $statement = $db->prepare('SELECT * FROM users WHERE user_id = :user_id LIMIT 1');
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $user = $statement->fetch();
+        return $user !== FALSE ? new User($user) : NULL;
+    }
+
     public static function getUserByEmail($email, $db)
     {
         // if(!($db instanceof PDO)) 

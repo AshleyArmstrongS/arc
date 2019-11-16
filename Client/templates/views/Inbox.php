@@ -46,20 +46,20 @@
 
         <div class="list-group-item text-left">
         
-          <?php foreach ($locals['group_users'] as $users) {?>
-            <?php foreach ($users as $user) {?>
-              <?php foreach($locals['messages'] as $messages) { ?>     
+         <?php //foreach ($locals['message_info'] as $m) {?>
+              <?php //foreach($m as $message) { ?>
                 <div class="row">  
-                  
+
                     <li class="list-group-item text-left">
-                      <div class="col"><?= $user['name'] ?></div>
-                      <a href="#" class="pull-left"><div class="col"><?= $messages['message'] ?></div></a>
+                      <div class="col"><?php //$message['name'] ?></div>
+                      <a href="#" class="pull-left"><div class="col"><?= $locals["message_info"][0]->getMessage() ?></div></a>
                     </li>
                   
-                </div>           
-              <?php }?>
-            <?php }?> 
-          <?php }?>
+                </div>  
+            <?php //}?> 
+          <?php //}?> 
+        
+          
 
         </div>
 
