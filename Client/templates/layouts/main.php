@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="">GoCollege</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,19 +31,32 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav mr-auto">
+                <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= SITE_BASE_DIR ?>/home"><span class="fas fa-home"></span> Home</a>
                     </li>
+                <?php } ?>
+                <?php if (!($_SESSION['LOGGED_IN'] === TRUE)){ ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= SITE_BASE_DIR ?>/login"><span class = "fas fa-users"></span> Log in</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/register"><span class = "fas fa-user-cog"></span>Register</a>
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/userType"><span class = "fas fa-user-cog"></span>Register</a>
                     </li>
+                <?php } ?>
 
 
 
                 </ul>
+
+                <form class="form-inline my-2 my-md-0">
+                    <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
+                    <a class="nav-link"style="color:white;"><span class="far fa-user"></span> Hi,<?=$_SESSION['Name'];?></a>
+                    <a class="nav-link"style="color:white;" href="<?= SITE_BASE_DIR ?>/logout"><span class="fas fa-sign-out-alt"></span> Logout</a>
+
+                    <?php } ?>
+
+                </form>
 
             </div>
         </div>
@@ -60,9 +73,9 @@
 
 
     <footer class="footer mt-auto py-5 ">
-        <div class="container ">
-            <span class="text-muted">GoCollege &copy 2019</span>
-        </div>
-    </footer>
+    <div class="container ">
+        <span class="text-muted">GoCollege &copy 2019</span>
+    </div>
+</footer>
 
 </html>
