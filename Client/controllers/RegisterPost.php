@@ -2,6 +2,7 @@
  require('./lib/FormUtils.php');
  require('./models/User.php');
  $db = \Rapid\Database::getPDO();
+ $req->sessionStart();
  $form_was_posted = [];
 
 
@@ -102,16 +103,20 @@ else
          {
             $u = User::getUserByEmail($email['value'], $db);
             $user_id = $u->getUser_id();
+            $req->sessionSet('LOGGED_IN',TRUE);
+            $req->sessionSet('Name',$name);
+            $req->sessionSet('Id', $user_id);
             $res->redirect("/carDetails?user=$user_id");
              
-            // $res->render('main', 'carDetails', [
-            //     'pageTitle' => 'Car Details',
-            //     'user' =>$user
-            // ]);
+           
          }
          else
          {
-             
+            $u = User::getUserByEmail($email['value'], $db);
+            $user_id = $u->getUser_id();
+            $req->sessionSet('LOGGED_IN',TRUE);
+            $req->sessionSet('Name',$name['value']);
+            $req->sessionSet('Id', $user_id);
             $res->redirect('/home');
 
          }

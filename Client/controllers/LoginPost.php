@@ -2,6 +2,7 @@
   require('./lib/FormUtils.php');
   require('./models/Model.php');
   require('./models/User.php');
+  $req->sessionStart();
   $db = \Rapid\Database::getPDO();
 
   function debug_to_console($data) {
@@ -36,11 +37,17 @@
 
         if($validUser)
         {
+          $user = User::getUserByEmail($email['value'], $db);
+          $name = $user -> getName();
+          $req->sessionSet('LOGGED_IN',TRUE);
+          $req->sessionSet('Name',$name);
+          $req->sessionSet('Id', $id);
           $res->redirect('/home');
         }
       }
     }
   }
+  $req->sessionSet('LOGGED_IN',FALSE);
   $res->render('main', 'login', [
       'pageTitle' => 'User Login',
       'form_error_messages' => $error
