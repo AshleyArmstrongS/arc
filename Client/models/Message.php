@@ -1,4 +1,4 @@
-<<?php require_once('Model.php'); ?>
+<?php require_once('Model.php'); ?>
 <?php
 
 class Message {
