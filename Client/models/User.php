@@ -170,9 +170,16 @@ class User {
     {
         $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id;");
         $statement->execute();
-        $users = $statement->fetchAll();
-        $statement->closeCursor();
-        return $users;
+
+        $users = [];
+        foreach($statement->fetchAll() as $row) {
+        array_push($users, new User($row));
+    }
+
+    return $users;
+        // $users = $statement->fetchAll();
+        // $statement->closeCursor();
+        // return $users;
     }
 
     public static function getUserByEmail($email, $db)
@@ -185,6 +192,17 @@ class User {
         $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
         $statement->execute([
             'email' => $email
+        ]);
+        $user = $statement->fetch();
+        return $user !== FALSE ? new User($user) : NULL;
+    }
+
+    public static function getUserByUser_ID($user_id, $db)
+    {
+
+        $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
+        $statement->execute([
+            'user_id' => $user_id
         ]);
         $user = $statement->fetch();
         return $user !== FALSE ? new User($user) : NULL;
