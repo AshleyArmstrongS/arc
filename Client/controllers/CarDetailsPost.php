@@ -1,10 +1,10 @@
-<?php
-
-return function($req, $res) {
-    $user_id = $req->query('user_id');
+<?php return function($req, $res) {
+    $user_id = $req->query('user');
     require('./lib/FormUtils.php');
     require('./models/Car.php');
+    require('./models/User.php');
     $db = \Rapid\Database::getPDO();
+    $req->sessionStart();
     $form_was_posted = [];
 
 
@@ -12,7 +12,7 @@ return function($req, $res) {
 
     $form_was_posted = $req->body('make') !== NULL;
 
-    $driver_id = FormUtils::getPostInt($req->query('user_id'));
+    $driver_id = FormUtils::getPostInt($req->query('user'));
     $make = FormUtils::getPostString($req->body('make'));
     $model = FormUtils::getPostString($req->body('model'));
     $colour = FormUtils::getPostString($req->body('colour'));
@@ -54,11 +54,13 @@ return function($req, $res) {
             'make' => $make['value'],
             'colour' => $colour['value']
         ], $db);
+       
 
         
         //print_r($car);
         Car::addCar($car, $db);
 
+        $req->sessionSet('LOGGED_IN',TRUE);
         $res->redirect('/home');
     }
 }
