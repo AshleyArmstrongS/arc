@@ -13,7 +13,7 @@
 				</div> -->
 			</div>
 			<div class="card-body">
-			<form id='signup_form' action='' method='post'>
+			<form id='login_form' action='' method='post'>
 			<?php foreach($locals['form_error_messages'] as $errors) { ?>
 				<p><?= $errors ?></p>
 			<?php } ?>
@@ -40,10 +40,10 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
+					Don't have an account?<a id = "regLink" href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
 				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+				<div class="d-flex justify-content-center" >
+					<a id = "regLink" href="/home">Forgot your password?</a>
 				</div>
 			</div>
 		</div>

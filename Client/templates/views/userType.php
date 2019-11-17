@@ -5,8 +5,7 @@
     <div class="d-flex justify-content-center h-100">
 		<div class="card">
             <div class="panel-heading">
-                <div class="card-header">
-                </div>
+                
             </div>
             
             <div class="card-body">
