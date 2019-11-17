@@ -14,6 +14,8 @@
  $usersGroup = array();
  $messageInfo = array();
  $group_messages = array();
+ $last_user_with_message = array();
+ $user_ids= array();
  $userInGroup = Group::getGroupsByUser_id($user_id, $db);
  //print_r($userGroups);
 
@@ -23,29 +25,20 @@
       $messageInfo = Message::getMessagesByGroup_id($userGroup['group_id'], $db);
    }
 
-   //print_r($group_messages);
 
-   $m = ["hello", "there"];
-   $u = ["sma", "fdsa"];
+   foreach ($group_messages as $message) {
+      array_push($user_ids, $message->getFrom_id());
+   }
 
-   //$last_user_with_message = User::getUserById($group_messages['from_id'], $db);
-
-
-//  echo "esdfbgnh";
-//   $messages = Message::getMessage();
-
-
-//$arr = $group_messages['message'];
-//print_r($group_messages);
-foreach($group_messages as $g){
-   $messages = $g->getMessage();
-}
-
- $res->render('main', 'inbox', [
- 'pageTitle' => 'Inbox',
- 'group_users' => $usersGroup,
- 'message_info' => $group_messages
-//  'user' => $last_user_with_message
- ]);
+   foreach ($user_ids as $user) {
+      array_push($last_user_with_message, User::getUserById($user, $db));
+   }
+   
+   $res->render('main', 'inbox', [
+   'pageTitle' => 'Inbox',
+   'group_users' => $usersGroup,
+   'message_info' => $group_messages,
+   'user' => $last_user_with_message
+   ]);
  
 } ?>
