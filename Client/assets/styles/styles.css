@@ -3,12 +3,14 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-color: lightslategray;
+background-color: rgb(155, 207, 214);
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
+
+
 
 .container{
 height: 100%;
@@ -22,13 +24,16 @@ align-content: center;
 .card{
 margin-top: auto;
 margin-bottom: auto;
-background-color: rgba(0,0,0,0.6) !important;
+background-color:rgb(255, 177, 32);
+border: 2px solid darkgray;
+padding: 10px;
+box-shadow: 5px 10px 8px slategray;
 }
 
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
-color: #FFC312;
+color: rgb(241, 76, 241);
 }
 
 .social_icon span:hover{
@@ -48,7 +53,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #FFC312;
+background-color: rgb(248, 239, 107);
 color: black;
 border:0 !important;
 }
@@ -72,7 +77,7 @@ margin-right: 5px;
 
 .login_btn{
 color: black;
-background-color: #FFC312;
+background-color:rgb(248, 239, 107);
 width: 100px;
 }
 
@@ -91,7 +96,7 @@ margin-left: 4px;
 
 #regLink
 {
-    color:#FFC312;
+    color:#234099 ;
 
 }
 
@@ -114,4 +119,13 @@ form p.error {
   }
   form p.error:last-of-type {
     margin-bottom   : 1em;
+  }
+
+
+  form .card{
+    padding: 0.25em 0.75em;
+    margin-bottom: 1em;
+  }
+  form .card:last-of-type {
+    margin-bottom   : 2em;
   }
