@@ -69,54 +69,36 @@ td div {
 
   <!-- Tab content -->
   <div id="Messages" class="tabcontent" class="active">
-    <!-- <h3>Messages</h3> -->
-
-    <?php
-      $counter = 0;
-      if($locals['message_info'] > count($locals['user'])){
-        $counter = $locals['message_info'];
-      } else{
-        $counter = $locals['user'];
-      }
-    ?>
-
     <table>
       <tr>
         <th>Name</th>
         <th>Message</th>
         <th>Time Sent</th>
       </tr>
-      <?php for ($index = 0 ; $index < count($counter); $index ++) { ?>
+      <?php foreach ($locals['message_info'] as $message) { ?>
         <div class="row">  
         <tr>
-          <?php 
-            //$dateTime = new DateTime($locals['message_info'][$index]->getTime_sent()); echo var_dump($dateTime);  
-            
-            if(strtotime($locals['message_info'][$index]->getTime_sent()) <= time() - (60*60*24*7*12)){
+          
+          <?php
+            if(strtotime($message['time_sent']) <= time() - (60*60*24)){
               $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
-              preg_match($regEx, $locals['message_info'][$index]->getTime_sent(), $result);
+              preg_match($regEx, $message['time_sent'], $result);
             }
             else{
-              $regEx = '/ (\d{2}):(\d{2}):(\d{2})/';
-              preg_match($regEx, $locals['message_info'][$index]->getTime_sent(), $result);
-            }
-            
-            
-                      
+              $regEx = '/ (\d{2}):(\d{2})/';
+              preg_match($regEx, $message['time_sent'], $result);
+            } 
           ?>
-          <td><div><?php// $locals['user'][$index]->getName(); ?></div></td>
-          <td><div><a href="#" class="pull-left"><?php// $locals['message_info'][$index]->getMessage() ?></a></div></td>
-          <td><div><?= $result[0]; //. $result2[0];  ?></div></td>
+
+          <td><div><?= $message['name']; ?></div></td>
+          <td><div><a href="#" class="pull-left"><?= $message['message']; ?></a></div></td>
+          <td><div><?= $result[0]; ?></div></td>
         </tr>
       <?php } ?>  
     </table>       
-          
-      
-    <!-- </ul> -->
   </div>
 
   <div id="Lifts" class="tabcontent">
-    <!-- <h3>Lifts</h3> -->
     <ul class="list-group">
       <li class="list-group-item text-muted">Inbox</li>
       <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a> <!-- Maybe insert day here --></li>
