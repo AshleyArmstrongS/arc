@@ -5,12 +5,13 @@
  $db = \Rapid\Database::getPDO();
 
  $group_id = 1;
- $messages = Message::getMessagesByGroup($group_id, $db);
- $users = Users::ByUsersGroup_id();
+ $messages_info = Message::getMessagesByGroup_id($group_id, $db);
+ //$users = Users::ByUsersGroup_id();
 
 
  $res->render('main', 'message', [
   'pageTitle' => 'message',
-  'messages' => $messages,
-  'users' => $users
+  'messages' => $messages_info
+  //'users' => $users
   ]);
+ }?>
