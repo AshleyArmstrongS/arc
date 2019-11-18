@@ -114,7 +114,7 @@ class Message {
         $group_id = (int)$group_id;
 
 
-        $query = $db->prepare('SELECT m.* FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id where m.to_id =   :group_id;
+        $query = $db->prepare('SELECT m.message, m.time_sent, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.to_id where m.to_id =   :group_id;
         ');
         $query->execute([
             'group_id' => $group_id
@@ -124,7 +124,7 @@ class Message {
         $message = $query->fetch();
         
         //return $message;// !== FALSE ?? FALSE;
-        return $message !== FALSE ? new Message($message) : NULL;
+        return $message !== FALSE;
         }
     }
     
