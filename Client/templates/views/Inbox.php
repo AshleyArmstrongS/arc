@@ -1,31 +1,62 @@
 
-  <script>
-    //Reference - https://www.w3schools.com/howto/howto_js_tabs.asp
-    function openInbox(evt, inboxBlock) {
-    // Declare all variables
-      var i, tabcontent, tablinks;
+<script>
+  //Reference - https://www.w3schools.com/howto/howto_js_tabs.asp
+  function openInbox(evt, inboxBlock) {
+  // Declare all variables
+    var i, tabcontent, tablinks;
 
-      // Get all elements with class="tabcontent" and hide them
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-
-      // Get all elements with class="tablinks" and remove the class "active"
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-
-      // Show the current tab, and add an "active" class to the button that opened the tab
-      document.getElementById(inboxBlock).style.display = "block";
-      evt.currentTarget.className += " active";
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
     }
 
-    document.getElementById("defaultOpen").click();
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
 
-  </script>
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(inboxBlock).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
+  document.getElementById("defaultOpen").click();
+
+</script>
+
+
+<style>
+/* https://stackoverflow.com/questions/41674548/how-to-make-html-table-columns-resizable/41675248 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+td {
+  /* border: 2px solid black; */
+  padding: 5px;
+  margin: 5px;
+  /* overflow: auto; */
+}
+
+div {
+  resize: both;
+  /* overflow: auto; */
+  width: auto;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  /* border: 1px solid black; */
+  /* display:block; */
+}
+
+td div {
+  border: 0;
+  width: auto;
+  height: auto;
+}
+</style>
 
   <div class="container">
     <div class="row">
@@ -38,51 +69,43 @@
 
   <!-- Tab content -->
   <div id="Messages" class="tabcontent" class="active">
-    <h3>Messages</h3>
-    <ul class="list-group">
-      <li class="list-group-item text-muted">Inbox</li>
+    <!-- <h3>Messages</h3> -->
 
-      <tbody id="items">
+    <?php
+      $counter = 0;
+      if($locals['message_info'] > count($locals['user'])){
+        $counter = $locals['message_info'];
+      } else{
+        $counter = $locals['user'];
+      }
+    ?>
 
-        <div class="list-group-item text-left">
-        
-         <?php //foreach ($locals['message_info'] as $m) {?>
-              <?php //foreach($m as $message) { ?>
-                <div class="row">  
-
-                    <li class="list-group-item text-left">
-                      <div class="col"><?php //$message['name'] ?></div>
-                      <a href="#" class="pull-left"><div class="col"><?= $locals["message_info"][0]->getMessage() ?></div></a>
-                    </li>
-                  
-                </div>  
-            <?php //}?> 
-          <?php //}?> 
-        
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Message</th>
+        <th>Time Sent</th>
+      </tr>
+      <?php for ($index = 0 ; $index < count($counter); $index ++) { ?>
+        <div class="row">  
+        <tr>
+          <td><div><?= $locals['user'][$index]->getName(); ?></div></td>
+          <td><div><a href="#" class="pull-left"><?= $locals['message_info'][$index]->getMessage() ?></a></div></td>
+          <td><div><?= $locals['message_info'][$index]->getTime_sent() ?></div></td>
+        </tr>
+      <?php } ?>  
+    </table>       
           
-
-        </div>
-
-         
-          
-      </tbody> 
       
-      <!-- <li class="list-group-item text-left"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li> -->
-
-    </ul>
+    <!-- </ul> -->
   </div>
 
   <div id="Lifts" class="tabcontent">
-    <h3>Lifts</h3>
+    <!-- <h3>Lifts</h3> -->
     <ul class="list-group">
       <li class="list-group-item text-muted">Inbox</li>
       <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a> <!-- Maybe insert day here --></li>
       <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a> <!-- Maybe insert the timetable here --></li>
     </ul>
   </div>
+</div>
