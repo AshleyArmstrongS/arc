@@ -38,10 +38,10 @@
         if($validUser)
         {
           $user = User::getUserByEmail($email['value'], $db);
-          $name = $user -> getName();
           $req->sessionSet('LOGGED_IN',TRUE);
-          $req->sessionSet('Name',$name);
-          $req->sessionSet('Id', $id);
+          $req->sessionSet('Name',$user->getName());
+          $req->sessionSet('Id', $user->getUser_id());
+          $req->sessionSet('Email', $user->getEmail());
           $res->redirect('/home');
         }
       }
