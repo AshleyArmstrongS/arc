@@ -89,9 +89,24 @@ td div {
       <?php for ($index = 0 ; $index < count($counter); $index ++) { ?>
         <div class="row">  
         <tr>
-          <td><div><?= $locals['user'][$index]->getName(); ?></div></td>
-          <td><div><a href="#" class="pull-left"><?= $locals['message_info'][$index]->getMessage() ?></a></div></td>
-          <td><div><?= $locals['message_info'][$index]->getTime_sent() ?></div></td>
+          <?php 
+            //$dateTime = new DateTime($locals['message_info'][$index]->getTime_sent()); echo var_dump($dateTime);  
+            
+            if(strtotime($locals['message_info'][$index]->getTime_sent()) <= time() - (60*60*24*7*12)){
+              $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
+              preg_match($regEx, $locals['message_info'][$index]->getTime_sent(), $result);
+            }
+            else{
+              $regEx = '/ (\d{2}):(\d{2}):(\d{2})/';
+              preg_match($regEx, $locals['message_info'][$index]->getTime_sent(), $result);
+            }
+            
+            
+                      
+          ?>
+          <td><div><?php// $locals['user'][$index]->getName(); ?></div></td>
+          <td><div><a href="#" class="pull-left"><?php// $locals['message_info'][$index]->getMessage() ?></a></div></td>
+          <td><div><?= $result[0]; //. $result2[0];  ?></div></td>
         </tr>
       <?php } ?>  
     </table>       
