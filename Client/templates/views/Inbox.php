@@ -69,7 +69,7 @@ td div {
 
   <!-- Tab content -->
   <div id="Messages" class="tabcontent" class="active">
-    <h3>Messages</h3>
+    <!-- <h3>Messages</h3> -->
 
     <?php
       $counter = 0;
@@ -101,7 +101,7 @@ td div {
   </div>
 
   <div id="Lifts" class="tabcontent">
-    <h3>Lifts</h3>
+    <!-- <h3>Lifts</h3> -->
     <ul class="list-group">
       <li class="list-group-item text-muted">Inbox</li>
       <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a> <!-- Maybe insert day here --></li>
