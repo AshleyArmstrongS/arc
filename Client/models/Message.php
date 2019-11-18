@@ -98,7 +98,7 @@ class Message {
         {
             $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT * from messages m inner join groups g on m.to_id = g.group_id where g.group_id = :group_id;');
+            $query = $db->prepare('SELECT m.*, u.name from messages m inner join groups g on m.to_id = g.group_id inner join Users u on u.user_id = m.from_id where g.group_id = :group_id;');
             $query->execute([
                 'group_id' => $group_id
             ]);
@@ -114,17 +114,15 @@ class Message {
         $group_id = (int)$group_id;
 
 
-        $query = $db->prepare('SELECT m.message, m.time_sent, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.to_id where m.to_id =   :group_id;
-        ');
+        $query = $db->prepare('SELECT m.message, m.time_sent, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id where m.to_id = :group_id;');
         $query->execute([
             'group_id' => $group_id
         ]);
 
 
         $message = $query->fetch();
-        
-        //return $message;// !== FALSE ?? FALSE;
-        return $message !== FALSE;
+        return $message !== FALSE ? $message : NULL;
+        //return $message !== FALSE;
         }
     }
     
