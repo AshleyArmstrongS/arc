@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="">GoCollege</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,12 @@
                 <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= SITE_BASE_DIR ?>/home"><span class="fas fa-home"></span> Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/viewUser"><span class="fas fa-search-location"></span> Search</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= SITE_BASE_DIR ?>/inbox"><span class="far fa-envelope"></span> Inbox</a>
                     </li>
                 <?php } ?>
                 <?php if (!($_SESSION['LOGGED_IN'] === TRUE)){ ?>
