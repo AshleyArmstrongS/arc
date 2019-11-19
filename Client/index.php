@@ -19,12 +19,8 @@
   $app->POST('/login',    'LoginPost');
   $app->GET('/inbox',  'InboxGet');
   //$app->POST('/inbox',  'InboxPost');
-  $app->GET('/message',  'MessageGet');
-<<<<<<< HEAD
   $app->POST('/message',  'messageGet');
-=======
   $app->POST('/message',  'messagePost');
->>>>>>> 7a369b01ee1fe1a01a2d99597ee2304303e89b92
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
   $app->GET('/carDetails',  'CarDetailsGet');
