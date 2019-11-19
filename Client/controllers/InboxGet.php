@@ -7,12 +7,8 @@
    $req->sessionStart();
    $db = \Rapid\Database::getPDO();
    
-   $user_email = $_SESSION['Email'];
-   $user_id = User::getUserByEmail($user_email, $db);
-   $messageInfo = array();
+   $user_id = User::getUserByEmail($_SESSION['Email'], $db);
    $group_messages = array();
-   $last_user_with_message = array();
-   $user_ids= array();
    $userInGroup = Group::getGroupsByUser_id($user_id->getUser_id(), $db);
  
 
