@@ -20,7 +20,7 @@
   $app->GET('/inbox',  'InboxGet');
   //$app->POST('/inbox',  'InboxPost');
   $app->GET('/message',  'MessageGet');
-  // $app->POST('/message',  'messageGet');
+  $app->POST('/message',  'messageGet');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
   $app->GET('/carDetails',  'CarDetailsGet');
