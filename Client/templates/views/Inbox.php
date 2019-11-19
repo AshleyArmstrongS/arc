@@ -93,9 +93,8 @@ td div {
           ?>
 
           <td><div><?= $message['name']; ?></div></td>
-          <td><div><a href='<?= SITE_BASE_DIR ?>/message?<?= $message['group_id']; ?>' class="pull-left"><?= $message['message']; ?></a></div></td>
+          <td><div><a href='<?= SITE_BASE_DIR ?>/message?to_id= <?= $message['to_id']; ?>' class="pull-left"><?= $message['message']; ?></a></div></td>
           <td><div><?= $result[0]; ?></div></td>
-        <?php  print_r($message); ?>
         </tr>
       <?php } ?>  
     </table>       

@@ -35,8 +35,14 @@
         <th>Name</th>
         <th>Message</th>
         <th>Time Sent</th>
+        <th>Delete</th>
     </tr>
-    <?php foreach ($locals['messages_info'] as $message) { ?>
+  
+
+    <?php 
+    $group_id = $locals['group_id'];
+    foreach ($locals['messages'] as $message) { 
+      ?>
     <div class="row">  
     <tr>
         
@@ -48,12 +54,22 @@
         else{
             $regEx = '/ (\d{2}):(\d{2})/';
             preg_match($regEx, $message['time_sent'], $result);
-        } 
-        ?>
-
+        }
+       ?>
         <td><div><?= $message['name']; ?></div></td>
         <td id=message><div><?= $message['message']; ?></div></td>
         <td><div><?= $result[0]; ?></div></td>
+        <td>
+        <?php  if($_SESSION['Id'] === $message['from_id'])
+        { ?>
+          <a href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?>&to_id=<?=$message['to_id']?>"> delete</a>
+        <?php } ?>
+        </td>
     </tr>
     <?php } ?>  
 </table>
+
+<form id='login_form' action='' method='post'>
+<input type="text" class="form-control" name='message' id='message' placeholder="Hi!">
+<input type="hidden" name="group_id" id="group_id" value = <?=$group_id?>>
+</form>
