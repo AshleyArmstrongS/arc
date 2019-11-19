@@ -97,7 +97,7 @@ class Message {
             $group_id = (int)$group_id;
 
 
-            $query = $db->prepare('SELECT m.*, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
+            $query = $db->prepare('SELECT m.message, m.time_sent,g.group, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
 
             $query->execute([
                 'group_id' => $group_id
@@ -109,6 +109,7 @@ class Message {
 
     
     //the only query for inbox
+
     public function getLastMessagesByGroup_id($group_id, $db)
     {
         $group_id = (int)$group_id;
@@ -123,8 +124,17 @@ class Message {
         $message = $query->fetch();
         return $message !== FALSE ? $message : NULL;
         //return $message !== FALSE;
-        }
-    }
-    
 
+        }
+
+        public function deleteMessage($message_id, $db)
+        {
+            $message_id = (int)$message_id;
+            $query = $db->prepare('DELETE from messages WHERE message_id = :message_id');
+            $query->execute([
+                'message_id' => $message_id
+            ]);
+
+        }
+}
 ?>

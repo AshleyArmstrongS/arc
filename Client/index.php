@@ -21,6 +21,7 @@
   //$app->POST('/inbox',  'InboxPost');
   $app->GET('/message',  'messageGet');
   $app->POST('/message',  'messagePost');
+  $app->GET('/removeMessage',  'removeMessage');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
   $app->GET('/carDetails',  'CarDetailsGet');
