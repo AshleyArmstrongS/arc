@@ -37,9 +37,12 @@
         <th>Time Sent</th>
         <th>Delete</th>
     </tr>
+  
 
-
-    <?php foreach ($locals['messages'] as $message) { ?>
+    <?php 
+    $group_id = $locals['group_id'];
+    foreach ($locals['messages'] as $message) { 
+      ?>
     <div class="row">  
     <tr>
         
@@ -68,3 +71,5 @@
 
 <form id='login_form' action='' method='post'>
 <input type="text" class="form-control" name='message' id='message' placeholder="Hi!">
+<input type="hidden" name="group_id" id="group_id" value = <?=$group_id?>>
+</form>

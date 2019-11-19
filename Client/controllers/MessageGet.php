@@ -15,6 +15,7 @@
 $res->render('main', 'message', [
   'pageTitle' => 'message',
   'messages' => $messages,
+  'group_id' => $group_id,
   'users' => $users
   ]);
  }
