@@ -175,11 +175,28 @@ class User {
         foreach($statement->fetchAll() as $row) {
         array_push($users, new User($row));
     }
+   
 
     return $users;
         // $users = $statement->fetchAll();
         // $statement->closeCursor();
         // return $users;
+    }
+
+    public static function searchUsersByName($name,$db)
+    {
+        
+        $statement = $db->prepare("SELECT user_id, name,age, location_id FROM users WHERE name ILIKE :name");
+        $statement->execute([
+            'name' => $name
+        ]);
+        $users = [];
+        foreach($statement->fetchAll() as $row) {
+        array_push($users, new User($row));
+        }
+   
+
+    return $users;
     }
 
     public static function getUserById($user_id, $db)
