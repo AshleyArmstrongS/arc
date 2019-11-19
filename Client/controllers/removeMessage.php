@@ -4,10 +4,11 @@
   $req->sessionStart();
   $db = \Rapid\Database::getPDO();
   $message_id = $req->query('message_id');
+  $to_id = $req->query('to_id');
   Message::deleteMessage($message_id, $db);
 
  
-        $res -> redirect("/message");
+        $res -> redirect('/message?to_id='.$to_id);
 
 
 }?>

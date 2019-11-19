@@ -77,7 +77,7 @@ class Message {
             {
             throw new Exception('Cannot submit a message without contents');
             }
-            $statement = $db->prepare('INSERT into messages (to_id, from_id, message) VALUES (:group_id, :from_id, :message);');
+            $statement = $db->prepare('INSERT into messages (to_id, from_id, time_sent, message) VALUES (:group_id, :from_id, now(), :message);');
             $statement->execute([
                 'group_id'      => $message->getGroup_id(),
                 'from_id'       => $message->getFrom_id(),
@@ -97,7 +97,7 @@ class Message {
             $group_id = (int)$group_id;
 
 
-            $query = $db->prepare('SELECT m.message, m.time_sent,g.group, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
+            $query = $db->prepare('SELECT m.message_id, m.message, m.time_sent, m.from_id, m.to_id, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
 
             $query->execute([
                 'group_id' => $group_id
@@ -115,7 +115,7 @@ class Message {
         $group_id = (int)$group_id;
 
 
-        $query = $db->prepare('SELECT m.message, m.time_sent, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id where m.to_id = :group_id;');
+        $query = $db->prepare('SELECT m.message, m.time_sent, m.from_id, m.to_id, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id where m.to_id = :group_id;');
         $query->execute([
             'group_id' => $group_id
         ]);

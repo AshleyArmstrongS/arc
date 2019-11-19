@@ -7,16 +7,13 @@
  $db = \Rapid\Database::getPDO();
 
 
- $group_id = $req->query('group_id');
-
+ $group_id = $req->query('to_id');
  $messages = Message::getMessagesByGroup_id($group_id, $db);
  $users = Group::getUsersByGroup_id($group_id, $db);
 
 
-
- $res->render('main', 'message', [
+$res->render('main', 'message', [
   'pageTitle' => 'message',
-
   'messages' => $messages,
   'users' => $users
   ]);
