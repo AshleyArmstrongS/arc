@@ -27,6 +27,9 @@
   $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
   $app->GET('/viewUser',      'ViewAllUsers');
+
+  $app->GET('/search',      'searchUserGet');
+
   $app->GET('/logout',  'Logout');
 
 
