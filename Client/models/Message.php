@@ -77,12 +77,10 @@ class Message {
             {
             throw new Exception('Cannot submit a message without contents');
             }
-            $statement = $db->prepare('INSERT into users (group_id, from_id, time_sent, message) VALUES (:group_id, :from_id, :time_sent, :message);');
-            $statement->excecute([
-                
+            $statement = $db->prepare('INSERT into users (group_id, from_id, message) VALUES (:group_id, :from_id, :message);');
+            $statement->execute([
                 'group_id'      => $message->getGroup_id(),
                 'from_id'       => $message->getFrom_id(),
-                'time_sent'     => $message->getTime_sent(),
                 'message'       => $message->getMessage()
             ]);
             $saved = $statement->rowCount() === 1;
@@ -98,7 +96,9 @@ class Message {
         {
             $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT m.*, u.name from messages m inner join groups g on m.to_id = g.group_id inner join Users u on u.user_id = m.from_id where g.group_id = :group_id;');
+
+            $query = $db->prepare('SELECT m.*, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
+
             $query->execute([
                 'group_id' => $group_id
             ]);
