@@ -77,7 +77,7 @@ class Message {
             {
             throw new Exception('Cannot submit a message without contents');
             }
-            $statement = $db->prepare('INSERT into users (group_id, from_id, message) VALUES (:group_id, :from_id, :message);');
+            $statement = $db->prepare('INSERT into messages (to_id, from_id, message) VALUES (:group_id, :from_id, :message);');
             $statement->execute([
                 'group_id'      => $message->getGroup_id(),
                 'from_id'       => $message->getFrom_id(),

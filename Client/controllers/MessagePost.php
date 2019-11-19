@@ -12,18 +12,18 @@
   $message = new Message([
     'message' => $ms,
     'from_id' => $from_id,
-    'group' => $group_id
+    'group_id' => $group_id
   ]); 
 
    $sm = Message::submitMessage($message, $db);
     
    if($sm !== FALSE)
    {
-    $res->redirect('/message');
+      $res->redirect('/message?success=1');
    }
    else
    {
-     echo "you cant code for shit m8";
+      $res->redirect('/message?success=0');
    }
 
 } ?>
