@@ -77,12 +77,10 @@ class Message {
             {
             throw new Exception('Cannot submit a message without contents');
             }
-            $statement = $db->prepare('INSERT into users (group_id, from_id, time_sent, message) VALUES (:group_id, :from_id, :time_sent, :message);');
-            $statement->excecute([
-                
+            $statement = $db->prepare('INSERT into messages (to_id, from_id, message) VALUES (:group_id, :from_id, :message);');
+            $statement->execute([
                 'group_id'      => $message->getGroup_id(),
                 'from_id'       => $message->getFrom_id(),
-                'time_sent'     => $message->getTime_sent(),
                 'message'       => $message->getMessage()
             ]);
             $saved = $statement->rowCount() === 1;
@@ -98,7 +96,9 @@ class Message {
         {
             $group_id = (int)$group_id;
 
-            $query = $db->prepare('SELECT * from messages m inner join groups g on m.to_id = g.group_id where g.group_id = :group_id;');
+
+            $query = $db->prepare('SELECT m.message, m.time_sent,g.group, u.name from messages m inner join groups g on m.to_id = g.group_id inner join users u on m.from_id = u.user_id where g.group_id = :group_id;');
+
             $query->execute([
                 'group_id' => $group_id
             ]);
@@ -109,24 +109,32 @@ class Message {
 
     
     //the only query for inbox
+
     public function getLastMessagesByGroup_id($group_id, $db)
     {
         $group_id = (int)$group_id;
 
 
-        $query = $db->prepare('SELECT m.* FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id where m.to_id =   :group_id;
-        ');
+        $query = $db->prepare('SELECT m.message, m.time_sent, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id where m.to_id = :group_id;');
         $query->execute([
             'group_id' => $group_id
         ]);
 
 
         $message = $query->fetch();
-        
-        //return $message;// !== FALSE ?? FALSE;
-        return $message !== FALSE ? new Message($message) : NULL;
-        }
-    }
-    
+        return $message !== FALSE ? $message : NULL;
+        //return $message !== FALSE;
 
+        }
+
+        public function deleteMessage($message_id, $db)
+        {
+            $message_id = (int)$message_id;
+            $query = $db->prepare('DELETE from messages WHERE message_id = :message_id');
+            $query->execute([
+                'message_id' => $message_id
+            ]);
+
+        }
+}
 ?>

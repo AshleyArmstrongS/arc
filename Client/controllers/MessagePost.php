@@ -2,24 +2,28 @@
   require('./lib/FormUtils.php');
   require('./models/Message.php');
   require('./models/User.php');
+  $req->sessionStart();
   $db = \Rapid\Database::getPDO();
   
-  // get the groups [groups]
-  // get the names of the persons [p1,p2,p3,...pn] in each group
-  // get the last message of that chat
-  // get the date
-  $user_id = 1;
+  $ms = $req->body('message');
+  $from_id = $_SESSION['Id'];
+  $group_id =1;
 
-  $userGroups = Group::getGroupsByUser_id($user_id, $db);
-  foreach ($userGroups as $user) {
-    foreach ($user as $messages) {      
-      print_r($messages);
-    } 
-  }
+  $message = new Message([
+    'message' => $ms,
+    'from_id' => $from_id,
+    'group_id' => $group_id
+  ]); 
 
-  // $res->render('main', 'home', [
-  //   'pageTitle' => 'Message',
-  //   'user' => $userGroups
-  // ]);
+   $sm = Message::submitMessage($message, $db);
+    
+   if($sm !== FALSE)
+   {
+      $res->redirect('/message?success=1');
+   }
+   else
+   {
+      $res->redirect('/message?success=0');
+   }
 
 } ?>

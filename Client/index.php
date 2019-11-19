@@ -19,17 +19,17 @@
   $app->POST('/login',    'LoginPost');
   $app->GET('/inbox',  'InboxGet');
   //$app->POST('/inbox',  'InboxPost');
-  $app->GET('/message',  'MessageGet');
-  // $app->POST('/message',  'messageGet');
+  $app->GET('/message',  'messageGet');
+  $app->POST('/message',  'messagePost');
+  $app->GET('/removeMessage',  'removeMessage');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
   $app->GET('/carDetails',  'CarDetailsGet');
   $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
-  $app->GET('/viewUser',      'ViewAllUsers');
 
   $app->GET('/search',      'searchUserGet');
-
+  $app->GET('/viewUser',   'ViewAllUsers');
   $app->GET('/logout',  'Logout');
 
 

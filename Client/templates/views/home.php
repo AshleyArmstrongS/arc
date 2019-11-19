@@ -33,16 +33,12 @@
                     </div>
                     <div class="col-sm-15">
                         <div class="card">
-                            <div class="card-body">
-                                <a class="nav-link"style="color:white;"> No Lifts Scheduled</a>
-                            </div>
+                            <a class="nav-link"style="color:white; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts Scheduled</a>
                         </div>
                     </div>
                     <div class="col-sm-15">
                         <div class="card">
-                            <div class="card-body">
-                                <a class="nav-link"style="color:white;"> No Messages</a>
-                            </div>
+                            <a class="nav-link"style="color:white; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
                         </div>
                     </div>
                     <div class="card-footer" style="height:100px;">
