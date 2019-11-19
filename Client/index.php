@@ -19,7 +19,7 @@
   $app->POST('/login',    'LoginPost');
   $app->GET('/inbox',  'InboxGet');
   //$app->POST('/inbox',  'InboxPost');
-  $app->POST('/message',  'messageGet');
+  $app->GET('/message',  'messageGet');
   $app->POST('/message',  'messagePost');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
