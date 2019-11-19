@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-background-color: rgb(155, 207, 214);
+background-image: "./assets/images/map_image_2.jpg";
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
@@ -22,12 +22,12 @@ align-content: center;
 }
 
 .card{
-margin-top: auto;
+margin-top: 10px;
 margin-bottom: auto;
-background-color:rgb(255, 177, 32);
-border: 2px solid darkgray;
+background-color:rgb(246, 192, 44);
+border: 2px solid rgb(168, 154, 154);
 padding: 10px;
-box-shadow: 5px 10px 8px slategray;
+/* box-shadow: 5px 10px 8px slategray; */
 }
 
 .social_icon span{
@@ -42,7 +42,7 @@ cursor: pointer;
 }
 
 .card-header h3{
-color: white;
+color:black;
 }
 
 .social_icon{
@@ -64,7 +64,7 @@ box-shadow: 0 0 0 0 !important;
 }
 
 .remember{
-color: white;
+color: black;
 }
 
 .remember input
@@ -87,7 +87,7 @@ background-color: white;
 }
 
 .links{
-color: white;
+color: black;
 }
 
 .links a{
@@ -96,7 +96,7 @@ margin-left: 4px;
 
 #regLink
 {
-    color:#234099 ;
+    color:black; ;
 
 }
 
@@ -129,3 +129,4 @@ form p.error {
   form .card:last-of-type {
     margin-bottom   : 2em;
   }
+  
