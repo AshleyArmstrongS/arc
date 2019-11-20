@@ -185,8 +185,9 @@ class User {
 
     public static function searchUsersByName($name,$db)
     {
+        // \\'%:name%\\'
         
-        $statement = $db->prepare("SELECT user_id, name,age, location_id FROM users WHERE name ILIKE :name");
+        $statement = $db->prepare('SELECT user_id, name,age, location_id FROM users WHERE name @@ :name');
         $statement->execute([
             'name' => $name
         ]);
