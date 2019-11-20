@@ -2,7 +2,7 @@
 
 <div class="card-body">
 <div class="row">
-<div class="col-xs-3 col-sm-3 col-md-3">
+<div class="col-xs-4 col-sm-4 col-md-4">
             <form action='search'>
             <div class="input-group form-group">
             <input type="search" name="search" class="form-control input-sm" placeholder="Name">
@@ -15,8 +15,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> <?= $user->getName(); ?></h5>
-                    <p class="card-text"> <?= $user->getAge() ?></p>
+                    <h5 class="card-title"> <?= $user->getName();?> <i class="fas fa-comment-alt"></i> </h5>
                 </div>
             </div>
         </div>
