@@ -92,7 +92,7 @@ class Message {
             return $saved;
         }
         
-        public function getMessagesByGroup_id($group_id, $db)
+        public static function getMessagesByGroup_id($group_id, $db)
         {
             $group_id = (int)$group_id;
 
