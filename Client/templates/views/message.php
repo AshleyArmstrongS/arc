@@ -107,7 +107,7 @@ a:hover {
               preg_match($regEx, $message['time_sent'], $result);
           }
           else{
-              $regEx = '/ (\d{2}):(\d{2})/';
+              $regEx = '/(\d{2}):(\d{2})/';
               preg_match($regEx, $message['time_sent'], $result);
           }
         ?>
