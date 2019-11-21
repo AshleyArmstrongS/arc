@@ -78,10 +78,10 @@ class Group {
         $saved = $statement->rowCount() === sizeof($recipient_ids_temp);
         if($saved)
             {
-                return TRUE;
+                return $group->getGroup_id();
             }
     }
-    public function getUsersByGroup_id($group_id, $db)
+    public static function getUsersByGroup_id($group_id, $db)
     {
         $group_id = (int)$group_id;
 
