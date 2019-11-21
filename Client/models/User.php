@@ -259,6 +259,40 @@ class User {
         return $drivers;
     }
 
+    public static function getDriversByGender($db, $gender)
+    {
+        $statement = $db->prepare("select name, age from users where gender = :gender");
+        $statement->execute([
+            'gender' => $gender
+        ]);
+        $drivers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $drivers;
+    }
+
+    public static function getDriversByDay($db, $day)
+    {
+        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement->execute([
+            'day' => $day
+        ]);
+        $drivers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $drivers;
+    }
+
+    public static function getDriversByDayAndGender($db, $day, $gender)
+    {
+        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement->execute([
+            'day' => $day,
+            'gender' => $gender
+        ]);
+        $drivers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $drivers;
+    }
+
 
     // CRUD
     public static function addUser($db, $user)
