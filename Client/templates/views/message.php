@@ -34,16 +34,41 @@
     color: #222;
     text-align:left;
     padding:35px; } */
-  
+
+body{
+}
+
 p {
     margin:0;
-    padding:0; }
+    padding:0;
+}
+
+   
+p:nth-child(even) {background:#F8F8FF}
+p:nth-child(odd) {background:#E6E6FA} 
   
 input { 
     font:12px arial; 
-
+    margin: 8px 8px;
 }
-  
+
+#group_id{
+  background: #B0C4DE;
+  color: #fff;
+  padding: 10px 8px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-shadow:none;
+}
+
+#group_id:hover {
+  background: #016ABC;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 6px;
+  text-shadow:none;
+}
+
 a {
     color:#0000FF;
     text-decoration:none; 
@@ -55,44 +80,47 @@ a:hover {
   
 #wrapper, #loginform {
     margin:0 auto;
-    padding-bottom:25px;
-    background:#EBF4FB;
-    width:504px;
-    border:1px solid #ACD8F0; 
+    padding:0px 25px 25px 25px;
+    background:#FFF;
+    /* width:504px; */
+    /* border:1px solid #ACD8F0;  */
 }
   
 #chatbox {
     text-align:left;
-    margin:0 auto;
+    margin: 5px 5px;
     margin-bottom:25px;
-    padding:10px;
+    /* padding:10px; */
     background:#fff;
-    height:400px;
-    width:430px;
+    /* height:400px;
+    width:430px; */
     border:1px solid #ACD8F0;
-    overflow:auto; 
+    overflow:scroll;
+    max-height: 400px; 
 }
   
 #message {
-    width: 370px;
-    margin-left: 35px;
-    border:1px solid #ACD8F0; 
-}
-  
-#group_id { 
-  width: 60px; 
+    /* width: 370px; */
+  font:12px Helvetica;
+  width: 90%;
+  padding: 12px 20px;
+  margin: 10px 10px;
+  background: #F5FFFA;
+  color: black;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
   
 #top { 
     padding: 12.5px 25px 12.5px 25px; 
 }
-  
-
 
 </style>
 
-
-<h1>Messages</h1>
+<div class="container">
+  <h3 style="margin:0; padding:0;">Messages</h3>
 
   <div id="wrapper">
     <div id="top"></div>
@@ -113,12 +141,15 @@ a:hover {
         ?>
 
           <p>
-            (<?= $result[0]; ?>) 
+             
             <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
+            <br>
             <?= $message['message']; ?> 
             <?php  if($_SESSION['Id'] === $message['from_id']) { ?>
               <a href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?>&to_id=<?= $message['to_id']; ?>">Delete</a>
             <?php } ?>
+            <br>
+            <i style="color: #B0C4DE">(<?= $result[0]; ?>)</i>
           </p>
       <?php } ?>
       </div>
@@ -129,3 +160,4 @@ a:hover {
       </form>
     </div>  
   </div>  
+</div>
