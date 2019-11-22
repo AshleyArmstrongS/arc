@@ -28,8 +28,12 @@
   $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
   $app->GET('/search',      'searchUserGet');
+
+  $app->POST('/filter',      'FilterUser');
+
   $app->GET('/createGroup',  'CreateGroup');
-  $app->GET('/filter',      'FilterUser');
+  
+
   $app->GET('/viewUser',   'ViewAllUsers');
   $app->GET('/logout',  'Logout');
 

@@ -2,23 +2,20 @@
 $(document).ready(function()
 {
         $("#filteritems").click(function(){
-            var radioValue = $("input[name='gender']:checked").val();
-            var checkValue = $("input[name='check_list']:checked").val();
-            if(radioValue){
-              $('#result').html(radioValue);
-            }
-            if(checkValue){
-              $('#result2').html(checkValue);
-            }
-
-            // var favorite = [];
-            // $.each($("input[name='check_list']:checked"), function(){
-            //     favorite.push($(this).val());
-            // });
-            // if(favorite)
-            // {
-            //   $('#result2').html(favorite);
+            // var radioValue = $("input[name='gender']:checked").val();
+            // var checkValue = $("input[name='check_list']:checked").val();
+            // if(radioValue){
+            //   $('#result').html(radioValue);
             // }
+            // if(checkValue){
+            //   $('#result2').html(checkValue);
+            // }
+
+            
+
+  $.ajax({url: "./filter",data:$("#filter_form").serialize(),type:"post", success: function(result){
+    $("#usersResult").html(result);
+  }});
         });
 
     
@@ -50,7 +47,7 @@ $(document).ready(function()
                     </div>
                 </div>
 
-
+                <div id ="usersResult">
                 <?php foreach ($locals['viewUsers'] as $user) { ?>
                     <div class="col-sm-12">
                         <div class="card">
@@ -62,7 +59,7 @@ $(document).ready(function()
                         </div>
                     </div>
                 <?php } ?>
-
+                </div>
             </form>
         </div>
     </div>
@@ -85,9 +82,9 @@ $(document).ready(function()
           <!-- https://www.w3schools.com/php/php_form_complete.asp -->
             <label for="gender" class="col-form-label">Gender:  </label><br/>
             <input id = "gender" type="radio" name="gender"
-            <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+            <?php if (isset($gender) && $gender=="female") echo "checked";?> value="F">Female
             <input  id ="gender" type="radio" name="gender"
-            <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+            <?php if (isset($gender) && $gender=="male") echo "checked";?> value="M">Male
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Day:  </label><br/>
