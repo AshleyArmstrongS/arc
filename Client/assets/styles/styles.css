@@ -122,16 +122,5 @@ form p.error {
   }
 
 
-  form .card{
-    padding: 0.25em 0.75em;
-    margin-bottom: 1em;
-  }
-  form .card:last-of-type {
-    margin-bottom   : 2em;
-  }
   
 
-
-  /************************************/
-  /*         Display people           */
-  /************************************/
