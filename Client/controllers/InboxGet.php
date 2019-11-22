@@ -7,9 +7,9 @@
    $req->sessionStart();
    $db = \Rapid\Database::getPDO();
    
-   $user_id = User::getUserByEmail($_SESSION['Email'], $db);
+   $user_id = $_SESSION['Id'];
    $group_messages = array();
-   $userInGroup = Group::getGroupsByUser_id($user_id->getUser_id(), $db);
+   $userInGroup = Group::getGroupsByUser_id($user_id, $db);
  
 
    foreach ($userInGroup as $userGroup) {
