@@ -29,7 +29,7 @@
   $app->GET('/userType',  'UserTypeGet');
 
   $app->GET('/search',      'searchUserGet');
-  $app->GET('/filter',      'FilterUser');
+  $app->POST('/filter',      'FilterUser');
   $app->GET('/viewUser',   'ViewAllUsers');
   $app->GET('/logout',  'Logout');
 
