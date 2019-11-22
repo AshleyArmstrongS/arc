@@ -6,11 +6,10 @@
    require('./models/User.php');
    $req->sessionStart();
    $db = \Rapid\Database::getPDO();
-   
-   
+
    $group_messages = array();
    $userInGroup = Group::getGroupsByUser_id($_SESSION['Id'], $db);
- 
+
 
    foreach ($userInGroup as $userGroup) {
       array_push($group_messages, Message::getLastMessagesByGroup_id($userGroup['group_id'], $db));
