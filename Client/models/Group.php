@@ -3,8 +3,8 @@
 
 class Group {
     private $group_id;
-    private $admin_id = int;
-    private $recipients_ids;
+    private $admin_id ;
+    private $recipient_ids;
 
     public function __construct($args) {
         if(!is_array($args)) {
@@ -12,7 +12,7 @@ class Group {
         }
         $this->group_id         = $args['group_id'] ?? NULL;
         $this->recipient_ids    = $args['recipient_ids'] ?? NULL;
-        $this->admin_id          = $args['admin_id'] ?? NULL;
+        $this->admin_id         = $args['admin_id'] ?? NULL;
     }
     public function getGroup_id()
     {
@@ -66,20 +66,20 @@ class Group {
         if ($saved) {
             $group->setGroup_id($db->lastInsertId());
         }
-        $recipient_ids_temp = $group->getRecipient_ids();
 
-        foreach($recipient_ids_temp['user_id'] as $recipient){
             $statement2 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
             $statement2->execute([
                 'group_id' => $group->getGroup_id(),
-                'user_id' => $recipient
+                'user_id' => $group->getRecipient_ids()
             ]);
-        }
-        $saved = $statement->rowCount() === sizeof($recipient_ids_temp);
-        if($saved)
-            {
-                return TRUE;
-            }
+
+            $statement3 = $db->prepare('INSERT into userspergroup (group_id, user_id) VALUES(:group_id, :user_id)');
+            $statement3->execute([
+                'group_id' => $group->getGroup_id(),
+                'user_id' => $group->getAdmin_id()
+            ]);
+
+            return $group->getGroup_id();
     }
     public function getUsersByGroup_id($group_id, $db)
     {
