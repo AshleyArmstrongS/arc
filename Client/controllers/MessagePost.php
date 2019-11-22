@@ -4,10 +4,9 @@
   require('./models/User.php');
   $req->sessionStart();
   $db = \Rapid\Database::getPDO();
-  $group_id = $req->body('group_id');
+  $group_id = $req->query('to_id');
   $ms = $req->body('message');
   $from_id = $_SESSION['Id'];
-  $group_id =1;
 
   $message = new Message([
     'message' => $ms,
@@ -15,6 +14,7 @@
     'group_id' => $group_id
   ]); 
 
+  print_r($message);
    $sm = Message::submitMessage($message, $db);
     
    if($sm !== FALSE)
@@ -23,7 +23,7 @@
    }
    else
    {
-      $res->redirect('/inbox?success=0');
+     $res->redirect('/inbox?success=0');
    }
 
 } ?>

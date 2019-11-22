@@ -26,9 +26,12 @@ $(document).ready(function()
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
 
+
+</div>
             <form action='search'>
                 <div class="input-group form-group">
                     <input type="search" name="search" class="form-control input-sm" placeholder="Name">
+
                 </div>
                 <div class="row">
                 
@@ -48,9 +51,11 @@ $(document).ready(function()
                 <?php foreach ($locals['viewUsers'] as $user) { ?>
                     <div class="col-sm-12">
                         <div class="card">
+                    <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>">
                             <div class="card-body">
                                 <h5 class="card-title"> <?= $user->getName(); ?> <i class="fas fa-comment-alt"></i> </h5>
                             </div>
+                            </a>
                         </div>
                     </div>
                 <?php } ?>
