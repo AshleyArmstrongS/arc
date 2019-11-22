@@ -29,11 +29,11 @@
         $userPass = $user->getHash();
         $validUser = false;
 
-        // if($passwordEntered == $userPass)
-        // {
-        //   $validUser = true;
-        // }
-        $validUser = password_verify($passwordEntered, $userPass);
+        if($passwordEntered == $userPass)
+        {
+          $validUser = true;
+        }
+        //$validUser = password_verify($passwordEntered, $userPass);
 
         if($validUser)
         {

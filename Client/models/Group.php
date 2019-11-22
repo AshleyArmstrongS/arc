@@ -79,9 +79,9 @@ class Group {
                 'user_id' => $group->getAdmin_id()
             ]);
 
-            return $group->getGroup_id();
+   
     }
-    public function getUsersByGroup_id($group_id, $db)
+    public static function getUsersByGroup_id($group_id, $db)
     {
         $group_id = (int)$group_id;
 

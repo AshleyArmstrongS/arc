@@ -29,11 +29,11 @@
 
 <style>
 /* Reference - https://code.tutsplus.com/tutorials/how-to-create-a-simple-web-based-chat-application--net-5931 */
-body {
+/* body {
     font:10px arial;
     color: #222;
     text-align:left;
-    padding:35px; }
+    padding:35px; } */
   
 p {
     margin:0;
