@@ -117,7 +117,7 @@ a:hover {
             <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
             <?= $message['message']; ?> 
             <?php  if($_SESSION['Id'] === $message['from_id']) { ?>
-              <a href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?>&to_id=<?= $message['to_id']; ?>">Delete</a>
+              <a href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?> &to_id= <?= $message['to_id']; ?>">Delete</a>
             <?php } ?>
           </p>
       <?php } ?>
@@ -125,7 +125,7 @@ a:hover {
 
       <form id='login_form' action='' method='post'>
         <input type="text" name='message' id='message' placeholder="Enter message here...">
-        <input type="submit" name="group_id" id="group_id" value = 'Submit'>
+        <input type="submit" value = 'Submit'>
       </form>
     </div>  
   </div>  
