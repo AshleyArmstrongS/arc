@@ -40,6 +40,7 @@ td {
   /* overflow: auto; */
 }
 
+
 div {
   resize: both;
   /* overflow: auto; */
@@ -93,7 +94,8 @@ td div {
           ?>
 
           <td><div><?= $message['name']; ?></div></td>
-          <td><div><a href='<?= SITE_BASE_DIR ?>/message?to_id= <?= $message['to_id']; ?>' class="pull-left"><?= $message['message']; ?></a></div></td>
+          <td><div class="pull-left"><?= $message['message']; ?></div></td>
+          <td><a href='<?= SITE_BASE_DIR ?>/message?to_id= <?= $message['to_id']; ?>'>View</a></td>
           <td><div><?= $result[0]; ?></div></td>
         </tr>
       <?php } ?>  
