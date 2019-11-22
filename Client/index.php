@@ -24,6 +24,8 @@
   $app->GET('/removeMessage',  'removeMessage');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
+  $app->GET('/editUser',  'EditUserGet');
+  $app->POST('/editUser',  'EditUserPost');
   $app->GET('/carDetails',  'CarDetailsGet');
   $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
