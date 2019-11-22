@@ -4,15 +4,15 @@
     require('./models/Group.php');
     $db = \Rapid\Database::getPDO();
     $req->sessionStart();
-    $recipients_ids = [];
-    $admin_id = $_SESSION['Id'];
+    
+    $recipient_id   =  $req->query('recipient_id');
+    $admin_id       =  $_SESSION['Id'];
 
-    array_push($recipients_ids, $req->body('user_id'));
-    array_push($recipients_ids, $admin_id);
-    $user = new Group([
-        'admin_id' => $admin_id,
-        'recipients_ids' => $recipients_ids
-    ])
+    $group = new Group([
+        'group_id'      => NULL,
+        'admin_id'      => $admin_id,
+        'recipient_ids' => $recipient_id
+    ]);
 
     $group_id = Group::addGroup($group, $db);
 
