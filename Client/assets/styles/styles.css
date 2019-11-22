@@ -121,6 +121,14 @@ form p.error {
     margin-bottom   : 1em;
   }
 
+  footer
+  {
+    position: right;
+    bottom: 0;
+
+
+  }
+
 
   
 
