@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a  class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/login'> Edit Profile</a>
+                        <a  class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
                     </div>
             </div>
         </div>
