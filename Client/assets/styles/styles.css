@@ -129,9 +129,18 @@ form p.error {
     position: right;
     bottom: 0;
 
-
   }
 
+  a
+  {
+    text-decoration: none;
+    color:black;
+  }
 
+  a:hover{
+    text-decoration: none;
+    color:black;
+
+  }
   
 

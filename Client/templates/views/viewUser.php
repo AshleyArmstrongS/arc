@@ -36,30 +36,48 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <input type="submit" value="Search"  class="btn btn-info btn-block">
                     </div>
-            
-                <div class="col-xs-6 col-sm-6 col-md-6">
 
-                    <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-filter"> </i></button>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
 
-                </div>
-            </div>
+                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-filter"> </i></button>
 
-        <div id ="usersResult">
-            <?php foreach ($locals['viewUsers'] as $user) { ?>
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                        <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>">
-                            <h5 class="card-title"> <?= $user->getName(); ?> <i class="fas fa-comment-alt"></i> </h5>
-                            </a>
-                        </div>
                     </div>
                 </div>
-            <?php } ?>
+
+                <div id ="usersResult">
+
+                    <?php if ($locals['viewUsers'] == NULL) {
+                        ?>
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Unfortunately no users exist relating to your search.</h5>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <?php
+                    }
+                    else {
+                        foreach ($locals['viewUsers'] as $user) {
+                            ?>
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>">
+                                            <h5 class="card-title"> <?= $user->getName(); ?> <i class="fas fa-comment-alt"></i> </h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php }
+                    }
+                    ?>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 
 
@@ -79,9 +97,9 @@
                         <!-- https://www.w3schools.com/php/php_form_complete.asp -->
                         <label for="gender" class="col-form-label">Gender:  </label><br/>
                         <input id = "gender" type="radio" name="gender"
-                               <?php if (isset($gender) && $gender == "female") echo "checked"; ?> value="F">Female
+                                <?php if (isset($gender) && $gender == "female") echo "checked"; ?> value="F">Female
                         <input  id ="gender" type="radio" name="gender"
-                                <?php if (isset($gender) && $gender == "male") echo "checked"; ?> value="M">Male
+<?php if (isset($gender) && $gender == "male") echo "checked"; ?> value="M">Male
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Day:  </label><br/>
