@@ -34,7 +34,9 @@ else {
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title"> <?= $user["name"]; ?>  <i class="fas fa-comment-alt"></i> </h5>
+                <a href="/arc/Client/createGroup?recipient_id= <?= $user['user_id']; ?>">
+                    <h5 class="card-title"> <?= $user["name"]; ?>  <i class="fas fa-comment-alt"></i> </h5>
+                </a>
                 </div>
             </div>
         </div>
