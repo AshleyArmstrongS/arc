@@ -24,12 +24,18 @@
   $app->GET('/removeMessage',  'removeMessage');
   $app->GET('/register',  'registerGet');
   $app->POST('/register',  'registerPost');
+  $app->GET('/editUser',  'EditUserGet');
+  $app->POST('/editUser',  'EditUserPost');
   $app->GET('/carDetails',  'CarDetailsGet');
   $app->POST('/carDetails',  'CarDetailsPost');
   $app->GET('/userType',  'UserTypeGet');
   $app->GET('/search',      'searchUserGet');
+
+  $app->POST('/filter',      'FilterUser');
+
   $app->GET('/createGroup',  'CreateGroup');
-  $app->GET('/filter',      'FilterUser');
+  
+
   $app->GET('/viewUser',   'ViewAllUsers');
   $app->GET('/logout',  'Logout');
 

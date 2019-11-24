@@ -25,8 +25,11 @@ align-content: center;
 margin-top: 10px;
 margin-bottom: auto;
 background-color:rgb(246, 192, 44);
-border: 2px solid rgb(168, 154, 154);
-padding: 10px;
+border: 2px solid rgb(95, 88, 88);
+padding-top:5px;
+padding-bottom:5px;
+padding-left: 20px;
+padding-right: 20px;
 /* box-shadow: 5px 10px 8px slategray; */
 }
 
@@ -119,6 +122,14 @@ form p.error {
   }
   form p.error:last-of-type {
     margin-bottom   : 1em;
+  }
+
+  footer
+  {
+    position: right;
+    bottom: 0;
+
+
   }
 
 

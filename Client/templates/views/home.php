@@ -28,21 +28,21 @@
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                            <a class="nav-link"style="color:white;"> Hi,<?= $_SESSION['Name']; ?></a>
+                            <a class="nav-link"style="color:black;"> Hi,<?= $_SESSION['Name']; ?></a>
                         </div>
                     </div>
                     <div class="col-sm-15">
                         <div class="card">
-                            <a class="nav-link"style="color:white; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts Scheduled</a>
+                            <a class="nav-link"style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts Scheduled</a>
                         </div>
                     </div>
                     <div class="col-sm-15">
                         <div class="card">
-                            <a class="nav-link"style="color:white; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
+                            <a class="nav-link"style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
                         </div>
                     </div>
-                    <div class="card-footer" style="height:100px;">
-                        <a  class='btn btn-success btn-xs' href='<?= SITE_BASE_DIR ?>/login'> Edit</a>
+                    <div class="card-footer">
+                        <a  class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
                     </div>
             </div>
         </div>
