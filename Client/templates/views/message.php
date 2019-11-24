@@ -124,10 +124,10 @@ a:hover {
 
   <div id="wrapper">
     <div id="top"></div>
-    <?php foreach ($locals['users'] as $user) { ?>
-    <p><?=$user['name']?></p>
+    <?php //foreach ($locals['users'] as $user) { ?>
+    <!-- <p><?php //$user['name']?></p> -->
     <?php 
-  } 
+  //} 
   ?>
       <div id="chatbox">
       
