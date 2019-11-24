@@ -6,20 +6,16 @@ require('./models/User.php');
 $gender = $_POST["gender"] ?? NULL;
 $day = $_POST["check_list"] ?? NULL;
 
-if($gender != NULL && $_POST["check_list"] != NULL)
+if($gender != NULL && $day != NULL)
 {
-    
-    $day = $_POST["check_list"];
     $users = User::getDriversByDayAndGender($db,$day,$gender);
 }
-else if($gender != NULL && $_POST["check_list"] == NULL)
+else if($gender != NULL && $day == NULL)
 {
-    
     $users = User::getDriversByGender($db, $gender);
 }
 else 
 {
-    $day = $_POST["check_list"];
     $users = User::getDriversByDay($db,$day);
 }
 
@@ -38,8 +34,7 @@ else {
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>">
-                                            <h5 class="card-title"> <?= $user->getName(); ?> <i class="fas fa-comment-alt"></i> </h5>
+                <h5 class="card-title"> <?= $user["name"]; ?>  <i class="fas fa-comment-alt"></i> </h5>
                 </div>
             </div>
         </div>
