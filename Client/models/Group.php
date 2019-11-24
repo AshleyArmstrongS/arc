@@ -93,7 +93,7 @@ class Group {
         return $users;
     }
         
-    public function getGroupsByUser_id($user_id, $db)
+    public static function getGroupsByUser_id($user_id, $db)
     {
         $user_id = (int)$user_id;
         $query = $db->prepare('SELECT p.group_id, p.user_id, g.admin_id from userspergroup p inner join groups g on p.group_id = g.group_id where p.user_id = :user_id;');
