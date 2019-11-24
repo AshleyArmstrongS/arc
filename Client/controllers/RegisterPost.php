@@ -137,7 +137,7 @@ else
             $u = User::getUserByEmail($email['value'], $db);
             $user_id = $u->getUser_id();
             $req->sessionSet('LOGGED_IN',TRUE);
-            $req->sessionSet('Name',$name['value']);
+            $req->sessionSet('Name',$req->body('name'));
             $req->sessionSet('Id', $user_id);
             $res->redirect('/home');
 
