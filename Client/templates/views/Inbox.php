@@ -116,8 +116,7 @@ a:hover {
   <div class="top"></div>
     <div id="chatbox">
       
-      <?php foreach ($locals['message_info'] as $message) { ?>
-        <div class="tableRow">  
+      <?php foreach ($locals['message_info'] as $message) { ?>  
           <?php
             if(strtotime($message['time_sent']) <= time() - (60*60*24)){
               $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
