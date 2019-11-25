@@ -115,14 +115,14 @@ class Message {
         $group_id = (int)$group_id;
 
 
-        $query = $db->prepare('SELECT m.message, m.time_sent, m.from_id, g.group_id, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id inner join groups g on g.group_id = m.to_id where g.group_id = :group_id;');
+        $query = $db->prepare('SELECT m.message, m.time_sent, m.from_id, g.group_id, u.name FROM messages m  INNER JOIN ( SELECT MAX(message_id) AS max_id FROM messages where to_id = :group_id) max ON m.message_id = max.max_id inner join Users u on u.user_id = m.from_id inner join groups g on g.group_id = m.to_id where g.group_id = :group_id LIMIT 1;');
         $query->execute([
             'group_id' => $group_id
         ]);
 
 
         $message = $query->fetch();
-        return $message !== FALSE ? $message : NULL;
+        return $message;
         //return $message !== FALSE;
 
         }
@@ -139,16 +139,13 @@ class Message {
         public function checkMessages($group_id, $db)
         {
             $group_id = (int)$group_id;
-            $query = $db->prepare('SELECT message_id FROM messages where to_id = :to_id LIMIT 1;');
+            $query = $db->prepare('SELECT count(*) FROM messages where to_id = :to_id;');
             $query->execute([
                 'to_id' => $group_id
             ]);
             
-            if($query->fetch() === NULL)
-            {
-                return TRUE;
-            }
-            return FALSE;
+            $is_message = $query->fetch();
+            return $is_message['count'];
         }
 }
 ?>

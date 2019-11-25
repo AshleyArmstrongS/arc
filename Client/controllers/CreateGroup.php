@@ -16,8 +16,10 @@
         {
             foreach($recipient_groups as $rg)
             {
+               // print_r($rg);
                 $is_message = Message::checkMessages($rg, $db);
-                if($rg['group_id'] === $ag['group_id'] && $is_message === TRUE)
+
+                if($rg['group_id'] === $ag['group_id'] && $is_message === 0)
                 {
                     $res->redirect('/inbox');
                 }
