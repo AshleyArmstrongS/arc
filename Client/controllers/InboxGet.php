@@ -10,14 +10,20 @@
    $group_messages = array();
    $userInGroup = Group::getGroupsByUser_id($_SESSION['Id'], $db);
 
+   //print_r($userInGroup);
 
    foreach ($userInGroup as $userGroup) {
-      array_push($group_messages, Message::getLastMessagesByGroup_id($userGroup['group_id'], $db));
+      $group_id = $userGroup['group_id'];
+      $temp = Message::getLastMessagesByGroup_id( $group_id, $db);
+     // if($temp['message'] !== NULL)
+      //{
+      array_push($group_messages, Message::getLastMessagesByGroup_id( $group_id, $db));
+     // print_r($temp);
+     // }
    }
-   
-   $res->render('main', 'inbox', [
-   'pageTitle' => 'Inbox',
-   'message_info' => $group_messages
-   ]);
+     $res->render('main', 'inbox', [
+         'pageTitle' => 'Inbox',
+         'message_info' => $group_messages
+      ]);
  
 } ?>

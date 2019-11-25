@@ -117,8 +117,9 @@ a:hover {
     <div id="chatbox">
       
       <?php foreach ($locals['message_info'] as $message) { 
+
         if($message['message'] !== NULL){?>
-          
+
           <?php
             if(strtotime($message['time_sent']) <= time() - (60*60*24)){
               $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
@@ -134,14 +135,17 @@ a:hover {
           
           <?= $message['message']; ?>
           <br>
-          <a href='<?= SITE_BASE_DIR ?>/message?to_id= <?= $message['to_id']; ?>'>View Chat</a>
+         
+          <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>View Chat</a>
           <br>
           <i style="color: #B0C4DE">(<?= $result[0]; ?>)</i>
+
 
 
           
       <?php }
     } ?>  
+
   </div>      
   <!-- </div> -->
 
