@@ -261,7 +261,7 @@ class User {
 
     public static function getDriversByGender($db, $gender)
     {
-        $statement = $db->prepare("select name, age from users where gender = :gender and user_type = 'D'");
+        $statement = $db->prepare("select user_id, name, age from users where gender = :gender and user_type = 'D'");
         $statement->execute([
             'gender' => $gender
         ]);

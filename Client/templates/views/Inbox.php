@@ -118,6 +118,7 @@ a:hover {
       
       <?php foreach ($locals['message_info'] as $message) { 
         if($message['message'] !== NULL) {?>
+
         <div class="tableRow">  
           <?php
             if(strtotime($message['time_sent']) <= time() - (60*60*24)){
@@ -140,8 +141,11 @@ a:hover {
           <i style="color: #B0C4DE">(<?= $result[0]; ?>)</i>
 
 
-      <?php } } ?>  
-    </div>
+
+          </div>
+      <?php }
+    } ?>  
+
   </div>      
   <!-- </div> -->
 
