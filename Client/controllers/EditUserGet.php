@@ -1,5 +1,11 @@
+<?php error_reporting (E_ALL ^ E_NOTICE); ?>
 <?php return function($req, $res) {
- $req->sessionStart();
+
+
+    $req->sessionStart();
+    
+    if ($_SESSION['LOGGED_IN'] === TRUE) { 
+      
 
  $db = \Rapid\Database::getPDO();
   require('./models/User.php');
@@ -12,5 +18,9 @@
  'user' => $user
  
  ]);
+    }
+    else{
+        $res->render('main', '404', []);
+    }
  
 } ?>
