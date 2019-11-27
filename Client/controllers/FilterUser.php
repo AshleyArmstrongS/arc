@@ -1,6 +1,9 @@
+<?php error_reporting (E_ALL ^ E_NOTICE); ?>
 <?php return function($req, $res) {
 
 $req->sessionStart();
+    
+if ($_SESSION['LOGGED_IN'] === TRUE) { 
 $db = \Rapid\Database::getPDO();
 require('./models/User.php');
 $gender = $_POST["gender"] ?? NULL;
@@ -44,4 +47,8 @@ else {
 
 
 <?php }
+}
+}
+else{
+    $res->render('main', '404', []);
 } ?>
