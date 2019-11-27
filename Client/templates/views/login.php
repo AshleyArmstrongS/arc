@@ -105,11 +105,7 @@ img.avatar {
 					Don't have an account?<a id="regLink" href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center" >
-<<<<<<< HEAD
-					<a id="regLink" href="/home">Forgot your password?</a>
-=======
 					<a id = "regLink" href="<?= SITE_BASE_DIR ?>/404">Forgot your password?</a>
->>>>>>> f086d1580eaa39d06f8b0b3e418d31620c013813
 				</div>
 			</div>
 		</div>
