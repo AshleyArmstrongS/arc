@@ -14,7 +14,8 @@
   try{
   // Define some routes. Here: requests to / will be
   // processed by the controller at controllers/Home.php
-  $app->GET('/home',        'Home');
+  $app->GET('/',        'Home');
+  $app->GET('/profile',        'Profile');
   $app->GET('/login',       'LoginGet');
   $app->POST('/login',      'LoginPost');
   $app->GET('/inbox',       'InboxGet');
