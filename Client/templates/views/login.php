@@ -43,7 +43,7 @@
 					Don't have an account?<a id = "regLink" href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center" >
-					<a id = "regLink" href="/home">Forgot your password?</a>
+					<a id = "regLink" href="<?= SITE_BASE_DIR ?>/404">Forgot your password?</a>
 				</div>
 			</div>
 		</div>

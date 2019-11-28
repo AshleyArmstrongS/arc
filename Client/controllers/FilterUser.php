@@ -1,10 +1,13 @@
-<?php return function ($req, $res) {
+<?php error_reporting (E_ALL ^ E_NOTICE); ?>
+<?php return function($req, $res) {
 
-    $req->sessionStart();
-    $db = \Rapid\Database::getPDO();
-    require('./models/User.php');
-    $gender = $_POST["gender"] ?? NULL;
-    $day = $_POST["check_list"] ?? NULL;
+$req->sessionStart();
+    
+if ($_SESSION['LOGGED_IN'] === TRUE) { 
+$db = \Rapid\Database::getPDO();
+require('./models/User.php');
+$gender = $_POST["gender"] ?? NULL;
+$day = $_POST["check_list"] ?? NULL;
 
     if ($gender != NULL && $day != NULL) {
         $users = User::getDriversByDayAndGender($db, $day, $gender);
@@ -38,4 +41,8 @@
 
 
 <?php }
+}
+}
+else{
+    $res->render('main', '404', []);
 } ?>
