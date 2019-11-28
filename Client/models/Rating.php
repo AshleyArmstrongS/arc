@@ -103,13 +103,14 @@ class Rating {
             'driver_id' => $rating->getDriver_id(),
             'user_id' => $rating->getUser_id(),
             'review' => $rating->getReview(),
-            'reccommendation' => $rating->getReccommend(),
-            'star_rating' => $rating->getStar_rating(),
+            'reccommend' => $rating->getReccommend(),
+            'star_rating' => $rating->getStar_rating()
         ]);
         $saved = $statement->rowCount() === 1;
 
         if ($saved) {
             $rating->setRating_id($db->lastInsertId());
+            return true;
         }
     }
     public function getRatingsByDriver_id($driver_id, $db)
