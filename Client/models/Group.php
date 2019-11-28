@@ -117,9 +117,7 @@ class Group {
             'group_id' => $group->getGroup_id(),
             'user_id' => $user_id
         ]);   
-        if ($saved) {
             $group->setGroup_id($db->lastInsertId());
-            return TRUE;
         }
     }
  }
