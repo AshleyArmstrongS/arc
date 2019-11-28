@@ -206,7 +206,6 @@ class User {
         // {
         //     throw new Exception('Invalid PDO object for user findOneById');
         // }
-t 
         $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
         $statement->execute([
             'email' => $email
