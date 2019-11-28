@@ -223,6 +223,7 @@ class User {
         // }
 
         $statement = $db->prepare("select user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1");
+
         $statement->execute([
             'email' => $email
         ]);
@@ -233,7 +234,9 @@ class User {
     public static function getUserByUser_ID($user_id, $db)
     {
 
-        $statement = $db->prepare("SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1");
+
+        $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE user_id = :user_id LIMIT 1');
+
         $statement->execute([
             'user_id' => $user_id
         ]);

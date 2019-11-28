@@ -1,18 +1,15 @@
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
 <?php return function($req, $res) {
-
+require('./models/User.php');
 $req->sessionStart();
-    
-if ($_SESSION['LOGGED_IN'] === TRUE) { 
-    
 $db = \Rapid\Database::getPDO();
-$user = User::getUserByUser_ID($_SESSION['Id'], $db);
+//$user_id = query('user_id');
+$user_id = 1;
+$user = User::getUserByUser_ID($user_id, $db);
+    
  $res->render('main', 'profile', [
- 'pageTitle' => 'Home',
+ 'pageTitle' => 'Profile',
  'user' => $user
  ]);
-}
-else{
-    $res->render('main', '404', []);
-}
+
 } ?>
