@@ -118,6 +118,6 @@ class Group {
             'user_id' => $user_id
         ]);   
             $group->setGroup_id($db->lastInsertId());
-        }
     }
- }
+}
+ 
