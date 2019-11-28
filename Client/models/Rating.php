@@ -6,9 +6,9 @@ class Rating {
     private $rating_id;
     private $driver_id;
     private $user_id;
-    private $star_ratings;
-    private $reviews;
-    private $reccommends;
+    private $star_rating;
+    private $review;
+    private $reccommend;
 
     public function __construct($args) {
         if(!is_array($args)) {
@@ -17,9 +17,9 @@ class Rating {
         $this->rating_id      = $args['rating_id']     ?? NULL;
         $this->driver_id      = $args['driver_id']     ?? NULL;
         $this->user_id        = $args['user_id']       ?? NULL;
-        $this->star_ratings   = $args['star_ratings']  ?? NULL;
-        $this->reviews        = $args['reviews']       ?? NULL;
-        $this->reccommends    = $args['reccommends']   ?? NULL;
+        $this->star_rating   = $args['star_rating']  ?? NULL;
+        $this->review        = $args['review']       ?? NULL;
+        $this->reccommend    = $args['reccommend']   ?? NULL;
     }
     public function getRating_id()
     {
@@ -33,17 +33,17 @@ class Rating {
     {
         return $this->user_id;
     }
-    public function getStar_ratings()
+    public function getStar_rating()
     {
-        return $this->star_ratings;
+        return $this->star_rating;
     }
-    public function getReviews()
+    public function getReview()
     {
-        return $this->reviews;
+        return $this->review;
     }
-    public function getReccommends()
+    public function getReccommend()
     {
-        return $this->reccommends;
+        return $this->reccommend;
     }    
 
 //seters
@@ -72,29 +72,70 @@ class Rating {
         }
         $this->user_id = $user_id;
     }
-    public function setStar_ratings($star_ratings)
+    public function setStar_rating($star_rating)
     {
-        if ($star_ratings === NULL) {
-            $this->star_ratings = NULL;
+        if ($star_rating === NULL) {
+            $this->star_rating = NULL;
             return;
         }
-        $this->star_ratings = $star_ratings;
+        $this->star_rating = $star_rating;
     }
-    public function setReviews($reviews)
+    public function setReview($review)
     {
-        if ($reviews === NULL) {
-            $this->reviews = NULL;
+        if ($review === NULL) {
+            $this->review = NULL;
             return;
         }
-        $this->reviews = $reviews;
+        $this->review = $review;
     }
-    public function setReccommends($reccommends)
+    public function setReccommend($reccommend)
     {
-        if ($reccommends === NULL) {
-            $this->reccommends = NULL;
-            return;
+        if ($reccommend === NULL) {
+            $this->reccommend = NULL;
+            return; 
         }
-        $this->reccommends = $reccommends;
+        $this->reccommend = $reccommend;
     }
+    public function addRating($rating, $db)
+    {
+        $statement = $db->prepare('INSERT into rating (driver_id, user_id, review, reccommend, star_rating) VALUES(:driver_id, :user_id, :review, :reccommend, :star_rating)');
+        $statement->execute([
+            'driver_id' => $rating->getDriver_id(),
+            'user_id' => $rating->getUser_id(),
+            'review' => $rating->getReview(),
+            'reccommendation' => $rating->getReccommend(),
+            'star_rating' => $rating->getStar_rating(),
+        ]);
+        $saved = $statement->rowCount() === 1;
 
+        if ($saved) {
+            $rating->setRating_id($db->lastInsertId());
+        }
+    }
+    public function getRatingsByDriver_id($driver_id, $db)
+    {
+        $statement = $db->prepare('SELECT r.driver_id, u.user_id, r.user_id, r.review, r.recommend, r.star_rating from rating r inner join user u on r.user_id = u.user_id where r.driver_id = :driver_id');
+        $statement->execute([
+            'driver_id' => $driver_id
+        ]);
+        $ratings = $statement->fetchAll();    
+        return $ratings;
+    }
+    public function getRatingsByDriver_idAndUser_id($driver_id, $user_id, $db)
+    {
+        $statement = $db->prepare('SELECT r.driver_id, u.user_id, r.user_id, r.review, r.recommend, r.star_rating from rating r inner join user u on r.user_id = u.user_id where r.driver_id = :driver_id AND r.user_id = :user_id');
+        $statement->execute([
+            'driver_id' => $driver_id,
+            'user_id' => $user_id
+        ]);
+        $ratings = $statement->fetch();    
+        return $ratings;
+    }
+    public function deleteRating($rating_id, $db)
+    {
+        $statement = $db->prepare('DELETE from rating where rating_id = :rating_id');
+        $statement->execute([
+            'rating_id' => $rating_id
+        ]);
+    }
 }
