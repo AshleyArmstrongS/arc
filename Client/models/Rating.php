@@ -3,12 +3,12 @@
 
 class Rating {
 
-    private rating_id;
-    private driver_id;
-    private user_id;
-    private star_ratings;
-    private reviews;
-    private reccommends;
+    private $rating_id;
+    private $driver_id;
+    private $user_id;
+    private $star_ratings;
+    private $reviews;
+    private $reccommends;
 
     public function __construct($args) {
         if(!is_array($args)) {
@@ -54,7 +54,7 @@ class Rating {
             $this->rating_id = NULL;
             return;
         }
-        $this-> = $;
+        $this->rating_id = $rating_id;
     }
     public function setDriver_id($driver_id)
     {
