@@ -1,17 +1,15 @@
-<?php error_reporting (E_ALL ^ E_NOTICE); ?>
-<?php return function($req, $res) {
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
+<?php return function ($req, $res) {
 
-$req->sessionStart();
+    $req->sessionStart();
 
-if ($_SESSION['LOGGED_IN'] === TRUE) { 
-    
-$res->render('main', 'carDetails', [
-    'pageTitle' => 'Car Details'
-]);
-}
-else
-{
-    $res->render('main', '404', []);
-}
+    if ($_SESSION['LOGGED_IN'] === TRUE) {
+
+        $res->render('main', 'carDetails', [
+            'pageTitle' => 'Car Details'
+        ]);
+    } else {
+        $res->render('main', '404', []);
+    }
 }
 ?>

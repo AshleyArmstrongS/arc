@@ -1,5 +1,5 @@
-<?php require_once('Model.php')?>
-<?php 
+<?php require_once('Model.php') ?>
+<?php
 
 class Location
 {
@@ -10,7 +10,7 @@ class Location
 
     public function __construct($args)
     {
-        if(!is_array($args)) {
+        if (!is_array($args)) {
             throw new Exception('Location constructor requires an array');
         }
         $this->location_id   = $args['location_id']      ?? NULL;
@@ -19,7 +19,7 @@ class Location
         $this->longitude     = $args['longitude']        ?? NULL;
     }
 
-    
+
     public function getLocation_id()
     {
         return $this->location_id;

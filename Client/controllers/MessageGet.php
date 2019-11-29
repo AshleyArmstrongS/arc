@@ -1,5 +1,5 @@
 <?php error_reporting(E_ALL ^ E_NOTICE); ?>
-<?php return function($req, $res) {
+<?php return function ($req, $res) {
 
     $req->sessionStart();
 
@@ -22,8 +22,7 @@
             'group_id' => $group_id,
             'users' => $users
         ]);
-    }
-    else {
+    } else {
         $res->render('main', '404', []);
     }
 }

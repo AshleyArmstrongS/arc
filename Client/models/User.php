@@ -1,7 +1,8 @@
 <?php require_once('Model.php'); ?>
 <?php
 
-class User {
+class User
+{
 
     private $user_id;
     private $name;
@@ -14,9 +15,10 @@ class User {
     private $user_type;
     private $location_id;
     private $available;
-//constructor
-    public function __construct($args) {
-        if(!is_array($args)) {
+    //constructor
+    public function __construct($args)
+    {
+        if (!is_array($args)) {
             throw new Exception('User constructor requires an array');
         }
         $this->user_id      = $args['user_id']     ?? NULL;
@@ -29,9 +31,9 @@ class User {
         $this->description  = $args['description'] ?? NULL;
         $this->user_type    = $args['user_type']   ?? NULL;
         $this->location_id  = $args['location_id'] ?? NULL;
-        $this->available    = $args['available']   ?? 'Y'; 
+        $this->available    = $args['available']   ?? 'Y';
     }
-//getters
+    //getters
     public function getUser_id()
     {
         return $this->user_id;
@@ -51,7 +53,8 @@ class User {
     public function getEmail()
     {
         return $this->email;
-    }public function getHash()
+    }
+    public function getHash()
     {
         return $this->hash;
     }
@@ -75,7 +78,7 @@ class User {
     {
         return $this->available;
     }
-//setters
+    //setters
     public function setUser_id($user_id)
     {
         if ($user_id === NULL) {
@@ -165,39 +168,39 @@ class User {
         $this->available = $available;
     }
 
-// gets
+    // gets
     public static function getAllUsers($db)
     {
         $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id;");
         $statement->execute();
 
         $users = [];
-        foreach($statement->fetchAll() as $row) {
-        array_push($users, new User($row));
-    }
-   
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
+        }
 
-    return $users;
+
+        return $users;
         // $users = $statement->fetchAll();
         // $statement->closeCursor();
         // return $users;
     }
 
-    public static function searchUsersByName($name,$db)
+    public static function searchUsersByName($name, $db)
     {
         // \\'%:name%\\'
-        
+
         $statement = $db->prepare('SELECT user_id, name,age, location_id FROM users WHERE name @@ :name');
         $statement->execute([
             'name' => $name
         ]);
         $users = [];
-        foreach($statement->fetchAll() as $row) {
-        array_push($users, new User($row));
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
         }
-   
 
-    return $users;
+
+        return $users;
     }
 
     public static function getUserByEmail($email, $db)
@@ -325,3 +328,4 @@ class User {
         $statement->closeCursor();
     }
 }
+?>

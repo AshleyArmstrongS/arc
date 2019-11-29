@@ -1,24 +1,22 @@
-<?php error_reporting (E_ALL ^ E_NOTICE); ?>
-<?php return function($req, $res) {
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
+<?php return function ($req, $res) {
 
-$req->sessionStart();
-    
-if ($_SESSION['LOGGED_IN'] === True) { 
-$db = \Rapid\Database::getPDO();
-require('./models/User.php');
+    $req->sessionStart();
 
-$Users = User::getAllUsers($db);
+    if ($_SESSION['LOGGED_IN'] === True) {
+        $db = \Rapid\Database::getPDO();
+        require('./models/User.php');
+
+        $Users = User::getAllUsers($db);
 
 
-//print_r($Users);
-$res->render('main', 'viewUser', [
-    'pageTitle' => 'View Users',
-    'viewUsers'  => $Users
+        //print_r($Users);
+        $res->render('main', 'viewUser', [
+            'pageTitle' => 'View Users',
+            'viewUsers'  => $Users
 
-]);
-}
-else{
-    $res->render('main', '404', []);
-}
-
+        ]);
+    } else {
+        $res->render('main', '404', []);
+    }
 } ?>
