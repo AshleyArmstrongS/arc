@@ -1,7 +1,8 @@
 <?php require_once('Model.php'); ?>
 <?php
 
-class Rating {
+class Rating
+{
 
     private $rating_id;
     private $driver_id;
@@ -10,8 +11,9 @@ class Rating {
     private $review;
     private $reccommend;
 
-    public function __construct($args) {
-        if(!is_array($args)) {
+    public function __construct($args)
+    {
+        if (!is_array($args)) {
             throw new Exception('Rating constructor requires an array');
         }
         $this->rating_id      = $args['rating_id']     ?? NULL;
@@ -44,9 +46,9 @@ class Rating {
     public function getReccommend()
     {
         return $this->reccommend;
-    }    
+    }
 
-//seters
+    //seters
 
     public function setRating_id($rating_id)
     {
@@ -92,7 +94,7 @@ class Rating {
     {
         if ($reccommend === NULL) {
             $this->reccommend = NULL;
-            return; 
+            return;
         }
         $this->reccommend = $reccommend;
     }
@@ -119,7 +121,7 @@ class Rating {
         $statement->execute([
             'driver_id' => $driver_id
         ]);
-        $ratings = $statement->fetchAll();    
+        $ratings = $statement->fetchAll();
         return $ratings;
     }
     public function getRatingsByDriver_idAndUser_id($driver_id, $user_id, $db)
@@ -129,7 +131,7 @@ class Rating {
             'driver_id' => $driver_id,
             'user_id' => $user_id
         ]);
-        $ratings = $statement->fetch();    
+        $ratings = $statement->fetch();
         return $ratings;
     }
     public function deleteRating($rating_id, $db)
@@ -140,3 +142,4 @@ class Rating {
         ]);
     }
 }
+?>

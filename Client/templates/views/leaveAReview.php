@@ -53,16 +53,16 @@
                 <div class="card-header">
                     <h3 class="panel-title">Leave a review!</h3>
                     <form id='review' action='' method='post'>
-                        <div class="rate" >
-                            <input type="radio" name = "stars" id="star5" name="rate" value="5" />
+                        <div class="rate">
+                            <input type="radio" name="stars" id="star5" name="rate" value="5" />
                             <label for="star5" title="text">5 stars</label>
-                            <input type="radio" name = "stars" id="star4" name="rate" value="4" />
+                            <input type="radio" name="stars" id="star4" name="rate" value="4" />
                             <label for="star4" title="text">4 stars</label>
-                            <input type="radio" name = "stars" id="star3" name="rate" value="3" />
+                            <input type="radio" name="stars" id="star3" name="rate" value="3" />
                             <label for="star3" title="text">3 stars</label>
-                            <input type="radio" name = "stars" id="stars" name="rate" value="2" />
+                            <input type="radio" name="stars" id="stars" name="rate" value="2" />
                             <label for="star2" title="text">2 stars</label>
-                            <input type="radio" name = "stars" id="star1" name="rate" value="1" />
+                            <input type="radio" name="stars" id="star1" name="rate" value="1" />
                             <label for="star1" title="text">1 star</label>
                         </div>
                         <label for="review" class="sr-only">review</label>
@@ -74,7 +74,7 @@
                                 <option value="N">No</option>
                             </select>
                         </div>
-                        <input type="hidden" name = "driver_id" id = "driver_id" value = "<?=$locals['driver_id'];?>">
+                        <input type="hidden" name="driver_id" id="driver_id" value="<?= $locals['driver_id']; ?>">
                         <input type="submit" value="leaveReview" class="btn btn-info btn-block">
                     </form>
                 </div>
