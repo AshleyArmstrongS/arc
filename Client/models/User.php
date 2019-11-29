@@ -203,13 +203,30 @@ class User
         return $users;
     }
 
+    public static function getUserById($user_id, $db)
+    {
+        // if(!($db instanceof PDO)) 
+        // {
+        //     throw new Exception('Invalid PDO object for user findOneById');
+        // }
+
+        $statement = $db->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $user = $statement->fetch();
+        return $user !== FALSE ? new User($user) : NULL;
+    }
+
     public static function getUserByEmail($email, $db)
     {
         // if(!($db instanceof PDO)) 
         // {
         //     throw new Exception('Invalid PDO object for user findOneById');
         // }
-        $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
+
+        $statement = $db->prepare("select user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1");
+
         $statement->execute([
             'email' => $email
         ]);
@@ -220,7 +237,9 @@ class User
     public static function getUserByUser_ID($user_id, $db)
     {
 
+
         $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE user_id = :user_id LIMIT 1');
+
         $statement->execute([
             'user_id' => $user_id
         ]);
@@ -248,7 +267,7 @@ class User
 
     public static function getDriversByGender($db, $gender)
     {
-        $statement = $db->prepare("select user_id, name, age from users where gender = :gender and user_type = 'D'");
+        $statement = $db->prepare("select user_id, name, age, location_id from users where gender = :gender and user_type = 'D'");
         $statement->execute([
             'gender' => $gender
         ]);
@@ -259,7 +278,7 @@ class User
 
     public static function getDriversByDay($db, $day)
     {
-        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and user_type = 'D' group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, u.location_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc;");
         $statement->execute([
             'day' => $day
         ]);
@@ -270,7 +289,7 @@ class User
 
     public static function getDriversByDayAndGender($db, $day, $gender)
     {
-        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender and user_type = 'D' group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day, u.location_id from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc");
         $statement->execute([
             'day' => $day,
             'gender' => $gender
