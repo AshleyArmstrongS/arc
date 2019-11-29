@@ -1,17 +1,4 @@
-<?php require('./models/User.php'); ?>
-<?php foreach ($locals['user'] as $user) { ?>
-
-    <li class="list-group-item text-right"><a href="#" class="pull-left"></a> <?php // print_r($user);  
-                                                                                    ?>
-        <?php foreach ($user as $messages) { ?>
-            <?php print_r($messages); ?>
-        <?php } ?>
-    </li>
-
-
-<?php } ?>
-
-
+<?php $user = $locals['user'] ?>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
@@ -27,21 +14,27 @@
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
-                            <a class="nav-link" style="color:black;"> Hi,<?= $_SESSION['Name']; ?></a>
+                            <a class="nav-link" style="color:black;"> <?= $user->getName(); ?></a>
                         </div>
                     </div>
-                    <div class="col-sm-15">
+                    <?php if ($user->getUser_id() === $_SESSION['Id']) { ?>
+                        <div class="col-sm-15">
+                            <div class="card">
+                                <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts Scheduled</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-15">
+                            <div class="card">
+                                <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
+                        </div>
+                    <?php } else { ?>
                         <div class="card">
-                            <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts Scheduled</a>
+                            <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/leaveReview?driver_id=<?= $user->getUser_id(); ?>'> Leave review</a>
                         </div>
-                    </div>
-                    <div class="col-sm-15">
-                        <div class="card">
-                            <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
-                    </div>
+                    <?php  } ?>
             </div>
         </div>
