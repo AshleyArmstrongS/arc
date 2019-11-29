@@ -3,7 +3,7 @@
 
   $req->sessionStart();
 
-  $driver_id = 1; //= $req->query('driver_id');
+  $driver_id  = $req->query('driver_id');
 
   $res->render('main', 'leaveAReview', [
     'pageTitle' => 'Review',

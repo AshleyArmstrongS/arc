@@ -3,8 +3,8 @@
     require('./models/User.php');
     $req->sessionStart();
     $db = \Rapid\Database::getPDO();
-    //$user_id = query('user_id');
-    $user_id = 1;
+    $user_id = $req->query('user_id');
+    //$user_id = 1;
     $user = User::getUserByUser_ID($user_id, $db);
 
     $res->render('main', 'profile', [
