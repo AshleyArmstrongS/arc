@@ -109,24 +109,25 @@ class Rating
             'star_rating' => $rating->getStar_rating()
         ]);
         $saved = $statement->rowCount() === 1;
-
+            
         if ($saved) {
             $rating->setRating_id($db->lastInsertId());
+            $statement->closeCursor();
             return true;
         }
     }
-    public function getRatingsByDriver_id($driver_id, $db)
+    public static function getRatingsByDriver_id($driver_id, $db)
     {
-        $statement = $db->prepare('SELECT r.driver_id, u.user_id, r.user_id, r.review, r.recommend, r.star_rating from rating r inner join user u on r.user_id = u.user_id where r.driver_id = :driver_id');
+        $statement = $db->prepare('SELECT r.driver_id, u.user_id, u.name, r.user_id, r.review, r.reccommend, r.star_rating from rating r inner join users u on r.user_id = u.user_id where r.driver_id = :driver_id');
         $statement->execute([
             'driver_id' => $driver_id
         ]);
-        $ratings = $statement->fetchAll();
-        return $ratings;
+        return $statement->fetchAll();
+
     }
     public function getRatingsByDriver_idAndUser_id($driver_id, $user_id, $db)
     {
-        $statement = $db->prepare('SELECT r.driver_id, u.user_id, r.user_id, r.review, r.recommend, r.star_rating from rating r inner join user u on r.user_id = u.user_id where r.driver_id = :driver_id AND r.user_id = :user_id');
+        $statement = $db->prepare('SELECT r.driver_id, u.user_id, u.name, r.user_id, r.review, r.reccommend, r.star_rating from rating r inner join users u on r.user_id = u.user_id where r.driver_id = :driver_id AND r.user_id = :user_id');
         $statement->execute([
             'driver_id' => $driver_id,
             'user_id' => $user_id
