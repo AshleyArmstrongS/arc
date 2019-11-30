@@ -174,7 +174,7 @@ else
         //     $req->sessionSet('Name',$req->body('name'));
         //     $req->sessionSet('Type', $userType['value'])
         //     $req->sessionSet('Id', $user_id);
-        //     $res->redirect('/home');
+        //     $res->redirect('/');
 
         //  }
     }

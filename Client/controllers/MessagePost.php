@@ -26,4 +26,5 @@
      $res->redirect('/inbox?success=0');
    }
 
-} ?>
+} 
+?>

@@ -61,7 +61,7 @@
         Car::addCar($car, $db);
 
         $req->sessionSet('LOGGED_IN',TRUE);
-        $res->redirect('/home');
+        $res->redirect('/');
     }
 }
 ?>

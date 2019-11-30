@@ -13,16 +13,16 @@
 				</div> -->
 			</div>
 			<div class="card-body">
-			<form id='login_form' action='' method='post'>
-			<?php foreach($locals['form_error_messages'] as $errors) { ?>
-				<p><?= $errors ?></p>
-			<?php } ?>
+				<form id='login_form' action='' method='post'>
+					<?php foreach ($locals['form_error_messages'] as $errors) { ?>
+						<p><?= $errors ?></p>
+					<?php } ?>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" name='email' value='<?= $email ?>' placeholder="email">
-						
+
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -40,10 +40,10 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a id = "regLink" href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
+					Don't have an account?<a id="regLink" href='<?= SITE_BASE_DIR ?>/userType'>Sign Up</a>
 				</div>
-				<div class="d-flex justify-content-center" >
-					<a id = "regLink" href="<?= SITE_BASE_DIR ?>/404">Forgot your password?</a>
+				<div class="d-flex justify-content-center">
+					<a id="regLink" href="<?= SITE_BASE_DIR ?>/404">Forgot your password?</a>
 				</div>
 			</div>
 		</div>
