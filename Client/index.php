@@ -14,12 +14,12 @@ $app = new \Rapid\Router();
 try {
   // Define some routes. Here: requests to / will be
   // processed by the controller at controllers/Home.php
-  $app->GET('/',        'Home');
-  $app->GET('/profile',        'Profile');
+  $app->GET('/',            'Home');
+  $app->GET('/profile',     'Profile');
+  $app->POST('/',           'user_image');
   $app->GET('/login',       'LoginGet');
   $app->POST('/login',      'LoginPost');
   $app->GET('/inbox',       'InboxGet');
-  //$app->POST('/inbox',  'InboxPost');
   $app->GET('/message',     'messageGet');
   $app->POST('/message',    'messagePost');
   $app->GET('/removeMessage', 'removeMessage');
