@@ -139,7 +139,7 @@ else
             $req->sessionSet('LOGGED_IN',TRUE);
             $req->sessionSet('Name',$req->body('name'));
             $req->sessionSet('Id', $user_id);
-            $res->redirect('/home');
+            $res->redirect('/');
 
          }
     }

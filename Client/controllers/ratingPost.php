@@ -24,9 +24,9 @@ $saved = Rating::addRating($rating, $db);
 
 if($saved)
 {
-    $res->redirect('/home?success=1');
+    $res->redirect('/?success=1');
 }
-$res->redirect('/home?success=0');
+$res->redirect('/?success=0');
 
 }
 ?>

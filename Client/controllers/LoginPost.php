@@ -42,7 +42,7 @@
           $req->sessionSet('Name',$user->getName());
           $req->sessionSet('Id', $user->getUser_id());
           $req->sessionSet('Email', $user->getEmail());
-          $res->redirect('/home');
+          $res->redirect('/');
         }
       }
     }
