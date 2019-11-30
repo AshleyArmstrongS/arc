@@ -1,4 +1,4 @@
-<?php $user = $locals['user']; 
+<?php $user = $locals['user'];
 ?>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -9,21 +9,17 @@
             <div class="card-body">
                 <form id='home' action='' method='post'>
                     <div class="input-group form-group">
-                        <?php if ($user->getUser_id === $_SESSION['Id']) { ?>
-                            <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>
-                                <?php if ($user->getImage_name($user->getUser_id(), $db) === NULL) { ?>
-                                    <span><i class="fas fa-user fa-4x"></i></span>
-                                <?php } else { ?>
-                                    <span><img src="../Client/assests/images/?=<?= $user->getImage_name(); ?>" alt=""></i></span>
-                            </a>
-                        <?php }
-                        } else {
-                            if ($user->getImage_name() === NULL) { ?>
-                            <span><i class="fas fa-user fa-4x"></i></span>
+                        <?php if ($user->getImage_name() === NULL) { ?>
+                            <span><i class="fas fa-user fa-5x"></i></span>
                         <?php } else { ?>
                             <span><img src="../Client/assests/images/?=<?= $user->getImage_name(); ?>" alt=""></i></span>
-                    <?php }
-                    } ?>
+                        <?php }
+                        if ($user->getUser_id()=== $_SESSION['Id']) {?>
+                        <form action='' method='post' class="form">
+                            <label for="user_image" class="src_only"><i class="fas fa-edit fa-2x"></i></label>
+                            <input type="text" name="user_image" class="form-control" placeholder="User Image" value="<?= $user->getImage_name() ?>">
+                        </form>
+                        <?php } ?>
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
