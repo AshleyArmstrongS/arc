@@ -16,7 +16,7 @@ try {
   // processed by the controller at controllers/Home.php
   $app->GET('/',            'Home');
   $app->GET('/profile',     'Profile');
-  $app->POST('/',           'user_image.php');
+  $app->POST('/',           'user_image');
   $app->GET('/login',       'LoginGet');
   $app->POST('/login',      'LoginPost');
   $app->GET('/inbox',       'InboxGet');
