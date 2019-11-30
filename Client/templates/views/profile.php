@@ -1,4 +1,13 @@
-<?php $user = $locals['user']; 
+<style>
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+        content: '★ ';
+    }
+</style>
+
+<?php $user = $locals['user'];
 ?>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -48,6 +57,28 @@
                         <div class="card">
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/leaveReview?driver_id=<?= $user->getUser_id(); ?>'> Leave review</a>
                         </div>
-                    <?php  } ?>
+                    <?php  }
+                    foreach ($locals['ratings'] as $rating) { ?>
+                        <div class="card">
+
+                            <div><?= $rating['name'] ?></div>
+                            <div class="rate">
+                            <?php for ($x = 0; $x < $rating['star_rating']; $x++) { ?>
+                                <div class="rate">★ </div>
+                            <?php } ?>
+                            </div>
+                            <div class="">
+                                <p><?= $rating['review']; ?></p>
+                            </div>
+                            <div class="">
+                                <?php if ($rating['reccommend'] === N) { ?>
+                                    <div class="cad"> This person would not reccommend this driver.</div>
+                                <?php } else { ?>
+                                    <div class=""> This person would reccommend this driver. </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+
             </div>
         </div>
