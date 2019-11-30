@@ -1,28 +1,4 @@
-<style>
-    .upload-btn-wrapper {
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-    }
-
-    .btn_up {
-        color: white;
-        padding: 8px 20px;
-        border-radius: 8px;
-        font-size: 20px;
-    }
-
-    .upload-btn-wrapper input[type=file] {
-        font-size: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-    }
-</style>
-
 <?php $user = $locals['user'];
-echo $user->getImage_name();
 ?>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -71,6 +47,28 @@ echo $user->getImage_name();
                         <div class="card">
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/leaveReview?driver_id=<?= $user->getUser_id(); ?>'> Leave review</a>
                         </div>
-                    <?php  } ?>
+                    <?php  }
+                    foreach ($locals['ratings'] as $rating) { ?>
+                        <div class="card">
+
+                            <div><?= $rating['name'] ?></div>
+                            <div class="">
+                            <?php for ($x = 0; $x < $rating['star_rating']; $x++) { ?>
+                                <div class="rate">★ </div>
+                            <?php } ?>
+                            </div>
+                            <div class="">
+                                <p><?= $rating['review']; ?></p>
+                            </div>
+                            <div class="">
+                                <?php if ($rating['reccommend'] === N) { ?>
+                                    <div class="cad"> This person would not reccommend this driver.</div>
+                                <?php } else { ?>
+                                    <div class=""> This person would reccommend this driver. </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+
             </div>
         </div>
