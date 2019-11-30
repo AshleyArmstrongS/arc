@@ -192,8 +192,6 @@ class User
         foreach ($statement->fetchAll() as $row) {
             array_push($users, new User($row));
         }
-
-
         return $users;
         // $users = $statement->fetchAll();
         // $statement->closeCursor();
