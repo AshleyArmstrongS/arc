@@ -70,7 +70,7 @@
         </div>
     </nav>
 
-<body onload="document.getElementById('defaultOpen').click();">
+<body onload="">
 
     <div class='container'>
         <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
