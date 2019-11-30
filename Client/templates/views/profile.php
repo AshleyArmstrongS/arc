@@ -1,4 +1,28 @@
+<style>
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .btn_up {
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+</style>
+
 <?php $user = $locals['user'];
+echo $user->getImage_name();
 ?>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -12,13 +36,16 @@
                         <?php if ($user->getImage_name() === NULL) { ?>
                             <span><i class="fas fa-user fa-5x"></i></span>
                         <?php } else { ?>
-                            <span><img src="../Client/assests/images/?=<?= $user->getImage_name(); ?>" alt=""></i></span>
+                            <span><img src="../Client/assests/user_images/?=<?= $user->getImage_name(); ?>" alt=""></i></span>
                         <?php }
-                        if ($user->getUser_id()=== $_SESSION['Id']) {?>
-                        <form action='' method='post' class="form">
-                            <label for="user_image" class="src_only"><i class="fas fa-edit fa-2x"></i></label>
-                            <input type="text" name="user_image" class="form-control" placeholder="User Image" value="<?= $user->getImage_name() ?>">
-                        </form>
+                        if ($user->getUser_id() === $_SESSION['Id']) { ?>
+                            <form action='' method='post' class="form" enctype="multipart/form-data">
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn_up btn-dark btn-xs"><i class="fas fa-edit"></i></button>
+                                    <input type="file" name="image" placeholder="" required>
+                                </div>
+                                <input type="submit" value="Upload" name="image" class="btn">
+                            </form>
                         <?php } ?>
                     </div>
                     <div class="input-group form-group">
