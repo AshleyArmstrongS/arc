@@ -36,6 +36,8 @@ try {
   $app->GET('/viewUser',    'ViewAllUsers');
   $app->GET('/leaveReview', 'ratingGet');
   $app->POST('/leaveReview',  'ratingPost');
+  $app->GET('/authUser',      'AuthenticateUserGet');
+  $app->POST('/authUser',      'AuthenticateUserPost');
   $app->GET('/logout',      'Logout');
 
 
