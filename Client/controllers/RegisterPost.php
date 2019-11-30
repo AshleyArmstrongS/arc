@@ -2,6 +2,7 @@
  require('./lib/FormUtils.php');
  require('./models/User.php');
  require('./models/Location.php');
+ require_once('./lib/phpmailer/PHPMailerAutoload.php');
  $db = \Rapid\Database::getPDO();
  $req->sessionStart();
  $form_was_posted = [];
@@ -121,27 +122,61 @@ else
         
         User::addUser($db, $user);
 
-         if($userType['value'] == 'D')
-         {
-            $u = User::getUserByEmail($email['value'], $db);
-            $user_id = $u->getUser_id();
-            $req->sessionSet('LOGGED_IN',TRUE);
-            $req->sessionSet('Name',$name);
-            $req->sessionSet('Id', $user_id);
-            $res->redirect("/carDetails?user=$user_id");
+        //generating code
+        $random = substr(number_format(time() * rand(),0,'',''),0,100);
+
+        
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port ='465';
+        $mail->isHTML();
+        $mail->Username='gocollege2019@gmail.com';
+        $mail->Password='iqrtrigztghkykkl';
+        $mail->SetFrom('gocollege2019@gmail.com');
+        $mail->Subject = 'GoCollege Sign Up';
+        $mail->Body ="Welcome " .$name['value']. ", Thanks for signing up to go college. Here is your authentication number: " .$random.". Regards GoCollege Team";
+        $mail->AddAddress($email['value']);
+        
+        $mail->Send();
+        
+        
+        $req->sessionSet('Name',$name['value']);
+        $req->sessionSet('Id', $user_id);
+        $req->sessionSet('Type', $userType['value']);
+        $req->sessionSet('Email',$email['value']);
+        $req->sessionSet('Code',$random);
+        
+
+        $res->redirect('/authUser');
+
+        
+
+        //  if($userType['value'] == 'D')
+        //  {
+        //     $u = User::getUserByEmail($email['value'], $db);
+        //     $user_id = $u->getUser_id();
+        //     $req->sessionSet('LOGGED_IN',TRUE);
+        //     $req->sessionSet('Name',$name);
+        //     $req->sessionSet('Id', $user_id);
+        //     $req->sessionSet('Type', $userType['value'])
+        //     $res->redirect("/carDetails?user=$user_id");
              
            
-         }
-         else
-         {
-            $u = User::getUserByEmail($email['value'], $db);
-            $user_id = $u->getUser_id();
-            $req->sessionSet('LOGGED_IN',TRUE);
-            $req->sessionSet('Name',$req->body('name'));
-            $req->sessionSet('Id', $user_id);
-            $res->redirect('/');
+        //  }
+        //  else
+        //  {
+        //     $u = User::getUserByEmail($email['value'], $db);
+        //     $user_id = $u->getUser_id();
+        //     $req->sessionSet('LOGGED_IN',TRUE);
+        //     $req->sessionSet('Name',$req->body('name'));
+        //     $req->sessionSet('Type', $userType['value'])
+        //     $req->sessionSet('Id', $user_id);
+        //     $res->redirect('/');
 
-         }
+        //  }
     }
 }
 ?>

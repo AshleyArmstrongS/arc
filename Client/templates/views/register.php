@@ -82,6 +82,7 @@
                     <input type="submit" value="Register" class="btn btn-info btn-block">
 
                 </form>
+
             </div>
         </div>
     </div>
