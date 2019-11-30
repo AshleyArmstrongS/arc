@@ -349,7 +349,7 @@ class User
             'location_id'  => $user->getLocation(),  // thisll have to become a getLocation_id thing
             'available'    => $user->getAvailable() ?? 'Y'
         ]);
-        $statement = cursorClose();
+        $statement->closeCursor();
     }
 
     public static function updateUserImage_name($user, $db)
@@ -360,7 +360,8 @@ class User
             'user_id'    => $user->getUser_id()
 
         ]);
-        $statement = cursorClose();
+
+        $statement->closeCursor();
     }
 
     public static function deleteUser($db, $user_id)
