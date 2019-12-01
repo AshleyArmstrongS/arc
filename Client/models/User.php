@@ -1,7 +1,8 @@
 <?php require_once('Model.php'); ?>
 <?php
 
-class User {
+class User
+{
 
     private $user_id;
     private $name;
@@ -10,13 +11,15 @@ class User {
     private $email;
     private $hash;
     private $college;
+    private $image_name;
     private $description;
     private $user_type;
     private $location_id;
     private $available;
-//constructor
-    public function __construct($args) {
-        if(!is_array($args)) {
+    //constructor
+    public function __construct($args)
+    {
+        if (!is_array($args)) {
             throw new Exception('User constructor requires an array');
         }
         $this->user_id      = $args['user_id']     ?? NULL;
@@ -26,12 +29,13 @@ class User {
         $this->email        = $args['email']       ?? NULL;
         $this->hash         = $args['password']    ?? NULL;
         $this->college      = $args['college']     ?? NULL;
+        $this->image_name   = $args['image_name']  ?? NULL;
         $this->description  = $args['description'] ?? NULL;
         $this->user_type    = $args['user_type']   ?? NULL;
         $this->location_id  = $args['location_id'] ?? NULL;
-        $this->available    = $args['available']   ?? 'Y'; 
+        $this->available    = $args['available']   ?? 'Y';
     }
-//getters
+    //getters
     public function getUser_id()
     {
         return $this->user_id;
@@ -51,13 +55,18 @@ class User {
     public function getEmail()
     {
         return $this->email;
-    }public function getHash()
+    }
+    public function getHash()
     {
         return $this->hash;
     }
     public function getCollege()
     {
         return $this->college;
+    }
+    public function getImage_name()
+    {
+        return $this->image_name;
     }
     public function getDescription()
     {
@@ -75,7 +84,7 @@ class User {
     {
         return $this->available;
     }
-//setters
+    //setters
     public function setUser_id($user_id)
     {
         if ($user_id === NULL) {
@@ -132,6 +141,14 @@ class User {
         }
         $this->college = $college;
     }
+    public function setImage_name($image_name)
+    {
+        if ($image_name === NULL) {
+            $this->image_name = NULL;
+            return;
+        }
+        $this->image_name = $image_name;
+    }
     public function setDescription($description)
     {
         if ($description === NULL) {
@@ -165,39 +182,37 @@ class User {
         $this->available = $available;
     }
 
-// gets
+    // gets
     public static function getAllUsers($db)
     {
-        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id;");
+        $statement = $db->prepare("SELECT u.user_id, u.name, u.age, u.image_name u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id;");
         $statement->execute();
 
         $users = [];
-        foreach($statement->fetchAll() as $row) {
-        array_push($users, new User($row));
-    }
-   
-
-    return $users;
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
+        }
+        return $users;
         // $users = $statement->fetchAll();
         // $statement->closeCursor();
         // return $users;
     }
 
-    public static function searchUsersByName($name,$db)
+    public static function searchUsersByName($name, $db)
     {
         // \\'%:name%\\'
-        
+
         $statement = $db->prepare('SELECT user_id, name,age, location_id FROM users WHERE name @@ :name');
         $statement->execute([
             'name' => $name
         ]);
         $users = [];
-        foreach($statement->fetchAll() as $row) {
-        array_push($users, new User($row));
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
         }
-   
 
-    return $users;
+
+        return $users;
     }
 
     public static function getUserById($user_id, $db)
@@ -207,7 +222,7 @@ class User {
         //     throw new Exception('Invalid PDO object for user findOneById');
         // }
 
-        $statement = $db->prepare('SELECT * FROM users WHERE user_id = :user_id LIMIT 1');
+        $statement = $db->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
         $statement->execute([
             'user_id' => $user_id
         ]);
@@ -222,7 +237,8 @@ class User {
         //     throw new Exception('Invalid PDO object for user findOneById');
         // }
 
-        $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
+        $statement = $db->prepare("SELECT user_id, name, age, gender, image_name, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1");
+
         $statement->execute([
             'email' => $email
         ]);
@@ -233,7 +249,9 @@ class User {
     public static function getUserByUser_ID($user_id, $db)
     {
 
-        $statement = $db->prepare('SELECT user_id, name, age, gender, email, password, college, description, user_type, location_id, available FROM users WHERE email = :email LIMIT 1');
+
+        $statement = $db->prepare('SELECT user_id, name, age, gender, email, image_name, password, college, description, user_type, location_id, available FROM users WHERE user_id = :user_id LIMIT 1');
+
         $statement->execute([
             'user_id' => $user_id
         ]);
@@ -243,7 +261,7 @@ class User {
 
     public static function getPassengers($db)
     {
-        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
+        $statement = $db->prepare("SELECT u.user_id, u.name, u.age, u.gender, u.email, u.image_name, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
         $statement->execute();
         $passengers = $statement->fetchAll();
         $statement->closeCursor();
@@ -252,7 +270,7 @@ class User {
 
     public static function getDrivers($db)
     {
-        $statement = $db->prepare("select u.user_id, u.name, u.age, u.gender, u.email, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
+        $statement = $db->prepare("SELECT u.user_id, u.name, u.age, u.gender, u.email, u.image_name, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
         $statement->execute();
         $drivers = $statement->fetchAll();
         $statement->closeCursor();
@@ -261,7 +279,7 @@ class User {
 
     public static function getDriversByGender($db, $gender)
     {
-        $statement = $db->prepare("select user_id, name, age from users where gender = :gender and user_type = 'D'");
+        $statement = $db->prepare("SELECT user_id, name, age, location_id from users where gender = :gender and user_type = 'D'");
         $statement->execute([
             'gender' => $gender
         ]);
@@ -272,7 +290,7 @@ class User {
 
     public static function getDriversByDay($db, $day)
     {
-        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and user_type = 'D' group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement = $db->prepare("SELECT c.driver_id, u.name, c.car_id, u.location_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc;");
         $statement->execute([
             'day' => $day
         ]);
@@ -283,7 +301,7 @@ class User {
 
     public static function getDriversByDayAndGender($db, $day, $gender)
     {
-        $statement = $db->prepare("select c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender and user_type = 'D' group by c.car_id, p.day, u.name having count(*) < 4 order by count(*) desc;");
+        $statement = $db->prepare("SELECT c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day, u.location_id from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc");
         $statement->execute([
             'day' => $day,
             'gender' => $gender
@@ -318,18 +336,30 @@ class User {
     {
         $statement = $db->prepare("UPDATE users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
         $statement->execute([
-            'name'         => $this->getName(),
-            'age'          => $this->getAge(),
-            'gender'       => $this->getGender(),
-            'email'        => $this->getEmail(),
-            'hash'         => $this->getHash(),
-            'college'      => $this->getCollege(),
-            'description'  => $this->getDescription(),
-            'user_type'    => $this->getUser_type(),
-            'location_id'  => $this->getLocation(),  // thisll have to become a getLocation_id thing
-            'available'    => $this->getAvailable() ?? 'Y'
+            'name'         => $user->getName(),
+            'age'          => $user->getAge(),
+            'gender'       => $user->getGender(),
+            'email'        => $user->getEmail(),
+            'hash'         => $user->getHash(),
+            'college'      => $user->getCollege(),
+            'description'  => $user->getDescription(),
+            'user_type'    => $user->getUser_type(),
+            'location_id'  => $user->getLocation(),  // thisll have to become a getLocation_id thing
+            'available'    => $user->getAvailable() ?? 'Y'
         ]);
-        $statement = cursorClose();
+        $statement->closeCursor();
+    }
+
+    public static function updateUserImage_name($user, $db)
+    {
+        $statement = $db->prepare("UPDATE users set image_name = :image_name where user_id = :user_id;");
+        $statement->execute([
+            'image_name' => $user->getImage_name(),
+            'user_id'    => $user->getUser_id()
+
+        ]);
+
+        $statement->closeCursor();
     }
 
     public static function deleteUser($db, $user_id)
@@ -341,3 +371,4 @@ class User {
         $statement->closeCursor();
     }
 }
+?>

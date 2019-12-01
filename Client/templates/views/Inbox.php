@@ -1,4 +1,3 @@
-
 <!-- <script>
   //Reference - https://www.w3schools.com/howto/howto_js_tabs.asp
   function openInbox(evt, inboxBlock) {
@@ -28,8 +27,8 @@
 
 
 <style>
-/* https://stackoverflow.com/questions/41674548/how-to-make-html-table-columns-resizable/41675248 */
- /* table {
+  /* https://stackoverflow.com/questions/41674548/how-to-make-html-table-columns-resizable/41675248 */
+  /* table {
   border-collapse: collapse;
   border-spacing: 0px;
 }
@@ -59,51 +58,58 @@ td div {
   border: 1px solid black;
   display:block;
 }  */
-p {
-    margin:0;
-    padding:0;
-}
+  p {
+    margin: 0;
+    padding: 0;
+  }
 
-   
-p:nth-child(even) {background:#F8F8FF}
-p:nth-child(odd) {background:#E6E6FA} 
-  
 
-a {
-    color:#0000FF;
-    text-decoration:none; 
-}
-  
-a:hover { 
-    text-decoration:underline; 
-}
+  p:nth-child(even) {
+    background: #F8F8FF
+  }
 
-#wrapper {
-    margin:0 auto;
-    padding:0px 25px 25px 25px;
-    background:#FFF;
-}
+  p:nth-child(odd) {
+    background: #E6E6FA
+  }
 
-#chatbox {
-  font:12px Helvetica;
-  width: 90%;
-  padding: 12px 20px;
-  margin: 10px 10px;
-  background: #F5FFFA;
-  color: black;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-#top { 
-    padding: 12.5px 25px 12.5px 25px; 
-}
 
+  a {
+    color: #0000FF;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  #wrapper {
+    margin: 0 auto;
+    padding: 0px 25px 25px 25px;
+    background: #FFF;
+  }
+
+  #chatbox {
+    font: 12px Helvetica;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 10px 10px;
+    background: #F5FFFA;
+    color: black;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  #top {
+    padding: 12.5px 25px 12.5px 25px;
+  }
 </style>
 
-  <div class="container">
-    <div class="col-sm-10"><h1>Inbox</h1></div>
+<div class="container">
+  <div class="col-sm-10">
+    <h1>Inbox</h1>
+  </div>
 
   <!-- <div class="tab">
     <button class="tablinks" onclick="openInbox(event, 'Messages')" id="defaultOpen">Messages</button>
@@ -113,47 +119,48 @@ a:hover {
   <!-- Tab content -->
   <!-- <div id="Messages" class="tabcontent" class="active"> -->
   <div id="wrapper">
-  <div class="top"></div>
+    <div class="top"></div>
     <div id="chatbox">
-      
-      <?php foreach ($locals['message_info'] as $message) { 
 
-        if($message['message'] !== NULL){?>
+      <?php foreach ($locals['message_info'] as $message) {
+
+        if ($message['message'] !== NULL) { ?>
 
           <?php
-            if(strtotime($message['time_sent']) <= time() - (60*60*24)){
-              $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
-              preg_match($regEx, $message['time_sent'], $result);
-            }
-            else{
-              $regEx = '/ (\d{2}):(\d{2})/';
-              preg_match($regEx, $message['time_sent'], $result);
-            } 
-          ?>
+              if (strtotime($message['time_sent']) <= time() - (60 * 60 * 24)) {
+                $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
+                preg_match($regEx, $message['time_sent'], $result);
+              } else {
+                $regEx = '/ (\d{2}):(\d{2})/';
+                preg_match($regEx, $message['time_sent'], $result);
+              }
+              ?>
 
           <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
-          
+
           <?= $message['message']; ?>
           <br>
-         
+
           <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>View Chat</a>
           <br>
           <i style="color: #B0C4DE">(<?= $result[0]; ?>)</i>
 
 
 
-          
+
       <?php }
-    } ?>  
+      } ?>
 
-  </div>      
-  <!-- </div> -->
+    </div>
+    <!-- </div> -->
 
-  <!-- <div id="Lifts" class="tabcontent"> -->
+    <!-- <div id="Lifts" class="tabcontent"> -->
     <!-- <ul class="list-group">
       <li class="list-group-item text-muted">Inbox</li>
-      <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a>  Maybe insert day here --></li>
-      <!-- <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a>  Maybe insert the timetable here --></li>
+      <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a>  Maybe insert day here -->
+    </li>
+    <!-- <li class="list-group-item text-left"><a href="#" class="pull-left">lifts goes here</a>  Maybe insert the timetable here -->
+    </li>
     <!--</ul>
   </div>  
 </div> -->

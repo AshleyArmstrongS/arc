@@ -1,7 +1,6 @@
-<script type ="text/javascript" >
-    $(document).ready(function ()
-    {
-        $("#filteritems").click(function () {
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#filteritems").click(function() {
             // var radioValue = $("input[name='gender']:checked").val();
             // var checkValue = $("input[name='check_list']:checked").val();
             // if(radioValue){
@@ -13,9 +12,14 @@
 
 
 
-            $.ajax({url: "./filter", data: $("#filter_form").serialize(), type: "post", success: function (result) {
+            $.ajax({
+                url: "./filter",
+                data: $("#filter_form").serialize(),
+                type: "post",
+                success: function(result) {
                     $("#usersResult").html(result);
-                }});
+                }
+            });
         });
 
 
@@ -34,17 +38,17 @@
                 <div class="row">
 
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                        <input type="submit" value="Search"  class="btn btn-info btn-block">
+                        <input type="submit" value="Search" class="btn btn-info btn-block">
                     </div>
 
                     <div class="col-xs-6 col-sm-6 col-md-6">
 
-                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal" ><i class="fas fa-filter"> </i></button>
+                        <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-filter"> </i></button>
 
                     </div>
                 </div>
 
-                <div id ="usersResult">
+                <div id="usersResult">
 
                     <?php if ($locals['viewUsers'] == NULL) {
                         ?>
@@ -58,20 +62,19 @@
 
 
                         <?php
-                    }
-                    else {
-                        foreach ($locals['viewUsers'] as $user) {
-                            ?>
+                        } else {
+                            foreach ($locals['viewUsers'] as $user) {
+                                ?>
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>">
-                                            <h5 class="card-title"> <?= $user->getName(); ?> <i class="fas fa-comment-alt"></i> </h5>
-                                        </a>
+                                        <a href="/arc/Client/profile?user_id= <?= $user->getUser_id() ?>">
+                                            <h5 class="card-title"> <?= $user->getName(); ?>
+                                        </a><a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id() ?>"> <i class="fas fa-comment-alt"></i> </h5></a>
                                     </div>
                                 </div>
                             </div>
-                        <?php }
+                    <?php }
                     }
                     ?>
                 </div>
@@ -95,27 +98,24 @@
                 <form id='filter_form'>
                     <div class="form-group">
                         <!-- https://www.w3schools.com/php/php_form_complete.asp -->
-                        <label for="gender" class="col-form-label">Gender:  </label><br/>
-                        <input id = "gender" type="radio" name="gender"
-                                <?php if (isset($gender) && $gender == "female") echo "checked"; ?> value="F">Female
-                        <input  id ="gender" type="radio" name="gender"
-<?php if (isset($gender) && $gender == "male") echo "checked"; ?> value="M">Male
+                        <label for="gender" class="col-form-label">Gender: </label><br />
+                        <input id="gender" type="radio" name="gender" <?php if (isset($gender) && $gender == "female") echo "checked"; ?> value="F">Female
+                        <input id="gender" type="radio" name="gender" <?php if (isset($gender) && $gender == "male") echo "checked"; ?> value="M">Male
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Day:  </label><br/>
-                        <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br/>
-                        <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br/>
-                        <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br/>
-                        <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br/>
-                        <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br/>
+                        <label for="message-text" class="col-form-label">Day: </label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" id="filteritems" class="btn btn-primary"data-dismiss="modal">Submit</button>
+                <button type="submit" id="filteritems" class="btn btn-primary" data-dismiss="modal">Submit</button>
             </div>
         </div>
     </div>
 </div>
-

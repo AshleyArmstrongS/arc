@@ -21,9 +21,11 @@
      // print_r($temp);
      // }
    }
+   
      $res->render('main', 'inbox', [
          'pageTitle' => 'Inbox',
          'message_info' => $group_messages
       ]);
  
-} ?>
+}
+?>
