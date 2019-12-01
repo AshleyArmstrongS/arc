@@ -95,17 +95,17 @@
 
 
 <style>
-
 body {
-	background-image: url("../Client/assets/images/background-login.jpg");
-	background: cover;
-	overflow: hidden;
+  background-image: url("../Client/assets/images/background-login.jpg") no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .card {
   background-color: #fbeee1;
   opacity: 0.8;
-  overflow: hidden;
 }
 
 #header-name {
@@ -189,10 +189,10 @@ input.invalid select {
                 oninput="this.className = ''" required=""></p>
             <p><input type="password" class="form-control" placeholder="Confirm Password..." name="password2"
                 id="password2" oninput="this.className = ''" required=""></p>
-            <p><i style="font-weight: bold;">Birthday: </i></p>
+            <i style="font-weight: bold;">Birthday: </i>
             <p><input type="date" class="form-control" name="bday" id="bday" placeholder="Birthday..." data-relmax="-18"
                 required=""></p>
-            <p><i style="font-weight: bold;">Gender: </i></p>
+            <i style="font-weight: bold;">Gender: </i>
             <p><select name="gender" class="form-control">
                 <option value="" selected="true" disabled="disabled">Gender</option>
                 <option value="M">Male</option>
