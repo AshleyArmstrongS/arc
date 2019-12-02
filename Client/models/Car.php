@@ -1,7 +1,8 @@
 <?php require_once('Model.php'); ?>
 <?php
 
-class Car {
+class Car
+{
     var $car_id;
     var $driver_id;
     var $estimated_pay;
@@ -13,8 +14,9 @@ class Car {
     var $Thursday;
     var $Friday;
 
-//constructor
-    public function __construct($args, $db) {
+    //constructor
+    public function __construct($args, $db)
+    {
         $this->car_id          = $args['car_id']        ?? NULL;
         $this->driver_id       = $args['driver_id']     ?? NULL;
         $this->estimated_pay   = $args['estimated_pay'] ?? NULL;
@@ -31,7 +33,7 @@ class Car {
         // $this->Thursday        = $args['Thursday']      ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
         // $this->Friday          = $args['Friday']        ?? getPeopleInCarForDay($db, $this->car_id, 'Monday');
     }
-//getters
+    //getters
     public function getCar_id()
     {
         return $this->car_id;
@@ -52,7 +54,7 @@ class Car {
     {
         return $this->colour;
     }
-//weekDayGetters
+    //weekDayGetters
     public function getMonday()
     {
         return $this->Monday;
@@ -74,7 +76,7 @@ class Car {
         return $this->Friday;
     }
 
-//setters
+    //setters
     public function setCar_id($car_id)
     {
         if ($car_id === NULL) {
@@ -87,9 +89,9 @@ class Car {
     {
         if ($driver_id === NULL) {
             $this->driver_id = NULL;
-            return ;
+            return;
         }
-            $this->driver_id = $driver_id;
+        $this->driver_id = $driver_id;
     }
     public function setEst_pay($est_pay)
     {
@@ -115,7 +117,7 @@ class Car {
         }
         $this->color = $color;
     }
-//weekDaySetters
+    //weekDaySetters
     public function setMonday($Monday)
     {
         if (!is_array($Monday)) {
@@ -164,7 +166,7 @@ class Car {
         $statement->execute([
 
             'driver_id'    => $car->getDriver_id(),
-            'estimated_pay'=> $car->getEstimated_pay(),
+            'estimated_pay' => $car->getEstimated_pay(),
             'make'       => $car->getMake(),
             'colour'        => $car->getColour()
         ]);

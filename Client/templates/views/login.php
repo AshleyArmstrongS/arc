@@ -70,6 +70,7 @@ img.avatar {
 					<span><i class="fab fa-google-plus-square"></i></span>
 					<span><i class="fab fa-twitter-square"></i></span>
 				</div> -->
+
       </div>
       <div class="card-body">
 
@@ -110,4 +111,5 @@ img.avatar {
       </div>
     </div>
   </div>
+
 </div>

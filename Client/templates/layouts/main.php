@@ -2,6 +2,7 @@
 <html lang='en'>
 
 <head>
+
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Go College</title>
@@ -101,20 +102,14 @@
     </div>
   </nav>
 
+    
 <body>
 
   <div class='container'>
     <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
-
-
 </body>
-
-
-
 <footer class="foot">
-
   <span style="color: red; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
-
 </footer>
 </div>
 

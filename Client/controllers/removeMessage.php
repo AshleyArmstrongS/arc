@@ -11,5 +11,5 @@
         $res -> redirect('/message?to_id='.$to_id);
 
 
-}?>
-  
+}
+?>
