@@ -1,111 +1,14 @@
 <!-- Reference Bootstrap: https://bootsnipp.com/snippets/9Zxl -->
 
-<!-- <div class="container">
-  <div class="d-flex justify-content-center h-100">
-    <div class="card">
-      <div class="panel-heading">
-        <div class="card-header">
-          <h3 class="panel-title">Please sign up for GoCollege</h3>
-        </div>
-      </div>
-
-      <div class="card-body">
-        <form id='signup_form' action='' method='post'>
-          <?php //foreach ($locals['form_error_messages'] as $errors) {?>
-          <p class='error'><?php //$errors?></p>
-          <?php //}?>
-          <div class="input-group form-group">
-            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-          </div>
-
-          <div class="input-group form-group">
-            <input type="name" name="name" id="name" class="form-control input-sm" placeholder="Full Name">
-          </div>
-
-          <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
-              <div class="form-group">
-                <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
-              <div class="form-group">
-                <input type="password" name="password2" id="password2" class="form-control"
-                  placeholder="Confirm Password">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <select name="college" class="form-control">
-              <option value="">College</option>
-              <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="text" name="description" id="description" class="form-control input-sm"
-              placeholder="Description of yourself">
-          </div>
-
-          <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6">
-              <div class="form-group">
-                <input type="number" name="age" id="age" class="form-control" placeholder="Age">
-              </div>
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-6">
-              <select name="gender" class="form-control">
-                <option value="">Gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <input type="text" name="starting_location" id="starting_location" class="form-control"
-              placeholder="Starting Address">
-          </div>
-
-
-          <div class="form-group">
-            <select name="userType" class="form-control">
-              <option value="">User Type</option>
-              <option value="D">Driver</option>
-              <option value="P">Passenger</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <select name="avail" class="form-control">
-              <option value="">Available?</option>
-              <option value="Y">Yes</option>
-              <option value="N">No</option>
-            </select>
-          </div>
-          <input type="submit" value="Register" class="btn btn-info btn-block">
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
-
-
-
 <style>
 body {
-  background-image: url("../Client/assets/images/background-login.jpg") no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: url("../Client/assets/images/test.png") no-repeat center center fixed;
+  overflow:hidden;
 }
 
 .card {
   background-color: #fbeee1;
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 #header-name {
@@ -120,7 +23,7 @@ body {
 }
 
 img.avatar {
-  width: 40%;
+  width: 30%;
 }
 
 /* Style the input fields */
@@ -140,6 +43,10 @@ input.invalid select {
 /* Hide all steps by default: */
 .tab {
   display: none;
+}
+
+.tab div {
+  margin-top: 5px;
 }
 
 .btn {
@@ -180,46 +87,51 @@ input.invalid select {
           </div>
           <!-- One "tab" for each step in the form: -->
           <div class="tab"><i style="font-weight: bold;">User Info: </i>
-            <p><input type="email" class="form-control" placeholder="Email..." name="email" id="email"
+            <div><input type="email" class="form-control" placeholder="Email..." name="email" id="email"
                 oninput="this.className = ''" required="">
-            </p>
-            <p><input type="name" class="form-control" placeholder="Full name..." name="name" id="name"
-                oninput="this.className = ''" required=""></p>
-            <p><input type="password" class="form-control" placeholder="Password..." name="password1" id="password1"
-                oninput="this.className = ''" required=""></p>
-            <p><input type="password" class="form-control" placeholder="Confirm Password..." name="password2"
-                id="password2" oninput="this.className = ''" required=""></p>
+            </div>
+            <div><input type="name" class="form-control" placeholder="Full name..." name="name" id="name"
+                oninput="this.className = ''" required=""></div>
+            <div><input type="password" class="form-control" placeholder="Password..." name="password1" id="password1"
+                oninput="this.className = ''" required=""></div>
+            <div><input type="password" class="form-control" placeholder="Confirm Password..." name="password2"
+                id="password2" oninput="this.className = ''" required=""></div>
+
+          </div>
+
+          <div class=tab><i style="font-weight: bold;">Address/Starting Location: </i>
+            <div><input type="text" name="starting_location" id="starting_location" class="form-control"
+                placeholder="Starting Address"></div>
             <i style="font-weight: bold;">Birthday: </i>
-            <p><input type="date" class="form-control" name="bday" id="bday" placeholder="Birthday..." data-relmax="-18"
-                required=""></p>
+            <div><input type="number" class="form-control" name="bday" id="bday" min="18" max="100" required=""></div>
             <i style="font-weight: bold;">Gender: </i>
-            <p><select name="gender" class="form-control">
-                <option value="" selected="true" disabled="disabled">Gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-              </select></p>
+            <div>
+              <input type="radio" name="gender" value="male" checked> Male<br>
+              <input type="radio" name="gender" value="female"> Female<br>
+              <input type="radio" name="gender" value="other"> Other<br>
+            </div>
           </div>
 
           <div class="tab"><i style="font-weight: bold;">College Info: </i>
-            <p><select name="college" class="form-control">
+            <div><select name="college" class="form-control">
                 <option value="" selected="true" disabled="disabled">College</option>
                 <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
-              </select></p>
-            <p><input type="text" name="description" id="description" class="form-control input-sm"
-                placeholder="Description of yourself"></p>
+              </select></div>
+            <div><textarea type="text" name="description" id="description" class="form-control input-sm"
+                placeholder="Description of yourself"></textarea></div>
           </div>
 
           <div class="tab"><i style="font-weight: bold;">User Type: </i>
-            <p><select name="userType" class="form-control">
+            <div><select name="userType" class="form-control">
                 <option value="" selected="true" disabled="disabled">User Type</option>
                 <option value="D">Driver</option>
                 <option value="P">Passenger</option>
-              </select></p>
-            <p><select name="avail" class="form-control">
+              </select></div>
+            <div><select name="avail" class="form-control">
                 <option value="" selected="true" disabled="disabled">Available?</option>
                 <option value="Y">Yes</option>
                 <option value="N">No</option>
-              </select></p>
+              </select></div>
           </div>
 
           <div>
@@ -232,6 +144,7 @@ input.invalid select {
 
           <!-- Circles which indicates the steps of the form: -->
           <div>
+            <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
