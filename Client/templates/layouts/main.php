@@ -79,7 +79,7 @@
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/login"><span class="fas fa-users"></span> Log in</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/userType"><span class="fas fa-user-cog"></span> Register</a>
+            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/register"><span class="fas fa-user-cog"></span> Register</a>
           </li>
           <?php } ?>
 
