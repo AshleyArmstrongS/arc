@@ -60,7 +60,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarsExample07">
         <ul class="navbar-nav mr-auto">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
           <li class="nav-item active">
