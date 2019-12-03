@@ -1,41 +1,4 @@
 <style>
-  /* #messages {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#messages td, #messages th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#messages tr{background-color: #f2f2f2;}
-
-/* #messages tr:hover {background-color: #ddd;} */
-  /* 
-#messages th {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-#message {
-    color: blue;
-}  */
-</style>
-
-<style>
-  /* Reference - https://code.tutsplus.com/tutorials/how-to-create-a-simple-web-based-chat-application--net-5931 */
-  /* body {
-    font:10px arial;
-    color: #222;
-    text-align:left;
-    padding:35px; } */
-
-  body {}
 
   p {
     margin: 0;
@@ -125,32 +88,26 @@
 
 <div class="container">
   <h3 style="margin:0; padding:0;">Messages</h3>
-
   <div id="wrapper">
     <div id="top"></div>
-    <?php //foreach ($locals['users'] as $user) { 
-    ?>
-    <!-- <p><?php //$user['name']
-            ?></p> -->
     <?php
-    //} 
-    ?>
+    $passenger_id;
+    foreach ($locals['users'] as $user) {
+      $passenger_id = $user['user_id'];
+      ?>
+      <p><?= $user['name'] ?></p>
+    <?php } ?>
     <div id="chatbox">
-
-      <?php $group_id = $locals['group_id']; ?>
-      <?php foreach ($locals['messages'] as $message) { ?>
-        <?php
-          if (strtotime($message['time_sent']) <= time() - (60 * 60 * 24)) {
-            $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
-            preg_match($regEx, $message['time_sent'], $result);
-          } else {
-            $regEx = '/(\d{2}):(\d{2})/';
-            preg_match($regEx, $message['time_sent'], $result);
-          }
-          ?>
-
+      <?php $group_id = $locals['group_id'];
+      foreach ($locals['messages'] as $message) {
+        if (strtotime($message['time_sent']) <= time() - (60 * 60 * 24)) {
+          $regEx = '/(\d{4})-(\d{2})-(\d{2}) /';
+          preg_match($regEx, $message['time_sent'], $result);
+        } else {
+          $regEx = '/(\d{2}):(\d{2})/';
+          preg_match($regEx, $message['time_sent'], $result);
+        } ?>
         <p>
-
           <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
           <br>
           <?= $message['message']; ?>
@@ -162,11 +119,32 @@
         </p>
       <?php } ?>
     </div>
-
     <form id='login_form' action='' method='post'>
       <input type="text" name='message' id='message' placeholder="Enter message here...">
       <input type="submit" value='Submit'>
-    </form>
+    </form action="" method="post">
+    <div>
+      <?php $isDriver = $locals['isDriver'];
+      if ($isDriver['user_type'] === "D") { ?>
+        <h3>Organise a lift</h3>
+        <form action="createLift" method="post">
+          <input type="hidden" name="driver_id" value="<?= $_SESSION['Id'] ?>">
+          <input type="hidden" name="passenger_id" value="<?= $passenger_id ?>">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Day: </label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
+          </div>
+          <label for="time_morning">Morning</label>
+          <input type="time" name="time_morning" id="time_morning" min="8:00" max="15:00">
+          <label for="time_evening">Evening</label>
+          <input type="time" name="time_evening" id="time_evening" min="10:00" max="20:00">
+          <input type="submit" value="Submit" class="btn btn-dark btn-xs">
+        </form>
+      <?php }  ?>
+    </div>
   </div>
-</div>
 </div>

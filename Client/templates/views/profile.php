@@ -53,9 +53,9 @@
 
                             <div><?= $rating['name'] ?></div>
                             <div class="">
-                            <?php for ($x = 0; $x < $rating['star_rating']; $x++) { ?>
-                                <div class="rate">★ </div>
-                            <?php } ?>
+                                <?php for ($x = 0; $x < $rating['star_rating']; $x++) { ?>
+                                    ★
+                                <?php } ?>
                             </div>
                             <div class="">
                                 <p><?= $rating['review']; ?></p>
@@ -69,6 +69,5 @@
                             </div>
                         </div>
                     <?php } ?>
-
             </div>
         </div>

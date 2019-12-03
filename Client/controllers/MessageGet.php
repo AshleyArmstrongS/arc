@@ -14,13 +14,14 @@
         $group_id = $req->query('to_id');
         $messages = Message::getMessagesByGroup_id($group_id, $db);
         $users = Group::getUsersByGroup_id($group_id, $db);
-
+        $isDriver = User::isDriver($_SESSION['Id'], $db);
 
         $res->render('main', 'message', [
             'pageTitle' => 'message',
             'messages' => $messages,
             'group_id' => $group_id,
-            'users' => $users
+            'users' => $users,
+            'isDriver' => $isDriver
         ]);
     } else {
         $res->render('main', '404', []);
