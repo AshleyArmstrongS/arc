@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-body">
                            
-                                <h5 class="card-title">  <a href="/arc/Client/profile?user_id=<?= $user["user_id"]; ?>"> <?= $user["name"]; ?> <a href="/arc/Client/createGroup?recipient_id=<?= $user["user_id"]; ?>"><i class="fas fa-comment-alt"></i> </h5>
+                                <h5 class="card-title">  <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> </h5>
                             </a>
                             <h6> <?= Location::calculateDistance($db, $user["location_id"], $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
 

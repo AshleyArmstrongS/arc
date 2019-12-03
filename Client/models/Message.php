@@ -111,7 +111,7 @@ class Message
 
     //the only query for inbox
 
-    public function getLastMessagesByGroup_id($group_id, $db)
+    public static function getLastMessagesByGroup_id($group_id, $db)
     {
         $group_id = (int) $group_id;
 
@@ -128,7 +128,7 @@ class Message
 
     }
 
-    public function deleteMessage($message_id, $db)
+    public static function deleteMessage($message_id, $db)
     {
         $message_id = (int) $message_id;
         $query = $db->prepare('DELETE from messages WHERE message_id = :message_id');
@@ -136,7 +136,7 @@ class Message
             'message_id' => $message_id
         ]);
     }
-    public function checkMessages($group_id, $db)
+    public static function checkMessages($group_id, $db)
     {
         $group_id = (int) $group_id;
         $query = $db->prepare('SELECT count(*) FROM messages where to_id = :to_id;');
