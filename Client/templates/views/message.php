@@ -91,7 +91,11 @@
   <h3 style="margin:0; padding:0;">Messages</h3>
   <div id="wrapper">
     <div id="top"></div>
-    <?php foreach ($locals['users'] as $user) { ?>
+    <?php
+    $passenger_id;
+     foreach ($locals['users'] as $user) { 
+       $passenger_id = $user['user_id'];
+       ?>
       <p><?= $user['name'] ?></p>
     <?php } ?>
     <div id="chatbox">
@@ -119,13 +123,27 @@
     <form id='login_form' action='' method='post'>
       <input type="text" name='message' id='message' placeholder="Enter message here...">
       <input type="submit" value='Submit'>
-    </form>
+    </form action="" method="post">
     <div>
-            <?php if($locals['isDriver'] === "D")
+            <?php $isDriver = $locals['isDriver']; 
+            if($isDriver['user_type'] === "D")
             { ?>
               <h3>Organise a lift</h3>
-              
-            <?php } ?>
+              <form action="createLift" method = "post">
+              <input type="hidden" name= "driver_id" value = "<?= $_SESSION['Id'] ?>">
+              <input type="hidden" name="passenger_id" value= "<?= $passenger_id ?>">
+              <div class="form-group">
+                        <label for="message-text" class="col-form-label">Day: </label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
+                        <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
+                    </div>
+              <input type="submit" value="Submit" class="btn btn-dark btn-xs">
+
+              </form>
+            <?php }  ?>
     </div>
   </div>
 </div>
