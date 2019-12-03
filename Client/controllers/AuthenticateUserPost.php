@@ -10,11 +10,10 @@ $req->sessionStart();
     {
         $form_error_messages['code'] = 'Code is required';
     }
-    if($code!=$auth)
+    if($code['value']!=$auth)
     {
         $form_error_messages['code'] = 'Valid code is required';
     }
-
 
 
     # Display form
@@ -28,9 +27,14 @@ if (count($form_error_messages) > 0)
 }
 else
 {
-    $req->sessionSet('LOGGED_IN',true);
+    
+    //$req->sessionSet('LOGGED_IN',true);
     $user_id = $_SESSION['Id'];
-     if($_SESSION['userType'] == 'D')
+    //echo($user_id);
+    if($code['value'] == $auth)
+    {
+        
+        if($_SESSION['Type'] == 'D')
         {
             
             $res->redirect("/carDetails?user=$user_id");
@@ -39,10 +43,18 @@ else
          }
          else
          {
-            $res->redirect('/home');
+            $res->redirect('/');
+            //echo($user_id);
 
          }
 
+
+    }
+    else
+    {
+        $res->redirect('/login');
+    }
+    
 }
 
 }?>
