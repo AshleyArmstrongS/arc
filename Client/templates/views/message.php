@@ -1,5 +1,4 @@
 <style>
-  body {}
 
   p {
     margin: 0;
@@ -93,9 +92,9 @@
     <div id="top"></div>
     <?php
     $passenger_id;
-     foreach ($locals['users'] as $user) { 
-       $passenger_id = $user['user_id'];
-       ?>
+    foreach ($locals['users'] as $user) {
+      $passenger_id = $user['user_id'];
+      ?>
       <p><?= $user['name'] ?></p>
     <?php } ?>
     <div id="chatbox">
@@ -125,25 +124,27 @@
       <input type="submit" value='Submit'>
     </form action="" method="post">
     <div>
-            <?php $isDriver = $locals['isDriver']; 
-            if($isDriver['user_type'] === "D")
-            { ?>
-              <h3>Organise a lift</h3>
-              <form action="createLift" method = "post">
-              <input type="hidden" name= "driver_id" value = "<?= $_SESSION['Id'] ?>">
-              <input type="hidden" name="passenger_id" value= "<?= $passenger_id ?>">
-              <div class="form-group">
-                        <label for="message-text" class="col-form-label">Day: </label><br />
-                        <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
-                        <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
-                        <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
-                        <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
-                        <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
-                    </div>
-              <input type="submit" value="Submit" class="btn btn-dark btn-xs">
-
-              </form>
-            <?php }  ?>
+      <?php $isDriver = $locals['isDriver'];
+      if ($isDriver['user_type'] === "D") { ?>
+        <h3>Organise a lift</h3>
+        <form action="createLift" method="post">
+          <input type="hidden" name="driver_id" value="<?= $_SESSION['Id'] ?>">
+          <input type="hidden" name="passenger_id" value="<?= $passenger_id ?>">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Day: </label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
+            <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
+          </div>
+          <label for="time_morning">Morning</label>
+          <input type="time" name="time_morning" id="time_morning" min="8:00" max="15:00">
+          <label for="time_evening">Evening</label>
+          <input type="time" name="time_evening" id="time_evening" min="10:00" max="20:00">
+          <input type="submit" value="Submit" class="btn btn-dark btn-xs">
+        </form>
+      <?php }  ?>
     </div>
   </div>
 </div>
