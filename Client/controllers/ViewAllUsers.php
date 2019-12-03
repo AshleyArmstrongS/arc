@@ -6,6 +6,7 @@
     if ($_SESSION['LOGGED_IN'] === True) {
         $db = \Rapid\Database::getPDO();
         require('./models/User.php');
+        require('./models/Location.php');
 
         $Users = User::getAllUsers($db);
 
