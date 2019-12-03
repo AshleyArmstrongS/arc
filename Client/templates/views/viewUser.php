@@ -72,6 +72,7 @@
                                             <h5 class="card-title"> <?= $user->getName(); ?>
                                         </a>
                                         <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id(); ?>"> <i class="fas fa-comment-alt"></i> </h5>
+                                        <h6> <?= Location::calculateDistance($db, $user["location_id"], $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
                                         </a>
                                     </div>
                                 </div>
