@@ -65,7 +65,7 @@
         <ul class="navbar-nav mr-auto">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
           <li class="nav-item active">
-            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/home"><span class="sr-only">(current)</span> Home</a>
+            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/"><span class="sr-only">(current)</span> Home</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/viewUser"><span class="fas fa-search-location"></span>
