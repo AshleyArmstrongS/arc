@@ -121,9 +121,17 @@ else
         ]);
         
         User::addUser($db, $user);
+        $req->sessionSet('Email',$email['value']);
+        $u = User::getUserByEmail(($_SESSION['Email']), $db);
+        $user_id = $u->getUser_id();
+        $req->sessionSet('Name',$name);
+        $req->sessionSet('Id', $user_id);
+        $req->sessionSet('Type', $userType['value']);
+        
 
         //generating code
-        $random = substr(number_format(time() * rand(),0,'',''),0,100);
+        $random = substr(number_format(time() * rand(),0,'',''),0,10);
+        $req->sessionSet('Code', $random);
 
         
         $mail = new PHPMailer();
@@ -143,40 +151,10 @@ else
         $mail->Send();
         
         
-        $req->sessionSet('Name',$name['value']);
-        $req->sessionSet('Id', $user_id);
-        $req->sessionSet('Type', $userType['value']);
-        $req->sessionSet('Email',$email['value']);
-        $req->sessionSet('Code',$random);
-        
 
         $res->redirect('/authUser');
 
-        
-
-        //  if($userType['value'] == 'D')
-        //  {
-        //     $u = User::getUserByEmail($email['value'], $db);
-        //     $user_id = $u->getUser_id();
-        //     $req->sessionSet('LOGGED_IN',TRUE);
-        //     $req->sessionSet('Name',$name);
-        //     $req->sessionSet('Id', $user_id);
-        //     $req->sessionSet('Type', $userType['value'])
-        //     $res->redirect("/carDetails?user=$user_id");
-             
-           
-        //  }
-        //  else
-        //  {
-        //     $u = User::getUserByEmail($email['value'], $db);
-        //     $user_id = $u->getUser_id();
-        //     $req->sessionSet('LOGGED_IN',TRUE);
-        //     $req->sessionSet('Name',$req->body('name'));
-        //     $req->sessionSet('Type', $userType['value'])
-        //     $req->sessionSet('Id', $user_id);
-        //     $res->redirect('/');
-
-        //  }
     }
-}
-?>
+        
+    
+}?>
