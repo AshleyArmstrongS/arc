@@ -25,12 +25,9 @@
   <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
   <style>
-    .foot {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+    body{
+      /* background-color: grey; */
     }
-
     a {
       color: #000;
       text-decoration: none;
@@ -49,7 +46,7 @@
       background-color: #f1f1f1;
     }
   </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.75;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.75; background-color:grey;">
     <div class="container">
       <div class="navbar-brand" href="">GoCollege</div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,8 +90,5 @@
   <div class='container'>
     <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
 </body>
-<footer class="foot">
-  <span style="color: red; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
-</footer>
 
 </html>
