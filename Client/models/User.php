@@ -361,7 +361,17 @@ class User
 
         $statement->closeCursor();
     }
+public static function isDriver($user_id, $db)
+{
+    $statement = $db->prepare("SELECT user_type from users WHERE user_id = :user_id;");
+    $statement->execute([
+        'user_id'    => $user_id
+    ]);
 
+    return $statement->fetch();
+
+    $statement->closeCursor();
+}
     public static function deleteUser($db, $user_id)
     {
         $statement = $db->prepare("delete from users where user_id = :user_id");
