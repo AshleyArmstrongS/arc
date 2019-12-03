@@ -32,7 +32,9 @@
   .foot {
     position: fixed;
     bottom: 0;
+    left:0;
     width: 100%;
+    background-color: #f1f1f1;
   }
 
   a {
@@ -53,7 +55,7 @@
     background-color: #f1f1f1;
   }
   </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.75;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.85;">
     <div class="container">
       <div class="navbar-brand" href="">GoCollege</div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
