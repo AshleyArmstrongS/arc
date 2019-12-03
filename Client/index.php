@@ -38,7 +38,7 @@ try {
   $app->POST('/leaveReview','ratingPost');
   $app->GET('/authUser',    'AuthenticateUserGet');
   $app->POST('/authUser',   'AuthenticateUserPost');
-  $app->POST('/message',    'createLift'); 
+  //$app->POST('/message',    'createLift'); 
   $app->GET('/logout',      'Logout');
 
 
