@@ -1,5 +1,96 @@
 <!-- Reference Bootstrap: https://bootsnipp.com/snippets/9Zxl -->
 
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+		<div class="card">
+            <div class="panel-heading">
+                <div class="card-header">
+                    <h3 class="panel-title">Please sign up for GoCollege</h3>
+                </div>
+            </div>
+            
+            <div class="card-body">
+            <form id='signup_form' action='' method='post'>
+            <?php foreach($locals['form_error_messages'] as $errors) { ?>
+            <p class='error' ><?=  $errors ?></p>
+            <?php } ?>
+            <div class="input-group form-group">
+                        <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                    </div>
+
+                    <div class="input-group form-group">
+                        <input type="name" name="name" id="name" class="form-control input-sm" placeholder="Full Name">
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <select name="college"  class="form-control">
+                            <option value="">College</option>
+                            <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="description" id="description" class="form-control input-sm" placeholder="Description of yourself">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="number" name="age" id="age" class="form-control" placeholder="Age">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <select name="gender"  class="form-control">
+                            <option value="">Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                    </select>
+                        </div>
+                    </div>
+                        
+                    <div class="form-group">
+                        <input type="text" name="starting_location" id="starting_location" class="form-control" placeholder="Starting Address">
+                    </div>
+
+                    
+                    <div class="form-group">
+                    <select name="userType"  class="form-control">
+                            <option value="">User Type</option>
+                            <option value="D">Driver</option>
+                            <option value="P">Passenger</option>
+                    </select>
+                    </div>
+                    
+                    <div class="form-group">
+                    <select name="avail"  class="form-control">
+                            <option value="">Available?</option>
+                            <option value="Y">Yes</option>
+                            <option value="N">No</option>
+                    </select>
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-info btn-block">
+                
+                </form>
+                </div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+
+
+<!-- Reference Bootstrap: https://bootsnipp.com/snippets/9Zxl
+
 <style>
 body {
   background: url("../Client/assets/images/test.png") no-repeat center center fixed;
@@ -85,8 +176,8 @@ input.invalid select {
           <div class="imgcontainer">
             <img src="../Client/assets/images/user_profile.png" alt="Avatar" class="avatar">
           </div>
-          <!-- One "tab" for each step in the form: -->
-          <div class="tab"><i style="font-weight: bold;">User Info: </i>
+           One "tab" for each step in the form: -->
+          <!-- <div class="tab"><i style="font-weight: bold;">User Info: </i>
             <div><input type="email" class="form-control" placeholder="Email..." name="email" id="email"
                 oninput="this.className = ''" required="">
             </div>
@@ -142,8 +233,8 @@ input.invalid select {
             </div>
           </div>
 
-          <!-- Circles which indicates the steps of the form: -->
-          <div>
+           Circles which indicates the steps of the form: -->
+          <!-- <div>
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
@@ -155,82 +246,82 @@ input.invalid select {
       </div>
     </div>
   </div>
-</div>
-<script>
+</div> -->
+<script> 
 // Reference - https://www.w3schools.com/howto/howto_js_form_steps.asp
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+// var currentTab = 0; // Current tab is set to be the first tab (0)
+// showTab(currentTab); // Display the current tab
 
-function showTab(n) {
-  // This function will display the specified tab of the form ...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  // ... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Next &raquo;";
-  }
-  // ... and run a function that displays the correct step indicator:
-  fixStepIndicator(n)
-}
+// function showTab(n) {
+//   // This function will display the specified tab of the form ...
+//   var x = document.getElementsByClassName("tab");
+//   x[n].style.display = "block";
+//   // ... and fix the Previous/Next buttons:
+//   if (n == 0) {
+//     document.getElementById("prevBtn").style.display = "none";
+//   } else {
+//     document.getElementById("prevBtn").style.display = "inline";
+//   }
+//   if (n == (x.length - 1)) {
+//     document.getElementById("nextBtn").innerHTML = "Submit";
+//   } else {
+//     document.getElementById("nextBtn").innerHTML = "Next &raquo;";
+//   }
+//   // ... and run a function that displays the correct step indicator:
+//   fixStepIndicator(n)
+// }
 
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form... :
-  if (currentTab >= x.length) {
-    //...the form gets submitted:
-    document.getElementById("register-form").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
+// function nextPrev(n) {
+//   // This function will figure out which tab to display
+//   var x = document.getElementsByClassName("tab");
+//   // Exit the function if any field in the current tab is invalid:
+//   if (n == 1 && !validateForm()) return false;
+//   // Hide the current tab:
+//   x[currentTab].style.display = "none";
+//   // Increase or decrease the current tab by 1:
+//   currentTab = currentTab + n;
+//   // if you have reached the end of the form... :
+//   if (currentTab >= x.length) {
+//     //...the form gets submitted:
+//     document.getElementById("register-form").submit();
+//     return false;
+//   }
+//   // Otherwise, display the correct tab:
+//   showTab(currentTab);
+// }
 
-function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("p");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false:
-      valid = false;
-    }
-  }
-  // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
-    document.getElementsByClassName("step")[currentTab].className += " finish";
-  }
-  return valid; // return the valid status
-}
+// function validateForm() {
+//   // This function deals with validation of the form fields
+//   var x, y, i, valid = true;
+//   x = document.getElementsByClassName("tab");
+//   y = x[currentTab].getElementsByTagName("p");
+//   // A loop that checks every input field in the current tab:
+//   for (i = 0; i < y.length; i++) {
+//     // If a field is empty...
+//     if (y[i].value == "") {
+//       // add an "invalid" class to the field:
+//       y[i].className += " invalid";
+//       // and set the current valid status to false:
+//       valid = false;
+//     }
+//   }
+//   // If the valid status is true, mark the step as finished and valid:
+//   if (valid) {
+//     document.getElementsByClassName("step")[currentTab].className += " finish";
+//   }
+//   return valid; // return the valid status
+// }
 
-function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  //... and adds the "active" class to the current step:
-  x[n].className += " active";
-}
+// function fixStepIndicator(n) {
+//   // This function removes the "active" class of all steps...
+//   var i, x = document.getElementsByClassName("step");
+//   for (i = 0; i < x.length; i++) {
+//     x[i].className = x[i].className.replace(" active", "");
+//   }
+//   //... and adds the "active" class to the current step:
+//   x[n].className += " active";
+// }
 
 // Reference - http://jsfiddle.net/trixta/wpb54/
 
