@@ -82,8 +82,11 @@
         </ul>
         <form class="form-inline my-2 my-md-0">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
-            <a class="nav-link" style="color:white;"><span class="far fa-user"></span> Hi,<?= $_SESSION['Name']; ?></a>
-            <a class="nav-link" style="color:white;" href="<?= SITE_BASE_DIR ?>/logout"><span class="fas fa-sign-out-alt"></span> Logout</a>
+
+          <a class="nav-link" ><span class="far fa-user"></span> Hi,<?=$_SESSION['Name'];?></a>
+          <a class="nav-link"  href="<?= SITE_BASE_DIR ?>/logout"><span
+              class="fas fa-sign-out-alt"></span> Logout</a>
+
           <?php } ?>
         </form>
       </div>
