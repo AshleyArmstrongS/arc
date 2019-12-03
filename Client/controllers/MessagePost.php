@@ -1,3 +1,4 @@
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
 <?php return function($req, $res) {
   require('./lib/FormUtils.php');
   require('./models/Message.php');
