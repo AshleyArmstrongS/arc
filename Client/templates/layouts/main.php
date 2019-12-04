@@ -46,10 +46,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
   }
   </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 0.85;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 1;">
 
     <div class="container">
       <div class="navbar-brand" href="">GoCollege</div>
