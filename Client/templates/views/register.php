@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="number" name="age" id="age" class="form-control" placeholder="Age">
+                                <input type="number" name="age" id="age" class="form-control" placeholder="Age" min="18" max="130">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
