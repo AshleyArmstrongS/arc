@@ -26,12 +26,12 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="number" name="seats" id="seats" class="form-control" placeholder="Number of Seats">
+                                <input type="number" name="seats" id="seats" class="form-control" placeholder="Number of Seats" min="1" max="9">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="payment" id="payment" class="form-control" placeholder="Estimated Payment">
+                                <input type="text" name="payment" id="payment" class="form-control" placeholder="Estimated Payment" min = "0" >
                             </div>
                         </div>
                     </div>
