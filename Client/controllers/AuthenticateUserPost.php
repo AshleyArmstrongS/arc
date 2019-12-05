@@ -28,15 +28,18 @@ if (count($form_error_messages) > 0)
 else
 {
     
-    //$req->sessionSet('LOGGED_IN',true);
+    $req->sessionSet('LOGGED_IN',true);
     $user_id = $_SESSION['Id'];
+
     //echo($user_id);
     if($code['value'] == $auth)
     {
+        $req->sessionSet('AuthComplete',true);
         
         if($_SESSION['Type'] == 'D')
         {
             
+            $req->sessionSet('Id', $user_id);
             $res->redirect("/carDetails?user=$user_id");
              
            
