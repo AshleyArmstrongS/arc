@@ -1,4 +1,4 @@
-<?php require('./models/Location.php'); ?>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#filteritems").click(function() {
@@ -27,9 +27,13 @@
     });
 </script>
 <?php 
+    require('./models/Location.php'); 
+   
     $db = \Rapid\Database::getPDO();
     $currentUser = User::getUserByEmail($_SESSION['Email'], $db);
     $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()); 
+    $users = $locals['users'];
+    //print_r($users);
     
 ?>
 
@@ -57,7 +61,7 @@
 
                 <div id="usersResult">
 
-                    <?php if ($locals['viewUsers'] == NULL) {
+                    <?php if ($users== NULL) {
                         ?>
                         <div class="col-sm-12">
                             <div class="card">
@@ -70,12 +74,12 @@
 
                         <?php
                         } else {
-                            foreach ($locals['viewUsers'] as $user) {
+                            foreach ($users as $user) {
                                 ?>
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
+                                    <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
                                             <h5 class="card-title"> <?= $user->getName(); ?>
                                         </a>
                                         <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id(); ?>"> <i class="fas fa-comment-alt"></i> </h5>
