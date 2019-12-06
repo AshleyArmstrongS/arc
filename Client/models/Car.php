@@ -162,7 +162,7 @@ class Car
     //Crud
     public static function addCar($car, $db)
     {
-        $statement = $db->prepare("INSERT into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
+        $statement = $db->prepare("INSERTi into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
         $statement->execute([
 
             'driver_id'    => $car->getDriver_id(),
