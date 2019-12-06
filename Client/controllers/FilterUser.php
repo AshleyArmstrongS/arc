@@ -39,6 +39,7 @@
                 </div>
             </div>
             <?php  } else {
+
                         foreach ($users as $user) {
                             if ($user['user_id'] !== $_SESSION['Id']) { ?>
                     <div class="col-sm-12">
@@ -50,6 +51,7 @@
                                 <h6> <?= Location::calculateDistance($db, $user["location_id"], $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
 
                             </div>
+
                         </div>
                     </div>
 <?php }
