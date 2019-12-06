@@ -39,19 +39,23 @@
                 </div>
             </div>
             <?php  } else {
-                        foreach ($users as $user) { ?>
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                           
-                                <h5 class="card-title">  <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> </h5>
-                            </a>
-                            <h6> <?= Location::calculateDistance($db, $user["location_id"], $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
+
+                        foreach ($users as $user) {
+                            if ($user['user_id'] !== $_SESSION['Id']) { ?>
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> </h5>
+                                </a>
+                                <h6> <?= Location::calculateDistance($db, $user["location_id"], $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
+
+                            </div>
 
                         </div>
                     </div>
-                </div>
 <?php }
+            }
         }
     }
 } ?>

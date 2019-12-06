@@ -1,5 +1,4 @@
 <style>
-
   p {
     margin: 0;
     padding: 0;
@@ -93,6 +92,7 @@
     <?php
     $passenger_id;
     foreach ($locals['users'] as $user) {
+      if($user['user_id'] !== $_SESSION['Id'])
       $passenger_id = $user['user_id'];
       ?>
       <p><?= $user['name'] ?></p>
@@ -128,20 +128,43 @@
       if ($isDriver['user_type'] === "D") { ?>
         <h3>Organise a lift</h3>
         <form action="createLift" method="post">
-          <input type="hidden" name="driver_id" value="<?= $_SESSION['Id'] ?>">
-          <input type="hidden" name="passenger_id" value="<?= $passenger_id ?>">
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Day: </label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
-          </div>
-          <label for="time_morning">Morning</label>
-          <input type="time" name="time_morning" id="time_morning" min="8:00" max="15:00">
-          <label for="time_evening">Evening</label>
-          <input type="time" name="time_evening" id="time_evening" min="10:00" max="20:00">
+          <select name="day" class="form">
+            <option value="" selected="true" disabled="disabled">Day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+          </select>
+          <select name="morning" class="form">
+            <option value="" selected="true" disabled="disabled">Morning</option>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+          </select>
+          <select name="evening" class="form">
+            <option value="" selected="true" disabled="disabled">Evening</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+          </select>
+          <input type="hidden" name="driver_id" value="<?= $_SESSION['Id']; ?>">
+          <input type="hidden" name="passenger_id" value="<?= $passenger_id; ?>">
           <input type="submit" value="Submit" class="btn btn-dark btn-xs">
         </form>
       <?php }  ?>
