@@ -96,7 +96,23 @@ class Schedules
         }
         $this->evening = $evening;
     }
-
-
+    public function createSched($sched, $db)
+    {
+        $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, day, :morning, :evening)');
+        $statement->execute([
+            'car_id' => $sched->getCar_id(),
+            'user_id' => $sched->getUser_id(),
+            'day' => $sched->getDay(),
+            'morning' => $sched->getMorning(),
+            'evening' => $sched->getEvening()
+        ]);
+        $saved = $statement->rowCount() === 1;
+            
+        if ($saved) {
+            $sched->setPpdfc_id($db->lastInsertId());
+            $statement->closeCursor();
+            return true;
+        }
+    }
 }
 ?>

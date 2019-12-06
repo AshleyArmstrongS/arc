@@ -16,9 +16,5 @@
             'user' => $user,
             'ratings' =>$ratings
         ]);
-    } 
-    else {
-        $res->render('main', '404', []);
     }
-    
 } ?>
