@@ -8,7 +8,7 @@
 
         $db = \Rapid\Database::getPDO();
         $user = User::getUserByUser_ID($_SESSION['Id'], $db);
-        $ratings = Rating::getRatingsByDriver_id($user->getUser_id(), $db);
+        $ratings = Rating::getRatingsByDriver_id($_SESSION['Id'], $db);
         
         $res->render('main', 'profile', [
             'pageTitle' => 'Home',
