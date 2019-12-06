@@ -1,6 +1,13 @@
 <?php return function($req, $res) {
+$db = \Rapid\Database::getPDO();
 require('./lib/FormUtils.php');
+require('./models/User.php');
 $req->sessionStart();
+
+$user = $_SESSION['user'];
+
+
+
     $form_error_messages = [];
 
     $code = FormUtils::getPostString($req->body('code'));
@@ -29,13 +36,19 @@ else
 {
     
     $req->sessionSet('LOGGED_IN',true);
-    $user_id = $_SESSION['Id'];
+    
+    User::addUser($db, $user);
 
-    //echo($user_id);
+    $u = User::getUserByEmail(($_SESSION['Email']), $db);
+    $user_id = $u->getUser_id();
+    $req->sessionSet('Id',$user_id);
+    //$req->sessionSet('Id', $user_id);
+
+
+
     if($code['value'] == $auth)
     {
-        $req->sessionSet('AuthComplete',true);
-        
+        User::addUser($db, $user);
         if($_SESSION['Type'] == 'D')
         {
             
