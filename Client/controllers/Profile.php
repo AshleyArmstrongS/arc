@@ -16,11 +16,9 @@
             'user' => $user,
             'ratings' =>$ratings
         ]);
-    } else {
+    } 
+    else {
         $res->render('main', '404', []);
     }
-    $res->render('main', 'profile', [
-        'pageTitle' => 'Profile',
-        'user' => $user
-    ]);
+    
 } ?>
