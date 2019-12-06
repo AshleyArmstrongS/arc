@@ -105,7 +105,7 @@
     <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
     </body>
     <footer class="foot">
-      <span style="color: lightblue; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
+      <span style="color: blue; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
     </footer>
   </div>
 
