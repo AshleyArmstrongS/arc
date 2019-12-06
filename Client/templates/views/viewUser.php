@@ -66,8 +66,9 @@ $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()
                 </div>
 
                 <div id="usersResult">
-
-                    <?php if ($locals['viewUsers'] == NULL) {
+                    <?php
+                    $users = $locals['viewUsers'];
+                    if ($users == NULL) {
                         ?>
                         <div class="col-sm-12">
                             <div class="card">
@@ -76,25 +77,34 @@ $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()
                                 </div>
                             </div>
                         </div>
-
-
                         <?php
                         } else {
-                            foreach ($locals['viewUsers'] as $user) {
-                                ?>
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
-                                            <h5 class="card-title"> <?= $user->getName(); ?>
-                                        </a>
-                                        <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id(); ?>"> <i class="fas fa-comment-alt"></i> </h5>
-                                            <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
-                                        </a>
+                            foreach ($users as $user) {
+                                if ($user->getUser_id() !== $_SESSION['Id']) { ?>
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
+                                                <h5 class="card-title"> <?= $user->getName(); ?>
+                                            </a>
+                                            <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id(); ?>"> <i class="fas fa-comment-alt"></i> </h5>
+                                                <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php } else {
+                                ?>
+
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Unfortunately no users exist relating to your search.</h5>
+                                        </div>
+                                    </div>
+                                </div>
                     <?php }
+                        }
                     }
                     ?>
                 </div>

@@ -5,7 +5,11 @@
     $db = \Rapid\Database::getPDO();
     $req->sessionStart();
 
-
+    $day            = $req->body('day');
+    $morning        = $req->body('morning');
+    $evening        = $req->body('evening');
+    $driver_id      = $req->body('driver_id');
+    $passenger_id   = $req->body('passenger_id');
     
     
 
