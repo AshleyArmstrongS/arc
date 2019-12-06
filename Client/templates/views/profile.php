@@ -6,6 +6,7 @@
             <div class="card-header">
                 <h3>GoCollege</h3>
             </div>
+            
             <div class="card-body">
                 <form id='home' action='' method='post'>
                     <div class="input-group form-group">

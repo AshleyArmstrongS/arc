@@ -7,16 +7,28 @@
         $db = \Rapid\Database::getPDO();
         require('./models/User.php');
 
-        $Users = User::getAllUsers($db);
-
-
-        //print_r($Users);
-        $res->render('main', 'viewUser', [
+        //echo($_SESSION['Type']);
+        if($_SESSION['Type'] == "P")
+        {
+            $users = User::getDrivers($db,$_SESSION['Id']);
+            $res->render('main', 'viewUser', [
             'pageTitle' => 'View Users',
-            'viewUsers'  => $Users
+            'users' => $users
+             ]);
 
-        ]);
+        }
+        else if($_SESSION['Type'] == "D")
+        {
+            $users = User::getPassengers($db,$_SESSION['Id']);
+            $res->render('main', 'viewUser', [
+            'pageTitle' => 'View Users',
+            'users' => $users
+            ]);
+
+
+        }
+        
     } else {
-        $res->render('main', '404', []);
+       $res->render('main', '404', []);
     }
 } ?>

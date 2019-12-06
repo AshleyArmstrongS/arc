@@ -193,9 +193,6 @@ class User
             array_push($users, new User($row));
         }
         return $users;
-        // $users = $statement->fetchAll();
-        // $statement->closeCursor();
-        // return $users;
     }
 
     public static function searchUsersByName($name, $db)
@@ -255,22 +252,30 @@ class User
         return $user !== FALSE ? new User($user) : NULL;
     }
 
-    public static function getPassengers($db)
+    public static function getPassengers($db,$id)
     {
-        $statement = $db->prepare("SELECT u.user_id, u.name, u.age, u.gender, u.email, u.image_name, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
-        $statement->execute();
-        $passengers = $statement->fetchAll();
-        $statement->closeCursor();
-        return $passengers;
+        $statement = $db->prepare("SELECT user_id, name, age, location_id from users where user_id != :id and user_type = 'P'");
+        $statement->execute([
+            'id' => $id
+        ]);
+        $users = [];
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
+        }
+        return $users;
     }
 
-    public static function getDrivers($db)
+    public static function getDrivers($db,$id)
     {
-        $statement = $db->prepare("SELECT u.user_id, u.name, u.age, u.gender, u.email, u.image_name, u.college, u.description, u.user_type, l.address, u.available from users u inner join location l on u.location_id = l.location_id where u.user_type = 'P';");
-        $statement->execute();
-        $drivers = $statement->fetchAll();
-        $statement->closeCursor();
-        return $drivers;
+        $statement = $db->prepare("SELECT user_id, name, age, location_id from users where user_id != :id and user_type = 'D'");
+        $statement->execute([
+            'id' => $id
+        ]);
+        $users = [];
+        foreach ($statement->fetchAll() as $row) {
+            array_push($users, new User($row));
+        }
+        return $users;
     }
 
     public static function getDriversByGender($db, $gender)

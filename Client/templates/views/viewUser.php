@@ -1,3 +1,4 @@
+
 <style>
     #map_wrapper {
         height: 400px;
@@ -9,19 +10,10 @@
     }
 </style>
 <?php require('./models/Location.php'); ?>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#filteritems").click(function() {
-            // var radioValue = $("input[name='gender']:checked").val();
-            // var checkValue = $("input[name='check_list']:checked").val();
-            // if(radioValue){
-            //   $('#result').html(radioValue);
-            // }
-            // if(checkValue){
-            //   $('#result2').html(checkValue);
-            // }
-
-
 
             $.ajax({
                 url: "./filter",
@@ -36,11 +28,14 @@
 
     });
 </script>
-<?php
-$db = \Rapid\Database::getPDO();
-$currentUser = User::getUserByEmail($_SESSION['Email'], $db);
-$location_of_user = Location::returnLatLongById($db, $currentUser->getLocation());
 
+<?php 
+   
+    $db = \Rapid\Database::getPDO();
+    $currentUser = User::getUserByEmail($_SESSION['Email'], $db);
+    $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()); 
+    $users = $locals['users'];
+    
 ?>
 
 <div class="card-body">
@@ -66,9 +61,10 @@ $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()
                 </div>
 
                 <div id="usersResult">
+
                     <?php
-                    $users = $locals['viewUsers'];
                     if ($users == NULL) {
+
                         ?>
                         <div class="col-sm-12">
                             <div class="card">
@@ -101,6 +97,7 @@ $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()
                                         <div class="card-body">
                                             <h5 class="card-title">Unfortunately no users exist relating to your search.</h5>
                                         </div>
+
                                     </div>
                                 </div>
                     <?php }

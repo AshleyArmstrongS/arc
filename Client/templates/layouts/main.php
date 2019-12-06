@@ -47,13 +47,18 @@
     margin: 0;
     padding: 0;
   }
+
   </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 1;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity 1;">
 
     <div class="container">
-      <div class="navbar-brand" href="">GoCollege</div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
-        aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+
+    
+    <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height= 70px;></div>
+     
+      <div class="font-weight-bold"> Go College</div></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -71,6 +76,8 @@
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/inbox"><span class="far fa-envelope"></span> Inbox</a>
           </li>
           <?php } ?>
+          </ul>
+          <ul class="form-inline my-2 my-md-0">
           <?php if (!($_SESSION['LOGGED_IN'] === TRUE)) { ?>
           <li class="nav-item active">
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/login"><span class="fas fa-users"></span> Log in</a>
@@ -79,9 +86,10 @@
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/register"><span class="fas fa-user-cog"></span> Register</a>
           </li>
           <?php } ?>
-        </ul>
+          </ul>
         <form class="form-inline my-2 my-md-0">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
+
 
           <a class="nav-link"><span class="far fa-user"></span> Hi,<?=$_SESSION['Name'];?></a>
           <a class="nav-link" href="<?= SITE_BASE_DIR ?>/logout"><span class="fas fa-sign-out-alt"></span> Logout</a>

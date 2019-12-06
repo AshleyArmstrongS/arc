@@ -24,7 +24,7 @@ align-content: center;
 .card{
 margin-top: 10px;
 margin-bottom: auto;
-background-color:rgb(246, 192, 44);
+background-color:#8DCAFF;
 border: 2px solid rgb(95, 88, 88);
 padding-top:5px;
 padding-bottom:5px;
@@ -56,7 +56,7 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: rgb(248, 239, 107);
+background-color: #8DCAFF;
 color: black;
 border:0 !important;
 }

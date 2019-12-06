@@ -74,6 +74,25 @@ else
         $form_error_messages['avail'] = "A valid available value required";
     }
 
+    // List of allowed domains
+    $allowed = [
+    'student.dkit.ie'
+    ];
+
+    // Separate string by @ characters (there should be only one)
+    $parts = explode('@', $email['value']);
+
+    // Remove and return the last part, which should be the domain
+    $domain = array_pop($parts);
+
+    // Check if the domain is in our list
+    if ( ! in_array($domain, $allowed))
+    {
+        $form_error_messages['email'] = 'Email does not match a valid college';
+    }
+
+    
+
 
 # Display form
 if (!$form_was_posted || count($form_error_messages) > 0) 
@@ -124,7 +143,7 @@ else
         $req->sessionSet('Email',$email['value']);
         $u = User::getUserByEmail(($_SESSION['Email']), $db);
         $user_id = $u->getUser_id();
-        $req->sessionSet('Name',$name);
+        $req->sessionSet('Name',$name['value']);
         $req->sessionSet('Id', $user_id);
         $req->sessionSet('Type', $userType['value']);
         
