@@ -63,8 +63,6 @@ input select {
       </div>
 
       <div class="card-body">
-
-
         <form id="register-form" method="post" action="">
           <div class="imgcontainer">
             <img src="../Client/assets/images/user_profile.png" alt="Avatar" class="avatar">
