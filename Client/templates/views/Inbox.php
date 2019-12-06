@@ -17,11 +17,11 @@ p {
 }
 
 .card:nth-child(odd){
-  background-color: ##F5F5F5;
+  background-color: #8DCAFF;
 }
 
 .card:nth-child(even){
-  background-color: #66CCCC;
+  background-color: lightgray;
 }
 
 a {
@@ -34,7 +34,7 @@ a {
 
 a:hover {
   
-  background-color: white;
+  background-color: whitesmoke;
   color: blue;
   opacity: 1;
 }
