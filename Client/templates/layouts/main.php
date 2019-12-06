@@ -56,7 +56,7 @@
     
     <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height= 70px;></div>
      
-      <div class="font-weight-bold"> Go College</div></div>
+      <div class="font-weight-bold"> Go College</div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
