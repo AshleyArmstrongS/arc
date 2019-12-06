@@ -139,12 +139,10 @@ else
             'available' => $available['value']
         ]);
         
-        User::addUser($db, $user);
+        $req->sessionSet('user',$user);
+        //User::addUser($db, $user);
         $req->sessionSet('Email',$email['value']);
-        $u = User::getUserByEmail(($_SESSION['Email']), $db);
-        $user_id = $u->getUser_id();
         $req->sessionSet('Name',$name['value']);
-        $req->sessionSet('Id', $user_id);
         $req->sessionSet('Type', $userType['value']);
         
 
