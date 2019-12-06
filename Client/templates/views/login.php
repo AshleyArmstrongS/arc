@@ -8,8 +8,7 @@ body {
 }
 
 .card {
-  background-color: #fbeee1;
-  opacity: 0.9;
+  background-color: #99ddff;
 }
 
 #header-name {
@@ -27,9 +26,8 @@ input span {
   padding: 10px;
 }
 
-.input-group-prepend {
-  background-color: #fbeee1;
-  opacity: 0.2;
+.input-group-text {
+  background-color:#3399ff;
 }
 
 .imgcontainer {
@@ -54,6 +52,26 @@ img.avatar {
   background-color: #5E85FE;
   opacity: 0.7;
 }
+
+form p.error {
+    background-color: rgb(235, 97, 97);
+    color: white;
+    padding: 0.25em 0.75em;
+    margin-bottom: 0.25em;
+  }
+  form p.error:last-of-type {
+    margin-bottom: 1em;
+  }
+  
+  form p.error {
+    background-color: rgb(235, 97, 97);
+    color           : white;
+    padding         : 0.25em 0.75em;
+    margin-bottom   : 0.25em;
+  }
+  form p.error:last-of-type {
+    margin-bottom   : 1em;
+  }
 </style>
 
 
@@ -79,8 +97,8 @@ img.avatar {
             <img src="../Client/assets/images/user_profile.png" alt="Avatar" class="avatar">
           </div>
           <?php foreach($locals['form_error_messages'] as $errors) { ?>
-          <p><?= $errors ?></p>
-          <?php } ?>
+            <p class='error' ><?=  $errors ?></p>
+            <?php } ?>
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
