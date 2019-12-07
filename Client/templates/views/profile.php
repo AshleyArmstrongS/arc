@@ -46,6 +46,7 @@
                         </div>
                     <?php } else { ?>
                         <div class="card">
+                            <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/createGroup?recipient_id=<?= $user->getUser_id(); ?>'> Send Message</a>
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/leaveReview?driver_id=<?= $user->getUser_id(); ?>'> Leave review</a>
                         </div>
                     <?php  }
