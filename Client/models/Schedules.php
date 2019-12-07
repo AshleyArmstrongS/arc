@@ -124,6 +124,25 @@ class Schedules
         $lifts = $statement->fetchAll();
         return $lifts;
     } 
+
+    public static function getLiftsByCar_idP($car_id, $db)
+    {
+        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
+    public static function getLiftsByUser_id($user_id, $db)
+    {
+        $statement = $db->prepare("SELECT u.name, c.estimated_pay, c.make, c.colour, pc.day, pc.morning, pc.evening from passengersperdayforcar pc inner join car c on pc.car_id = c.car_id inner join users u on c.driver_id = u.user_id where pc.user_id = :user_id;");
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
     public static function deleteScheduleByCar_idAndUser_id($car_id, $user_id, $db)
     {
         $statement = $db->prepare("DELETE from passengersperdayforcar where car_id = :car_id AND user_id = :user_id;");
