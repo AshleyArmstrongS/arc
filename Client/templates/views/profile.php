@@ -22,7 +22,7 @@
                                     <input type="file" name="image" placeholder="" required>
                                 </div>
                                 <input type="submit" value="Upload" name="image" class="btn">
-                                cant seem to get this to work, is the same code from a previous project not sure why i cant get it working 
+                                cant seem to get this to work, is the same code from a previous project not sure why i cant get it working  
                             </form> -->
                         <?php //} ?>
                     </div>
@@ -42,6 +42,8 @@
                                 <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
                             </div>
                         </div>
+                        
+                        
                         <div class="card-footer">
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
                         </div>
