@@ -6,7 +6,7 @@
         <p>Arriving: <?= $driverLifts['morning']; ?></p>
         <p>Leaving: <?= $driverLifts['evening']; ?></p>
         <div class="btn">
-            <a href="/arc/Client/removeSched?car_id= <?= $passengerLifts['car_id'] ?> &to_id= <?= $message['user_id']; ?>">Remove lift</a>
+            <a href="/arc/Client/removeSched?car_id=<?= $driverLifts['car_id'] ?> &user_id=<?= $driverLifts['user_id']; ?>">Remove lift</a>
         </div>
     <?php } ?>
     </div>
@@ -20,7 +20,7 @@
         <p>Colour:   <?= $passengerLifts['colour']; ?></p>
         <p>Est:     €<?= $passengerLifts['estimated_pay']; ?></p>
         <div class="btn">
-            <a href="/arc/Client/removeSched?car_id= <?= $passengerLifts['car_id'] ?> &to_id= <?= $message['user_id']; ?>">Remove lift</a>
+            <a href="/arc/Client/removeSched?car_id=<?= $passengerLifts['car_id'] ?> &user_id=<?= $passengerLifts['user_id']; ?>">Remove lift</a>
         </div>
         <?php } ?>
         </div>
