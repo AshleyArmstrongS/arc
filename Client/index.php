@@ -19,6 +19,7 @@ try {
   $app->POST('/',           'user_image');
   $app->GET('/login',       'LoginGet');
   $app->POST('/login',      'LoginPost');
+  $app->GET('/lifts',       'LiftsGet');
   $app->GET('/inbox',       'InboxGet');
   $app->GET('/message',     'messageGet');
   $app->POST('/message',    'messagePost');
