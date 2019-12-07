@@ -10,7 +10,6 @@
         $user_id = $req->query('user_id');
         $user = User::getUserByUser_ID($user_id, $db);
         $ratings = Rating::getRatingsByDriver_id($user_id, $db);
-        
         $res->render('main', 'profile', [
             'pageTitle' => 'Home',
             'user' => $user,

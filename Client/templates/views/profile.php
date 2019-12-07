@@ -15,15 +15,16 @@
                         <?php } else { ?>
                             <span><img src="../Client/assests/user_images/?=<?= $user->getImage_name(); ?>" alt=""></i></span>
                         <?php }
-                        if ($user->getUser_id() === $_SESSION['Id']) { ?>
-                            <form action='' method='post' class="form" enctype="multipart/form-data">
+                        //if ($user->getUser_id() === $_SESSION['Id']) { ?>
+                            <!-- <form action='' method='post' class="form" enctype="multipart/form-data">
                                 <div class="upload-btn-wrapper">
                                     <button class="btn_up btn-dark btn-xs"><i class="fas fa-edit"></i></button>
                                     <input type="file" name="image" placeholder="" required>
                                 </div>
                                 <input type="submit" value="Upload" name="image" class="btn">
-                            </form>
-                        <?php } ?>
+                                cant seem to get this to work, is the same code from a previous project not sure why i cant get it working  
+                            </form> -->
+                        <?php //} ?>
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -41,11 +42,14 @@
                                 <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
                             </div>
                         </div>
+                        
+                        
                         <div class="card-footer">
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/editUser'> Edit Profile</a>
                         </div>
                     <?php } else { ?>
                         <div class="card">
+                            <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/createGroup?recipient_id=<?= $user->getUser_id(); ?>'> Send Message</a>
                             <a class='btn btn-dark btn-xs' href='<?= SITE_BASE_DIR ?>/leaveReview?driver_id=<?= $user->getUser_id(); ?>'> Leave review</a>
                         </div>
                     <?php  }
