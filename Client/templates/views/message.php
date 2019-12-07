@@ -144,8 +144,7 @@ div.container li p {
         <br>
         <i style="color: #B0C4DE">(<?= $result[0]; ?>)</i>
         <?php if ($_SESSION['Id'] === $message['from_id']) { ?>
-        <a
-          href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?> &to_id= <?= $message['to_id']; ?>">Delete</a>
+        <a href="/arc/Client/removeMessage?message_id= <?= $message['message_id'] ?> &to_id= <?= $message['to_id']; ?>">Delete</a>
         <?php } ?>
         
       </p>
