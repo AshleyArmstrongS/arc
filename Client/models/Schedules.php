@@ -131,8 +131,7 @@ class Schedules
             'car_id' => $car_id,
             'user_id' => $user_id
         ]);
-        $statement->closeCursor();
-    }
-    
+        $statement->closeCursor(); 
+    }  
 }
 ?>
