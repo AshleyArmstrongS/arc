@@ -127,7 +127,7 @@ class Schedules
 
     public static function getLiftsByCar_idP($car_id, $db)
     {
-        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
+        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening,    pc.car_id, pc.user_id from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
         $statement->execute([
             'car_id' => $car_id
         ]);
@@ -136,7 +136,7 @@ class Schedules
     } 
     public static function getLiftsByUser_id($user_id, $db)
     {
-        $statement = $db->prepare("SELECT u.name, c.estimated_pay, c.make, c.colour, pc.day, pc.morning, pc.evening from passengersperdayforcar pc inner join car c on pc.car_id = c.car_id inner join users u on c.driver_id = u.user_id where pc.user_id = :user_id;");
+        $statement = $db->prepare("SELECT u.name, c.estimated_pay, c.make, c.colour, pc.day, pc.morning, pc.evening, c.car_id, pc.user_id from passengersperdayforcar pc inner join car c on pc.car_id = c.car_id inner join users u on c.driver_id = u.user_id where pc.user_id = :user_id;");
         $statement->execute([
             'user_id' => $user_id
         ]);
