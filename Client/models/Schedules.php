@@ -31,7 +31,7 @@ class Schedules
     {
         return $this->car_id;
     }
-    public function getUer_id()
+    public function getUser_id()
     {
         return $this->user_id;
     }
@@ -98,11 +98,12 @@ class Schedules
     }
     public function createSched($sched, $db)
     {
-        $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, day, :morning, :evening)');
+        print_r($sched);
+        $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, :day, :morning, :evening);');
         $statement->execute([
-            'car_id' => $sched->getCar_id(),
+            'car_id' =>  $sched->getCar_id(),
             'user_id' => $sched->getUser_id(),
-            'day' => $sched->getDay(),
+            'day' =>     $sched->getDay(),
             'morning' => $sched->getMorning(),
             'evening' => $sched->getEvening()
         ]);
@@ -113,6 +114,25 @@ class Schedules
             $statement->closeCursor();
             return true;
         }
+    }       
+    public static function getLiftsByCar_id($car_id, $db)
+    {
+        $statement = $db->prepare("SELECT car_id, day, user_id from passengersperdayforcar where car_id = :car_id;");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
+    public static function deleteScheduleByCar_idAndUser_id($car_id, $user_id, $db)
+    {
+        $statement = $db->prepare("DELETE from passengersperdayforcar where car_id = :car_id AND user_id = :user_id;");
+        $statement->execute([
+            'car_id' => $car_id,
+            'user_id' => $user_id
+        ]);
+        $statement->closeCursor();
     }
+    
 }
 ?>
