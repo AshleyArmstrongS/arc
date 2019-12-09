@@ -8,6 +8,10 @@
         width: 100%;
         height: 100%;
     }
+
+    #search_filter {
+        margin: 3px;
+    }
 </style>
 <?php require('./models/Location.php'); ?>
 
@@ -35,7 +39,6 @@
     $currentUser = User::getUserByEmail($_SESSION['Email'], $db);
     $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()); 
     $users = $locals['users'];
-    
 ?>
 
 <div class="card-body">
@@ -49,11 +52,11 @@
                 </div>
                 <div class="row">
 
-                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="col-xs-6 col-sm-6 col-md-6"  id="search_filter">
                         <input type="submit" value="Search" class="btn btn-info btn-block">
                     </div>
 
-                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="col-xs-6 col-sm-6 col-md-6"  id="search_filter">
 
                         <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-filter"> </i></button>
 
@@ -81,9 +84,9 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
-                                                <h5 class="card-title"> <?= $user->getName(); ?>
+                                                <h5 class="card-title">
                                             </a>
-                                            <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> <a href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user["location_id"])[0] ?>,<?= Location::returnLatLongById($db, $user["location_id"])[1] ?>"><i class="far fa-map"></i></h5>
+                                            <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user->getUser_id(); ?>"><i class="fas fa-user" style="font-weight:normal;"></i> <?= $user->getName(); ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user->getUser_id(); ?>"><i class="fas fa-comment-alt" style="font-weight:normal;"> Message</i> <a href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user->getLocation())[0] ?>,<?= Location::returnLatLongById($db, $user->getLocation())[1] ?>" style="font-weight:normal; font-family: Helvetica"><i class="far fa-map"> Location</i></h5></a>
                                                 <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away from you</h6>
                                             </a>
                                         </div>
