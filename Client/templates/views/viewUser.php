@@ -83,8 +83,8 @@
                                             <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
                                                 <h5 class="card-title"> <?= $user->getName(); ?>
                                             </a>
-                                            <a href="/arc/Client/createGroup?recipient_id= <?= $user->getUser_id(); ?>"> <i class="fas fa-comment-alt"></i> </h5>
-                                                <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away</h6>
+                                            <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> <a href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user["location_id"])[0] ?>,<?= Location::returnLatLongById($db, $user["location_id"])[1] ?>"><i class="far fa-map"></i></h5>
+                                                <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away from you</h6>
                                             </a>
                                         </div>
                                     </div>
@@ -135,10 +135,46 @@
  
                 // Multiple Markers
                 var markers = [
-                    ['CurrentUser', 52.099633, -0.144755],
-                    ['User 2', 51.499633, -0.124755]
+                    <?php
+                     $first = true;
+                    foreach ($users as $user) {
+                        
+                        if ($user->getUser_id() !== $_SESSION['Id']) { 
+                            if($user->getLocation()!=null)
+                            {
+                                $location = Location::returnLatLongById($db, $user->getLocation());
+                                if($first==false )
+                                {
+                                    echo ", ";
+                                }
+                                echo "['".$user->getName()."', ".$location[0].",".$location[1] ."]";
+                                $first = false;
+                            }
+                        }
+                    }
+                    ?>
                 ];
 
+                // Info Window Content
+                var infoWindowContent = [
+                    <?php
+                     $first = true;
+                    foreach ($users as $user) {
+                        
+                        if ($user->getUser_id() !== $_SESSION['Id']) { 
+                            if($user->getLocation()!=null)
+                            {
+                                if($first==false )
+                                {
+                                    echo ", ";
+                                }
+                                echo "[\"<div class='info_content'>" . "<h6>" . $user->getName() . "</h6></div>\"]";
+                                $first = false;
+                            }
+                        }
+                    }
+                    ?>
+                ];
 
                 // Display multiple markers on a map
                 var infoWindow = new google.maps.InfoWindow(),
