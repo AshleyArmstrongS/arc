@@ -1,6 +1,12 @@
 # Go College
 Our website is designed to allow students to get to college more efficently whilebeing in contact with other students.
 
+## Notes
+- We have used PostgreSQL, this must installed on your machine
+- The php.ini file must be configured to allow the PostgreSQL to connect to the project Look for the Windows Extensions section and uncomment the PostgreSQL modules by removing the semicolon (;) from the beginning of the following lines:
+ 1. extension=php_pdo_pgsql.dll
+ 2. extension=php_pgsql.dll
+
 ## Table of contents
 
 - [Introduction](#Introduction)
@@ -32,16 +38,8 @@ There was some features which I would have wished to implement if I had more tim
 4. Use more images and more bootstrap
 
 ## Application
-- The home screen that exisitng and non existing users will be able to view
-![My Site](./assets/images/home.jpg)
-- Logged in users will get these options on products
-![My Site](./assets/images/products.jpg)
-- The admin menu can only be accessed by a logged in admin
-![My Site](./assets/images/adminmenu.jpg)
-- Admin will get all the options below for products
-![My Site](./assets/images/adminproducts.jpg)
-- Admin will be able to control users
-![My Site](./assets/images/adminusers.jpg)
+- The home screen 
+
 
 
 ## References
