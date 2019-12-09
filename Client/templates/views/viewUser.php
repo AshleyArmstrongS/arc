@@ -35,7 +35,6 @@
     $currentUser = User::getUserByEmail($_SESSION['Email'], $db);
     $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()); 
     $users = $locals['users'];
-    
 ?>
 
 <div class="card-body">
@@ -81,9 +80,9 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>">
-                                                <h5 class="card-title"> <?= $user->getName(); ?>
+                                                <h5 class="card-title">
                                             </a>
-                                            <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user["driver_id"]; ?>"> <?= $user["name"]; ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user["driver_id"]; ?>"><i class="fas fa-comment-alt"></i> <a href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user["location_id"])[0] ?>,<?= Location::returnLatLongById($db, $user["location_id"])[1] ?>"><i class="far fa-map"></i></h5>
+                                            <h5 class="card-title"> <a href="/arc/Client/profile?user_id=<?= $user->getUser_id(); ?>"> <?= $user->getName(); ?></a> <a href="/arc/Client/createGroup?recipient_id=<?= $user->getUser_id(); ?>"><i class="fas fa-comment-alt"></i> <a href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user->getLocation())[0] ?>,<?= Location::returnLatLongById($db, $user->getLocation())[1] ?>"><i class="far fa-map"></i></h5></a>
                                                 <h6> <?= Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0] ?> km away from you</h6>
                                             </a>
                                         </div>
