@@ -37,6 +37,8 @@
     $users = $locals['users'];
 ?>
 
+
+
 <div class="card-body">
     <div class="row">
         <div class="col-xs-4 col-sm-4 col-md-4">
@@ -106,8 +108,6 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
         <div id="map_wrapper">
             <div id="map_canvas" class="mapping"></div>
@@ -209,10 +209,11 @@
 
             }
         </script>
-        </div>
     </div>
-
+   
+        </div>
 </div>
+
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
