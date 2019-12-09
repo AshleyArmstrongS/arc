@@ -23,6 +23,10 @@
   <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
   <style>
+  body {
+    background: url("../Client/assets/images/test.png") no-repeat center center fixed;
+  }
+
   .foot {
     position: fixed;
     bottom: 0;
@@ -47,17 +51,17 @@
     margin: 0;
     padding: 0;
   }
-
   </style>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity 1;">
 
     <div class="container">
 
-    
-    <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height= 70px;></div>
-     
+
+      <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height=70px;></div>
+
       <div class="font-weight-bold"> Go College</div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
+        aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -76,8 +80,8 @@
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/inbox"><span class="far fa-envelope"></span> Inbox</a>
           </li>
           <?php } ?>
-          </ul>
-          <ul class="form-inline my-2 my-md-0">
+        </ul>
+        <ul class="form-inline my-2 my-md-0">
           <?php if (!($_SESSION['LOGGED_IN'] === TRUE)) { ?>
           <li class="nav-item active">
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/login"><span class="fas fa-users"></span> Log in</a>
@@ -86,7 +90,7 @@
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/register"><span class="fas fa-user-cog"></span> Register</a>
           </li>
           <?php } ?>
-          </ul>
+        </ul>
         <form class="form-inline my-2 my-md-0">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
 
@@ -103,10 +107,10 @@
 <body>
   <div class='container'>
     <?= \Rapid\Renderer::VIEW_PLACEHOLDER ?>
-    </body>
-    <footer class="foot">
-      <span style="color: lightblue; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
-    </footer>
-  </div>
+</body>
+<footer class="foot">
+  <span style="color: blue; font-weight: bold; opacity: 0.7;">GoCollege &copy 2019</span>
+</footer>
+</div>
 
 </html>

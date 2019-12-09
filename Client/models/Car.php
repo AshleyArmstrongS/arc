@@ -180,8 +180,9 @@ class Car
             'driver_id' => $driver_id
         ]);
         $car_id = $statement->fetch();
-        return $car_id;
+        return $car_id['car_id'];
     }
+
 
     public static function addNullPassengers($db, $car_id)
     {
@@ -192,4 +193,5 @@ class Car
         $statement->closeCursor();
 
     }
+
 }

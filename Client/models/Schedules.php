@@ -31,7 +31,7 @@ class Schedules
     {
         return $this->car_id;
     }
-    public function getUer_id()
+    public function getUser_id()
     {
         return $this->user_id;
     }
@@ -98,11 +98,12 @@ class Schedules
     }
     public function createSched($sched, $db)
     {
-        $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, day, :morning, :evening)');
+        print_r($sched);
+        $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, :day, :morning, :evening);');
         $statement->execute([
-            'car_id' => $sched->getCar_id(),
+            'car_id' =>  $sched->getCar_id(),
             'user_id' => $sched->getUser_id(),
-            'day' => $sched->getDay(),
+            'day' =>     $sched->getDay(),
             'morning' => $sched->getMorning(),
             'evening' => $sched->getEvening()
         ]);
@@ -113,6 +114,43 @@ class Schedules
             $statement->closeCursor();
             return true;
         }
-    }
+    }       
+    public static function getLiftsByCar_id($car_id, $db)
+    {
+        $statement = $db->prepare("SELECT car_id, day, user_id from passengersperdayforcar where car_id = :car_id;");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
+
+    public static function getLiftsByCar_idP($car_id, $db)
+    {
+        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening,    pc.car_id, pc.user_id from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
+    public static function getLiftsByUser_id($user_id, $db)
+    {
+        $statement = $db->prepare("SELECT u.name, c.estimated_pay, c.make, c.colour, pc.day, pc.morning, pc.evening, c.car_id, pc.user_id from passengersperdayforcar pc inner join car c on pc.car_id = c.car_id inner join users u on c.driver_id = u.user_id where pc.user_id = :user_id;");
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $lifts = $statement->fetchAll();
+        return $lifts;
+    } 
+    public static function deleteScheduleByCar_idAndUser_id($car_id, $user_id, $db)
+    {
+        $statement = $db->prepare("DELETE from passengersperdayforcar where car_id = :car_id AND user_id = :user_id;");
+        $statement->execute([
+            'car_id' => $car_id,
+            'user_id' => $user_id
+        ]);
+        $statement->closeCursor(); 
+    }  
 }
 ?>
