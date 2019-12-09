@@ -162,7 +162,7 @@ class Car
     //Crud
     public static function addCar($car, $db)
     {
-        $statement = $db->prepare("INSERTi into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
+        $statement = $db->prepare("INSERT into car(driver_id, estimated_pay, make, colour) values (:driver_id, :estimated_pay, :make, :colour);");
         $statement->execute([
 
             'driver_id'    => $car->getDriver_id(),
@@ -175,11 +175,21 @@ class Car
 
     public static function getCar_idByDriver_id($driver_id, $db)
     {
-        $statement = $db->prepare("SELECT car_id from car where driver_id = :driver_id;");
+        $statement = $db->prepare("select * from car where driver_id = :driver_id;");
         $statement->execute([
             'driver_id' => $driver_id
         ]);
         $car_id = $statement->fetch();
         return $car_id;
+    }
+
+    public static function addNullPassengers($db, $car_id)
+    {
+        $statement = $db->prepare("insert into passengersperdayforcar (car_id, user_id, day) values (:car_id, null, 'Monday'), (:car_id, null, 'Tuesday'), (:car_id, null, 'Wednesday'), (:car_id, null, 'Thursday'), (:car_id, null, 'Friday')");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $statement->closeCursor();
+
     }
 }

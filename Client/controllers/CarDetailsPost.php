@@ -59,6 +59,10 @@
         
         //print_r($car);
         Car::addCar($car, $db);
+        
+        $car_id = Car::getCar_idByDriver_id($driver_id['value'], $db);
+        Car::addNullPassengers($db, $car_id[0]);
+
 
         $req->sessionSet('LOGGED_IN',TRUE);
         $res->redirect('/');
