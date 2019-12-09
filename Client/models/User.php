@@ -300,6 +300,35 @@ class User
         return $drivers;
     }
 
+    public static function daysString($days)
+    {
+        $string = "";
+        foreach($days as $day)
+        {
+            if($day = $days[0])
+            {
+                $string."where day = $day";
+            }
+            else
+            {
+                $string."and day = $day";
+            }
+        }
+        return $string;
+    }
+    public static function getDriversByMultipleDays($db, $days)
+    {
+        $dayNumber = sizeof($days);
+
+        $statement = $db->prepare("SELECT c.driver_id, u.name, c.car_id, u.location_id, count(*) as passengerCount, p.day from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc;");
+        $statement->execute([
+            'day' => $days
+        ]);
+        $drivers = $statement->fetchAll();
+        $statement->closeCursor();
+        return $drivers;
+    }
+
     public static function getDriversByDayAndGender($db, $day, $gender)
     {
         $statement = $db->prepare("SELECT c.driver_id, u.name, c.car_id, count(*) as passengerCount, p.day, u.location_id from car c inner join users u on c.driver_id = u.user_id inner join passengersperdayforcar p on c.car_id = p.car_id where day = :day and gender = :gender and user_type = 'D' group by c.car_id, p.day, u.name, u.location_id having count(*) < 4 order by count(*) desc");
