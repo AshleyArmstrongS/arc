@@ -98,7 +98,6 @@ class Schedules
     }
     public function createSched($sched, $db)
     {
-        print_r($sched);
         $statement = $db->prepare('INSERT into passengersperdayforcar (car_id, user_id, day, morning, evening) VALUES(:car_id, :user_id, :day, :morning, :evening);');
         $statement->execute([
             'car_id' =>  $sched->getCar_id(),
@@ -127,7 +126,7 @@ class Schedules
 
     public static function getLiftsByCar_idP($car_id, $db)
     {
-        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening,    pc.car_id, pc.user_id from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
+        $statement = $db->prepare("SELECT u.name, pc.day, pc.morning, pc.evening, pc.car_id, pc.user_id from passengersperdayforcar pc inner join users u on pc.user_id = u.user_id where pc.car_id = :car_id;");
         $statement->execute([
             'car_id' => $car_id
         ]);
