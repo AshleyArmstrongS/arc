@@ -1,11 +1,11 @@
 
 <style>
     #map_wrapper {
-        height: 400px;
+        height: 20%;
     }
 
     #map_canvas {
-        width: 100%;
+        width: 120%;
         height: 100%;
     }
 </style>
