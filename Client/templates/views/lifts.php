@@ -2,7 +2,7 @@
 <div class="row">
     <?php foreach ($locals['schedDriver'] as $driverLifts) { ?>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class = "card">
                 <div class="card-body">
 
@@ -19,7 +19,7 @@
         </div>
             <?php } 
             foreach ($locals['schedPassenger'] as $passengerLifts) { ?>
-         <div class="col-sm-3">
+         <div class="col-sm-4">
             <div class = "card">
                 <div class="card-body">
                     <h3>Driver:  <?= $passengerLifts['name']; ?></h3>

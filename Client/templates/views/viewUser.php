@@ -41,7 +41,6 @@ body {
   overflow: hidden;
 }
 
-
 </style>
 <?php require('./models/Location.php'); ?>
 
