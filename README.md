@@ -1,4 +1,5 @@
 # Go College
+![My Site](./assets/images/GoCollegeLogo.png)
 Our website is designed to allow students to get to college more efficently whilebeing in contact with other students.
 
 ## Notes
