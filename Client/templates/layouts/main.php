@@ -43,7 +43,7 @@
 
   a:hover {
     background-color: #999;
-    color: blue;
+    color: white;
     border-radius: 4px;
   }
 
