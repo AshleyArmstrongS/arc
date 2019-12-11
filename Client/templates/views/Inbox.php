@@ -9,20 +9,21 @@ p {
 }
 
 .card {
-  background-color: #fbeee1;
+  background-color: white;
+  height:50px;
   opacity: 0.95;
   margin:0;
   padding:0;
   border-radius: 0;
 }
 
-.card:nth-child(odd){
-  background-color: #8DCAFF;
+/* .card:nth-child(odd){
+  background-color: #d9c3fa;
 }
 
 .card:nth-child(even){
   background-color: lightgray;
-}
+} */
 
 a {
   color: #0000FF;
@@ -50,17 +51,31 @@ a:hover {
   background: #FFF;
   text-align: left;
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: 500px;
   margin:0;
   padding:0;
 }
 
+.card-body{
+margin-top: 20px;
+margin-bottom: auto;
+background-color:#8DCAFF;
+border: 2px solid rgb(95, 88, 88);
+padding-top:10px;
+padding-bottom:20px;
+padding-left: 20px;
+padding-right: 20px;
+box-shadow: 5px 10px 8px slategray; 
+}
+
+
+
 </style>
 
 
-  <div class="col-sm-10">
+  <div class="card-body">
     <h1>Inbox</h1>
-  </div>
+ 
   <div class="col-sm-10">
     <span>Click on message to open chat!</span>
   </div>
@@ -96,5 +111,6 @@ a:hover {
       <?php }
       } ?>
 
+    </div>
     </div>
   </div>  
