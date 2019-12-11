@@ -25,18 +25,18 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password1" id="password1" class="form-control" value='<?= $user->getHash(); ?>'>
+                                <input type="password" name="password1" id="password1" class="form-control" >
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password2" id="password2" class="form-control" value='<?= $user->getHash(); ?>'>
+                                <input type="password" name="password2" id="password2" class="form-control" >
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <select name="college" class="form-control">
-                            <option value="">College</option>
+                            <option value='<?= $user->getCollege(); ?>'><?= $user->getCollege(); ?></option>
                             <option value="Dundalk Institute of Technology">Dundalk Institute of Technology</option>
                         </select>
                     </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <select name="gender" class="form-control">
-                                <option value="">Gender</option>
+                                <option value=""><?= $user->getGender(); ?></option>
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
