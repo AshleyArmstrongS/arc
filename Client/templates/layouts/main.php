@@ -24,6 +24,10 @@
 
   <style>
  
+ .logo
+ {
+   margin-left:0;
+ }
   .foot {
     position: fixed;
     bottom: 0;
@@ -39,7 +43,7 @@
 
   a:hover {
     background-color: #999;
-    color: yellow;
+    color: blue;
     border-radius: 4px;
   }
 
@@ -48,15 +52,24 @@
     margin: 0;
     padding: 0;
   }
+
+  nav
+  {    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
   </style>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity 1;">
 
-    <div class="container">
-
-
+  <div id="Logo">
       <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height=70px;></div>
+      
+</div>
 
       <div class="font-weight-bold"> Go College</div>
+    <div class="container">
+
+     
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
         aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -67,7 +80,7 @@
         <ul class="navbar-nav mr-auto">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
           <li class="nav-item active">
-            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/"><span class="sr-only">(current)</span> Home</a>
+            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/"><span class="sr-only">(current)</span> <i class="fas fa-home"></i> Home</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/viewUser"><span class="fas fa-search-location"></span>
