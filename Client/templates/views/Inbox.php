@@ -3,10 +3,6 @@ body {
   overflow: hidden;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
 
 .card {
   background-color: white;
@@ -25,7 +21,7 @@ p {
   background-color: lightgray;
 } */
 
-a {
+p {
   color: #0000FF;
   text-decoration: none;
   opacity: 0.55;
@@ -33,7 +29,7 @@ a {
   padding:0;
 }
 
-a:hover {
+p:hover {
   
   background-color: whitesmoke;
   color: blue;
@@ -97,14 +93,14 @@ box-shadow: 5px 10px 8px slategray;
         }
         ?>
         <div class="card">
-      <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>
+     <p> <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>
         
           <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
           <?= $message['message']; ?>
           <br>
           <i style="color: black; font-weight: bold;" >(<?= $result[0]; ?>)</i>
         
-      </a>
+      </p>
       </div>
 
 
