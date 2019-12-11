@@ -100,20 +100,16 @@ $(document).ready(function() {
                                 if ($user->getUser_id() !== $_SESSION['Id']) { ?>
           <div class="col-sm-12">
             <div class="card">
-              <div class="card-body">
-                <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>"> <h5 class="card-title">  </a>
+                <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>" > </a>
                 <div class="input-group form-group">
-                   <a href="/arc/Client/profile?user_id=<?= $user->getUser_id(); ?>">
-                  <i class="fas fa-user" style="font-weight:normal;"><?= $user->getName(); ?></i></a> 
-                  <a href="/arc/Client/createGroup?recipient_id=<?= $user->getUser_id(); ?>">
-                   <i class="fas fa-comment-alt" style="font-weight:normal;"> Message</i></a>
-                  <a  href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user->getLocation())[0] ?>,<?= Location::returnLatLongById($db, $user->getLocation())[1] ?>"><i class="far fa-map" style="font-weight:normal;"> Location</i></a>
-                  <h6>
+                <h5 class="card-header col-sm-12 "> <a href="/arc/Client/profile?user_id=<?= $user->getUser_id(); ?>" ><i class="fas fa-user" style="font-weight:normal;"><?= $user->getName(); ?></i></a> </h5>
+                  <a href="/arc/Client/createGroup?recipient_id=<?= $user->getUser_id(); ?>"class="col-sm-12"><i class="fas fa-comment-alt" style="font-weight:normal;"> Message</i></a>
+                  <a  href="https://www.google.com/maps/dir/?api=1&origin=<?= $location_of_user[0] ?>,<?= $location_of_user[1] ?>&destination=<?= Location::returnLatLongById($db, $user->getLocation())[0] ?>,<?= Location::returnLatLongById($db, $user->getLocation())[1] ?>" class="col-sm-12"><i class="far fa-map" style="font-weight:normal;"> Location</i></a>
+                  <h6 class="col-sm-12">
                     <?php $distance = Location::calculateDistance($db, $user->getLocation(), $location_of_user[0], $location_of_user[1])[0];?>
                     <?=printf("%.1f", $distance); ?> km away from you</h6>
                   </a>
                 </div>
-              </div>
             </div>
           </div>
           <?php } else {
