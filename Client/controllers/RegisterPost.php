@@ -147,7 +147,7 @@ else
         
 
         //generating code
-        $random = substr(number_format(time() * rand(),0,'',''),0,10);
+        $random = substr(number_format(time() * rand(),0,'',''),0,6);
         $req->sessionSet('Code', $random);
 
         

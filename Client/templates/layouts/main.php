@@ -23,10 +23,7 @@
   <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
   <style>
-  body {
-    background: url("../Client/assets/images/test.png") no-repeat center center fixed;
-  }
-
+ 
   .foot {
     position: fixed;
     bottom: 0;

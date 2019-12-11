@@ -56,6 +56,7 @@ input select {
   background-color: #ddd;
   color: black;
 }
+
 </style>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -80,6 +81,7 @@ input select {
                     </div>
                     
                     <div class="row">
+  
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
@@ -88,8 +90,11 @@ input select {
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                                <!-- <div class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltiptext">Password must be at least 8 characters, include a lower case, an upper case, a number and a special character</span></div>
+                    -->
                             </div>
-                        </div>
+                            
+                             </div>
                     </div>
                     <div class="form-group">
                     <select name="college"  class="form-control">
