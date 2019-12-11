@@ -121,6 +121,7 @@ class Schedules
             'car_id' => $car_id
         ]);
         $lifts = $statement->fetchAll();
+        $statement->closeCursor(); 
         return $lifts;
     } 
 
@@ -131,6 +132,7 @@ class Schedules
             'car_id' => $car_id
         ]);
         $lifts = $statement->fetchAll();
+        $statement->closeCursor(); 
         return $lifts;
     } 
     public static function getLiftsByUser_id($user_id, $db)
@@ -140,6 +142,7 @@ class Schedules
             'user_id' => $user_id
         ]);
         $lifts = $statement->fetchAll();
+        $statement->closeCursor(); 
         return $lifts;
     } 
     public static function deleteScheduleByCar_idAndUser_id($car_id, $user_id, $db)
@@ -151,5 +154,26 @@ class Schedules
         ]);
         $statement->closeCursor(); 
     }  
+    public static function schedulesforUser_id($user_id, $db)
+    {
+        $statement = $db->prepare("SELECT count(*) from passengersperdayforcar where user_id = :user_id;");
+        $statement->execute([
+            'user_id' => $user_id
+        ]);
+        $sched = $statement->fetch();
+        $statement->closeCursor(); 
+        return $sched['count'];
+    } 
+    public static function schedulesforCar_id($car_id, $db)
+    {
+        $statement = $db->prepare("SELECT count(*) from passengersperdayforcar where car_id = :car_id;");
+        $statement->execute([
+            'car_id' => $car_id
+        ]);
+        $sched = $statement->fetch();
+        $statement->closeCursor(); 
+        return $sched['count'];
+    } 
 }
 ?>
+
