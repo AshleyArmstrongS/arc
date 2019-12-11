@@ -69,6 +69,16 @@ class Location
         return $id;
     }
 
+    public static function returnAddressById($db, $location_id)
+    {
+        $statement = $db->prepare("select * from location where location_id = :location_id");
+        $statement->execute([
+            'location_id' => $location_id
+        ]);
+        $address = $statement->fetch();
+        $statement->closeCursor();
+        return $address;
+    }
     public static function calculateDistance($db, $location_id, $currentUserLat, $currentUserLong)
     {
         $statement = $db->prepare("select calculate_distance((select latitude from location where location_id = :location_id), (select longitude from location where location_id = :location_id), :latitude, :longitude, 'K')");
