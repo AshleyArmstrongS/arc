@@ -7,8 +7,13 @@ body {
 
 .card {
   background-color: :#8DCAFF;
-  opacity: 0.95;
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  border: 2px solid rgb(95, 88, 88);
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .panel-title {
