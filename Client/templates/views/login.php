@@ -45,7 +45,7 @@ img.avatar {
 }
 
 #regLink:hover {
-  color: yellow;
+  color: white;
 }
 
 .btn {

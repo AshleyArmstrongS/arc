@@ -18,6 +18,17 @@
 a:hover {
   background: none;
 }
+.card{
+margin-top: 20px;
+margin-bottom: auto;
+background-color:#8DCAFF;
+border: 2px solid rgb(95, 88, 88);
+padding-top:20px;
+padding-bottom:20px;
+padding-left: 30px;
+padding-right: 30px;
+box-shadow: 5px 10px 8px slategray; 
+}
 </style>
 
 
