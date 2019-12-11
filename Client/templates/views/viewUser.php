@@ -1,53 +1,42 @@
 <style>
-
 body {
     font-family: helvetica;
     font-weight: normal;
     overflow:hidden;
 }
-
 #map_wrapper {
   height: 600px;
 }
-
 .card-body {
   max-height: 600px;
   overflow-y: scroll;
 }
-
 #map_canvas {
   width: 100%;
   height: 100%;
 }
-
 #search_filter {
   margin-bottom: 3px;
 }
-
 .card-title a {
   background: none;
 }
-
 .card-title a:hover {
   color: blue;
 }
-
 .card {
   margin: 5px;
   padding: 5px;
 }
-
 .card .card-body {
   overflow: hidden;
 }
-
 </style>
 <?php require('./models/Location.php'); ?>
 
 <script type="text/javascript">
 $(document).ready(function() {
   $("#filteritems").click(function() {
-
     $.ajax({
       url: "./filter",
       data: $("#filter_form").serialize(),
@@ -57,8 +46,6 @@ $(document).ready(function() {
       }
     });
   });
-
-
 });
 </script>
 
@@ -99,7 +86,6 @@ $(document).ready(function() {
 
           <?php
                     if ($users == NULL) {
-
                         ?>
           <div class="col-sm-12">
             <div class="card">
@@ -164,24 +150,20 @@ $(document).ready(function() {
         script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
         document.body.appendChild(script);
       });
-
       function initialize() {
         var map;
         var bounds = new google.maps.LatLngBounds();
         var mapOptions = {
           mapTypeId: 'roadmap'
         };
-
         // Display a map on the page
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         map.setTilt(45);
-
         // Multiple Markers
         var markers = [ <
           ? php
           $first = true;
           foreach($users as $user) {
-
             if ($user - > getUser_id() !== $_SESSION['Id']) {
               if ($user - > getLocation() != null) {
                 $location = Location::returnLatLongById($db, $user - > getLocation());
@@ -198,13 +180,11 @@ $(document).ready(function() {
           } ?
           >
         ];
-
         // Info Window Content
         var infoWindowContent = [ <
           ? php
           $first = true;
           foreach($users as $user) {
-
             if ($user - > getUser_id() !== $_SESSION['Id']) {
               if ($user - > getLocation() != null) {
                 if ($first == false) {
@@ -219,11 +199,9 @@ $(document).ready(function() {
           } ?
           >
         ];
-
         // Display multiple markers on a map
         var infoWindow = new google.maps.InfoWindow(),
           marker, i;
-
         // Loop through our array of markers & place each one on the map  
         for (i = 0; i < markers.length; i++) {
           var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
@@ -233,7 +211,6 @@ $(document).ready(function() {
             map: map,
             title: markers[i][0]
           });
-
           // Allow each marker to have an info window    
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
@@ -241,29 +218,21 @@ $(document).ready(function() {
               infoWindow.open(map, marker);
             }
           })(marker, i));
-
           // Automatically center the map fitting all markers on the screen
           map.fitBounds(bounds);
         }
-
         // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
         var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
           this.setZoom(14);
           google.maps.event.removeListener(boundsListener);
         });
-
       }
       </script>
     </div>
-
   </div>
 </div>
-
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
