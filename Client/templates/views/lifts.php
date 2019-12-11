@@ -1,6 +1,22 @@
 
 <div class="row">
-    <?php foreach ($locals['schedDriver'] as $driverLifts) { ?>
+    <?php if($locals['schedDriver'] == NULL && $locals['schedPassenger']== NULL ) {?>
+        <div class="col-sm-4">
+            <div class = "card">
+                <div class="card-body">
+
+                    <h3 class="card-title">Sorry</h3>
+                    <p>
+                        No Lifts scheduled yet
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+    <?php } 
+    else 
+    { foreach ($locals['schedDriver'] as $driverLifts) { ?>
 
         <div class="col-sm-4">
             <div class = "card">
@@ -36,5 +52,6 @@
                 </div>
             </div>
         </div>
-                <?php } ?>
+                <?php } 
+                }?>
             </div>
