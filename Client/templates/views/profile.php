@@ -1,6 +1,10 @@
 <?php $user = $locals['user']; ?>
 
 <style>
+   body {
+    background: url("../Client/assets/images/test.png") no-repeat center center fixed;
+  }
+
 #submit_req a {
   margin: 5px;
   padding: 5px;
