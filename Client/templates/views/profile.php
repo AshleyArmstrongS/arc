@@ -45,8 +45,12 @@ box-shadow: 5px 10px 8px slategray;
           <?php if ($user->getUser_id() === $_SESSION['Id']) { ?>
           <div class="col-sm-15">
             <div class="card">
+            <?php if($locals['hasSched'] === true) { ?>
               <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts
                 Scheduled</a>
+            <?php } else { ?>
+              <p class="nav-link" style="color:black; padding:30px;">No Lifts Schedualed</p>
+            <?php } ?>
             </div>
           </div>
           <div class="col-sm-15">
