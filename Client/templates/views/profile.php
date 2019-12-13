@@ -1,9 +1,9 @@
 <?php $user = $locals['user']; ?>
 
 <style>
-   body {
-    background: url("../Client/assets/images/test.png") no-repeat center center fixed;
-  }
+body {
+  background: url("../Client/assets/images/test.png") no-repeat center center fixed;
+}
 
 #submit_req a {
   margin: 5px;
@@ -15,20 +15,28 @@
   margin: 0;
 }
 
-a:hover {
+.card {
+  margin-top: 20px;
+  margin-bottom: auto;
+  background-color: #8DCAFF;
+  border: 2px solid rgb(95, 88, 88);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-shadow: 5px 10px 8px slategray;
+}
+
+i {
+  font-weight: bold;
+
+}
+
+#links_background a:hover {
   background: none;
+  color: black;
 }
-.card{
-margin-top: 20px;
-margin-bottom: auto;
-background-color:#8DCAFF;
-border: 2px solid rgb(95, 88, 88);
-padding-top:20px;
-padding-bottom:20px;
-padding-left: 30px;
-padding-right: 30px;
-box-shadow: 5px 10px 8px slategray; 
-}
+
 </style>
 
 
@@ -38,24 +46,24 @@ box-shadow: 5px 10px 8px slategray;
       <div class="card-header">
         <h3>GoCollege</h3>
       </div>
-      <a class="nav-link" style="color:black; font-weight:bold"><i id="person"><?= $user->getName(); ?>'s
-            Account</i></a>
+      <i id="person"><?= $user->getName(); ?>'s
+        Account</i>
       <div class="card-body">
         <form id='home' action='' method='post'>
           <?php if ($user->getUser_id() === $_SESSION['Id']) { ?>
           <div class="col-sm-15">
             <div class="card">
-            <?php if($locals['hasSched'] === true) { ?>
-              <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts
+              <?php if($locals['hasSched'] === true) { ?>
+              <a class="nav-link" style="color:black; padding:30px;" id="links_background" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts
                 Scheduled</a>
-            <?php } else { ?>
-              <p class="nav-link" style="color:black; padding:30px;">No Lifts Schedualed</p>
-            <?php } ?>
+              <?php } else { ?>
+              <p class="nav-link" style="color:black; padding:30px;" id="links_background" >No Lifts Schedualed</p>
+              <?php } ?>
             </div>
           </div>
           <div class="col-sm-15">
             <div class="card">
-              <a class="nav-link" style="color:black; padding:30px;" href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
+              <a class="nav-link" style="color:black; padding:30px;" id="links_background"  href='<?= SITE_BASE_DIR ?>/inbox'>Messages</a>
             </div>
           </div>
           <div class="card-footer">
