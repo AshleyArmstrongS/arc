@@ -6,8 +6,9 @@ body {
 
 .card {
   background-color: white;
-  height:50px;
-  opacity: 0.95;
+  height:80px;
+  width: 80%;
+  opacity: 1;
   margin:0;
   padding:0;
   border-radius: 0;
@@ -37,23 +38,23 @@ p:hover {
 }
 
 #wrapper {
-  background: #FFF;
   margin:0;
   padding:0;
 }
 
 #chatbox {
-  font: 12px Helvetica;
-  background: #FFF;
+  font: 16px Helvetica;
   text-align: left;
   overflow-y: scroll;
   max-height: 500px;
   margin:0;
+  margin-left: 15px;
+  margin-top: 20px;
   padding:0;
 }
 
 .card-body{
-margin-top: 20px;
+margin-top: 30px;
 margin-bottom: auto;
 background-color:#8DCAFF;
 border: 2px solid rgb(95, 88, 88);
@@ -73,7 +74,8 @@ box-shadow: 5px 10px 8px slategray;
     <h1>Inbox</h1>
  
   <div class="col-sm-10">
-    <span>Click on message to open chat!</span>
+
+    <span>Click on message to open chat</span>
   </div>
   <div id="wrapper">
     
