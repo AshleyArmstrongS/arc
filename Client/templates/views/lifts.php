@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <h3>Driver:  <?= $passengerLifts['name']; ?></h3>
                     <p>Day:      <?= $passengerLifts['day']; ?></p>
-                    <p>arriving: <?= $passengerLifts['morning']; ?></p>
+                    <p>Arriving: <?= $passengerLifts['morning']; ?></p>
                     <p>Leaving:  <?= $passengerLifts['evening']; ?></p>
                     <p>Car make: <?= $passengerLifts['make']; ?></p>
                     <p>Colour:   <?= $passengerLifts['colour']; ?></p>
