@@ -84,14 +84,14 @@ input select {
   
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
+                                
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters, include a lower case, an upper case, a number and a special character"><input type="password" name="password1" id="password1" class="form-control" placeholder="Password"></a>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
-                                <!-- <div class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltiptext">Password must be at least 8 characters, include a lower case, an upper case, a number and a special character</span></div>
-                    -->
+                                
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters, include a lower case, an upper case, a number and a special character"><input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password"></a>
                             </div>
                             
                              </div>
@@ -149,5 +149,12 @@ input select {
     		</div>
     	</div>
     </div>
+
+
+    <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 
 
