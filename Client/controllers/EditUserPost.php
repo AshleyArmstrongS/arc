@@ -111,7 +111,7 @@ else
 
 
         $user = new User([
-            'user_id' => $user_id['value'],
+            'user_id' => $user_id,
             'name' => $name['value'],
             'age' => $age['value'],
             'gender' => $gender['value'],
@@ -124,9 +124,11 @@ else
             'available' => $available['value']
         ]);
         
+
+        print_r($user);
         User::updateUser($db, $user);
 
-        $res->redirect('/home');
+        $res->redirect('/');
     }
 }
 ?>
