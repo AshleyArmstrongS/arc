@@ -14,7 +14,6 @@ Our website is designed to allow students to get to college more efficently whil
 - [Introduction](#Introduction)
 - [Project Features](#project-features)
 - [Improvements](#improvements)
-- [Application](#application)
 - [References](#references)
 - [Hosting Links](#hosting)
 
@@ -25,7 +24,10 @@ A non existing user will be not be able to view any pages on the website. A user
 
 ## Project Features
 - Applied MVC 
-- Create, read, update and delete for users
+- Create, read and update for users
+- Messaging System
+- Rating System
+- Schedule lifts
 - Ajax/Javascript to retrieve filter values submitted
 - Bootstrap
 - Font Awsome CSS (icons)
@@ -34,18 +36,16 @@ A non existing user will be not be able to view any pages on the website. A user
 
 ## Improvements
 There was some features which I would have wished to implement if I had more time:
-1. Allow a user to only try enter an authentication code for an email 3 times
+1. Allow a user to only try enter an authentication code for an email 3 times 
 2. Making the site look more attractive to a user
-3.  Error messages for the forms could be improved
+3. Error messages for the forms could be improved
 4. Use more images and more bootstrap
-
-## Application
-- The home screen 
 
 
 
 ## References
 - For the front end frame work we have used Boostrap :https://getbootstrap.com/ and :https://jquery.com/
+- Rapid library was given to use last year by our lecturer Shane Gavin
 
 ## Hosting
-- Remote host on 000 webhost server:
+- 
