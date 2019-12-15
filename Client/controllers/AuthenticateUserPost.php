@@ -26,19 +26,16 @@ $user = $_SESSION['user'];
     # Display form
 if (count($form_error_messages) > 0) 
 {
+    $req->sessionSet('LOGGED_IN',false);
 
     $res->render('main', 'authUser', [
         'pageTitle' => 'VerifyUser',
         'form_error_messages' =>$form_error_messages
     ]);
+    
 }
 else
 {
-    
-    
-
-
-
     if($code['value'] == $auth)
     {
         User::addUser($db, $user);
