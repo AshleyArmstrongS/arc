@@ -1,7 +1,8 @@
 <!-- Reference Bootstrap: https://bootsnipp.com/snippets/9Zxl -->
 <?php $user = $locals['user'];
-require('./models/Location.php'); 
-$db = \Rapid\Database::getPDO();?>
+
+require_once('./models/Location.php');?>
+
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
@@ -60,7 +61,8 @@ $db = \Rapid\Database::getPDO();?>
                             </select>
                         </div>
                     </div>
-
+                    
+                    <?php $db = \Rapid\Database::getPDO();?>
                     <?php $address = Location::returnAddressById($db,$user->getLocation()); ?>
                     <div class="form-group">
                         <input type="text" name="starting_location" id="starting_location" class="form-control" value="<?= $address['address'] ?>">
@@ -82,7 +84,7 @@ $db = \Rapid\Database::getPDO();?>
                             <option value="N">No</option>
                         </select>
                     </div>
-                    <input type="submit" value="Edit User" class="btn btn-info btn-block">
+                    <input type="submit" value="submit" class="btn btn-info btn-block">
 
                 </form>
             </div>
