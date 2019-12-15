@@ -141,6 +141,7 @@ else
         
         $req->sessionSet('user',$user);
         //User::addUser($db, $user);
+        $req->sessionSet('LOGGED_IN',false);
         $req->sessionSet('Email',$email['value']);
         $req->sessionSet('Name',$name['value']);
         $req->sessionSet('Type', $userType['value']);

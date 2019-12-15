@@ -26,29 +26,23 @@ $user = $_SESSION['user'];
     # Display form
 if (count($form_error_messages) > 0) 
 {
+    $req->sessionSet('LOGGED_IN',false);
 
     $res->render('main', 'authUser', [
         'pageTitle' => 'VerifyUser',
         'form_error_messages' =>$form_error_messages
     ]);
+    
 }
 else
 {
-    
-    $req->sessionSet('LOGGED_IN',true);
-    
-    User::addUser($db, $user);
-
-    $u = User::getUserByEmail(($_SESSION['Email']), $db);
-    $user_id = $u->getUser_id();
-    $req->sessionSet('Id',$user_id);
-    //$req->sessionSet('Id', $user_id);
-
-
-
     if($code['value'] == $auth)
     {
         User::addUser($db, $user);
+        $req->sessionSet('LOGGED_IN',true);
+        $u = User::getUserByEmail(($_SESSION['Email']), $db);
+        $user_id = $u->getUser_id();
+        $req->sessionSet('Id',$user_id);
         if($_SESSION['Type'] == 'D')
         {
             
