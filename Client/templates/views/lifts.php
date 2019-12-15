@@ -26,7 +26,7 @@
                     <p>Day: <?= $driverLifts['day']; ?></p>
                     <p>Arriving: <?= $driverLifts['morning']; ?></p>
                     <p>Leaving: <?= $driverLifts['evening']; ?></p>
-                    <div class="btn">
+                    <div class="btn btn-danger">
                         <a href="/arc/Client/removeSched?car_id=<?= $driverLifts['car_id'] ?> &user_id=<?= $driverLifts['user_id']; ?>">Remove lift</a>
                     </div>
 

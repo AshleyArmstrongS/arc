@@ -13,6 +13,13 @@ h3, i {
   color: white;
 }
 
+#title
+{
+  color: grey;
+  margin-top:50px;
+}
+
+
 p:nth-child(even) {
   background: #F8F8FF
 }
@@ -157,7 +164,7 @@ div.container li p {
     <div>
       <?php $isDriver = $locals['isDriver'];
       if ($isDriver['user_type'] === "D") { ?>
-      <h3>Organise a lift</h3>
+      <h4 id ="title">Organise a lift below: </h4>
       <form action="createLift" method="post">
         <select name="day" class="form">
           <option value="" selected="true" disabled="disabled">Day</option>
@@ -196,7 +203,7 @@ div.container li p {
         </select>
         <input type="hidden" name="driver_id" value="<?= $_SESSION['Id']; ?>">
         <input type="hidden" name="passenger_id" value="<?= $passenger_id; ?>">
-        <input type="submit" id="submit_message" value="Submit" class="btn btn-dark btn-xs">
+        <input type="submit" id="submit_message" value="Schedule Lift" class="btn btn-dark btn-xs">
       </form>
       <?php }  ?>
     </div>
