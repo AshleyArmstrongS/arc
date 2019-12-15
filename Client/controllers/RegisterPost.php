@@ -7,6 +7,7 @@
  $req->sessionStart();
  $form_was_posted = [];
 
+ 
 
 $form_error_messages = [];
 
@@ -26,7 +27,11 @@ $userType = FormUtils::getPostString($req->body('userType'));
 $available =  FormUtils::getPostString($req->body('avail'));
 $passwordhash = password_hash($password['value'],PASSWORD_BCRYPT,['cost' => 12]);
 
-if(!($password['value'] === $confirmPass['value']))
+$email_exists = User::getUserByEmail($email['value'], $db);
+
+if($email_exists ==NULL)
+{
+    if(!($password['value'] === $confirmPass['value']))
 {
       $form_error_messages['password'] = 'Password and confirm passwords must match';
 }
@@ -90,6 +95,15 @@ else
     {
         $form_error_messages['email'] = 'Email does not match a valid college';
     }
+
+
+}
+else
+{
+    $form_error_messages['email'] = 'Email already exists';
+
+}
+
 
     
 
