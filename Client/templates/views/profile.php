@@ -57,7 +57,7 @@ i {
               <a class="nav-link" style="color:black; padding:30px;" id="links_background" href='<?= SITE_BASE_DIR ?>/lifts'>Lifts
                 Scheduled</a>
               <?php } else { ?>
-              <p class="nav-link" style="color:black; padding:30px;" id="links_background" >No Lifts Schedualed</p>
+              <p class="nav-link" style="color:black; padding:30px;" id="links_background" >No Lifts Scheduled</p>
               <?php } ?>
             </div>
           </div>
