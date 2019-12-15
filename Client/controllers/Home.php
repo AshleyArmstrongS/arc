@@ -22,15 +22,13 @@
         $hasSched = false;
         if ($sched > 0 || $schedU > 0) {
             $hasSched = true;
-
-
-            $res->render('main', 'profile', [
-                'pageTitle' =>      'Home',
-                'user' =>           $user,
-                'ratings' =>        $ratings,
-                'hasSched' => $hasSched
-            ]);
         }
+        $res->render('main', 'profile', [
+            'pageTitle' =>      'Home',
+            'user' =>           $user,
+            'ratings' =>        $ratings,
+            'hasSched' => $hasSched
+        ]);
     } else {
         $res->render('main', '404', []);
     }
