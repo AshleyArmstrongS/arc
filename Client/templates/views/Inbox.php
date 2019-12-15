@@ -3,28 +3,26 @@ body {
   overflow: hidden;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
 
 .card {
-  background-color: #fbeee1;
-  opacity: 0.95;
+  background-color: white;
+  height:80px;
+  width: 80%;
+  opacity: 1;
   margin:0;
   padding:0;
   border-radius: 0;
 }
 
-.card:nth-child(odd){
-  background-color: #8DCAFF;
+/* .card:nth-child(odd){
+  background-color: #d9c3fa;
 }
 
 .card:nth-child(even){
   background-color: lightgray;
-}
+} */
 
-a {
+p {
   color: #0000FF;
   text-decoration: none;
   opacity: 0.55;
@@ -32,7 +30,7 @@ a {
   padding:0;
 }
 
-a:hover {
+p:hover {
   
   background-color: whitesmoke;
   color: blue;
@@ -40,29 +38,44 @@ a:hover {
 }
 
 #wrapper {
-  background: #FFF;
   margin:0;
   padding:0;
 }
 
 #chatbox {
-  font: 12px Helvetica;
-  background: #FFF;
+  font: 16px Helvetica;
   text-align: left;
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: 500px;
   margin:0;
+  margin-left: 15px;
+  margin-top: 20px;
   padding:0;
 }
+
+.card-body{
+margin-top: 30px;
+margin-bottom: auto;
+background-color:#8DCAFF;
+border: 2px solid rgb(95, 88, 88);
+padding-top:10px;
+padding-bottom:20px;
+padding-left: 20px;
+padding-right: 20px;
+box-shadow: 5px 10px 8px slategray; 
+}
+
+
 
 </style>
 
 
-  <div class="col-sm-10">
+  <div class="card-body">
     <h1>Inbox</h1>
-  </div>
+ 
   <div class="col-sm-10">
-    <span>Click on message to open chat!</span>
+
+    <span>Click on message to open chat</span>
   </div>
   <div id="wrapper">
     
@@ -82,19 +95,20 @@ a:hover {
         }
         ?>
         <div class="card">
-      <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>
+     <p> <a href='<?= SITE_BASE_DIR ?>/message?to_id=<?= $message['group_id']; ?>'>
         
           <i style="font-weight:bold; color:black;"><?= $message['name']; ?>: </i>
           <?= $message['message']; ?>
           <br>
           <i style="color: black; font-weight: bold;" >(<?= $result[0]; ?>)</i>
         
-      </a>
+      </p>
       </div>
 
 
       <?php }
       } ?>
 
+    </div>
     </div>
   </div>  

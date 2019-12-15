@@ -7,8 +7,13 @@ body {
 
 .card {
   background-color: :#8DCAFF;
-  opacity: 0.95;
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: auto;
+  border: 2px solid rgb(95, 88, 88);
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .panel-title {
@@ -51,6 +56,7 @@ input select {
   background-color: #ddd;
   color: black;
 }
+
 </style>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
@@ -75,16 +81,20 @@ input select {
                     </div>
                     
                     <div class="row">
+  
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
+                                
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters, include a lower case, an upper case, a number and a special character"><input type="password" name="password1" id="password1" class="form-control" placeholder="Password"></a>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                                
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters, include a lower case, an upper case, a number and a special character"><input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password"></a>
                             </div>
-                        </div>
+                            
+                             </div>
                     </div>
                     <div class="form-group">
                     <select name="college"  class="form-control">
@@ -104,7 +114,7 @@ input select {
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                         <select name="gender"  class="form-control">
-                            <option value="">Gender</option>
+                            <option value="">Biological Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
                     </select>
@@ -139,5 +149,12 @@ input select {
     		</div>
     	</div>
     </div>
+
+
+    <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 
 

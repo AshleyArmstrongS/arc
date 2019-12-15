@@ -14,7 +14,7 @@
         $user       = User::getUserById($user_id, $db);
 
         $res->render('main', 'editUser', [
-            'pageTitle' => 'Register',
+            'pageTitle' => 'Edit User',
             'user' => $user
 
         ]);

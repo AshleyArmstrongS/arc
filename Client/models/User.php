@@ -366,6 +366,7 @@ class User
     {
         $statement = $db->prepare("UPDATE users set name = :name, age = :age, gender = :gender, email = :email, password = :hash, college = :college, description = :description, user_type = :user_type, location_id = :location_id, available = :available where user_id = :user_id;");
         $statement->execute([
+            'user_id'      => $user->getUser_id(),
             'name'         => $user->getName(),
             'age'          => $user->getAge(),
             'gender'       => $user->getGender(),

@@ -8,12 +8,13 @@
         require('./models/User.php');
 
         $name = $req->query('search');
+        //echo($name);
         $users = User::searchUsersByName($name, $db);
         //print_r($users);
 
         $res->render('main', 'viewUser', [
             'pageTitle' => 'View Users',
-            'viewUsers'  => $users
+            'users'  => $users
 
         ]);
     } else {

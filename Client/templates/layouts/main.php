@@ -23,8 +23,9 @@
   <link rel="stylesheet" href="/arc/Client/assets/styles/styles.css">
 
   <style>
-  body {
-    background: url("../Client/assets/images/test.png") no-repeat center center fixed;
+  .logo {
+    margin-left: 0;
+    float: right;
   }
 
   .foot {
@@ -42,7 +43,7 @@
 
   a:hover {
     background-color: #999;
-    color: yellow;
+    color: white;
     border-radius: 4px;
   }
 
@@ -51,15 +52,33 @@
     margin: 0;
     padding: 0;
   }
+
+  nav {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  #hi_greeting {
+    background-color: none;
+  }
+
+  #logo_text a:hover {
+    background: none;
+    color: black;
+  }
+
   </style>
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity 1;">
 
+    <div id="Logo">
+      <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height=70px;></div>
+    </div>
+    <div class="font-weight-bold;" id="logo_text"><a href="<?= SITE_BASE_DIR ?>/"> Go College</a></div>
+
+    
     <div class="container">
 
 
-      <div class="navbar-brand"><img src="../Client/assets/images/GoCollegeLogo.png" height=70px;></div>
-
-      <div class="font-weight-bold"> Go College</div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07"
         aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -70,7 +89,8 @@
         <ul class="navbar-nav mr-auto">
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
           <li class="nav-item active">
-            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/"><span class="sr-only">(current)</span> Home</a>
+            <a class="nav-link" href="<?= SITE_BASE_DIR ?>/"><span class="sr-only">(current)</span> <i
+                class="fas fa-home"></i> Home</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="<?= SITE_BASE_DIR ?>/viewUser"><span class="fas fa-search-location"></span>
@@ -95,7 +115,7 @@
           <?php if ($_SESSION['LOGGED_IN'] === TRUE) { ?>
 
 
-          <a class="nav-link"><span class="far fa-user"></span> Hi,<?=$_SESSION['Name'];?></a>
+          <span class="nav-link" id="hi_greeting"><span class="far fa-user"></span> Hi,<?=$_SESSION['Name'];?></span>
           <a class="nav-link" href="<?= SITE_BASE_DIR ?>/logout"><span class="fas fa-sign-out-alt"></span> Logout</a>
 
           <?php } ?>

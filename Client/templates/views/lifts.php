@@ -1,8 +1,24 @@
 
 <div class="row">
-    <?php foreach ($locals['schedDriver'] as $driverLifts) { ?>
+    <?php if($locals['schedDriver'] == NULL && $locals['schedPassenger']== NULL ) {?>
+        <div class="col-sm-4">
+            <div class = "card">
+                <div class="card-body">
 
-        <div class="col-sm-3">
+                    <h3 class="card-title">Sorry</h3>
+                    <p>
+                        No Lifts scheduled yet
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+    <?php } 
+    else 
+    { foreach ($locals['schedDriver'] as $driverLifts) { ?>
+
+        <div class="col-sm-4">
             <div class = "card">
                 <div class="card-body">
 
@@ -19,12 +35,12 @@
         </div>
             <?php } 
             foreach ($locals['schedPassenger'] as $passengerLifts) { ?>
-         <div class="col-sm-3">
+         <div class="col-sm-4">
             <div class = "card">
                 <div class="card-body">
                     <h3>Driver:  <?= $passengerLifts['name']; ?></h3>
                     <p>Day:      <?= $passengerLifts['day']; ?></p>
-                    <p>arriving: <?= $passengerLifts['morning']; ?></p>
+                    <p>Arriving: <?= $passengerLifts['morning']; ?></p>
                     <p>Leaving:  <?= $passengerLifts['evening']; ?></p>
                     <p>Car make: <?= $passengerLifts['make']; ?></p>
                     <p>Colour:   <?= $passengerLifts['colour']; ?></p>
@@ -36,5 +52,6 @@
                 </div>
             </div>
         </div>
-                <?php } ?>
+                <?php } 
+                }?>
             </div>
