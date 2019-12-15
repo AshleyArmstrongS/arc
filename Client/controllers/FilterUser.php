@@ -22,12 +22,38 @@
             $users = User::getDriversByDay($db, $day);
         }
 
-        if ($gender != NULL && $day != NULL) {
-            $users = User::getDriversByDayAndGender($db, $day, $gender);
-        } else if ($gender != NULL && $day == NULL) {
-            $users = User::getDriversByGender($db, $gender);
+        $results = array();
+        $filter = array();
+        if (sizeof($day) > 1) {
+            if ($gener == NULL && $day != NULL) {
+                foreach ($days as $day) {
+                    $results = User::getDriversByDay($db, $day);
+                    if ($day[0]) {
+                        $filter = $results;
+                    } else {
+                        $filter = array_intersect($results, $filter);
+                    }
+                }
+                $users = $filter;
+            } else {
+                foreach ($days as $day) {
+                    $results = User::getDriversByDayAndGender($db, $day, $gender);
+                    if ($day[0]) {
+                        $filter = $results;
+                    } else {
+                        $filter = array_intersect($results, $filter);
+                    }
+                }
+                $users = $filter;
+            }
         } else {
-            $users = User::getDriversByDay($db, $day);
+            if ($gender != NULL && $day != NULL) {
+                $users = User::getDriversByDayAndGender($db, $day, $gender);
+            } else if ($gender != NULL && $day == NULL) {
+                $users = User::getDriversByGender($db, $gender);
+            } else {
+                $users = User::getDriversByDay($db, $day);
+            }
         }
 
         if ($users == NULL) { ?>

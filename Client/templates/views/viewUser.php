@@ -35,26 +35,37 @@ body {
 <?php require('./models/Location.php'); ?>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $("#filteritems").click(function() {
-    $.ajax({
-      url: "./filter",
-      data: $("#filter_form").serialize(),
-      type: "post",
-      success: function(result) {
-        $("#usersResult").html(result);
-      }
+
+    $(document).ready(function() {
+        $("#filteritems").click(function() {
+            removeMarkers();
+            $.ajax({
+                url: "./filter",
+                data: $("#filter_form").serialize(),
+                type: "post",
+                success: function(result) {
+                    $("#usersResult").html(result);
+                }
+            });
+        });
     });
-  });
-});
+
+    function removeMarkers()
+
+    {
+        for(var i =0; i < markerObjs.length;i++)
+        {
+            markerObjs[i].setMap(null);
+        }
+    }
 </script>
 
-<?php 
-   
-    $db = \Rapid\Database::getPDO();
-    $currentUser = User::getUserByEmail($_SESSION['Email'], $db);
-    $location_of_user = Location::returnLatLongById($db, $currentUser->getLocation()); 
-    $users = $locals['users'];
+<?php
+
+$db = \Rapid\Database::getPDO();
+$currentUser = User::getUserByEmail($_SESSION['Email'], $db);
+$location_of_user = Location::returnLatLongById($db, $currentUser->getLocation());
+$users = $locals['users'];
 ?>
 
 
@@ -69,12 +80,12 @@ $(document).ready(function() {
 
         </div>
         <div class="row">
-
           <div class="col-xs-6 col-sm-6 col-md-6" id="search_filter">
             <input type="submit" value="Search" class="btn btn-info btn-block">
           </div>
 
           <div class="col-xs-6 col-sm-6 col-md-6" id="search_filter">
+
 
             <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal"><i
                 class="fas fa-filter"> </i></button>
@@ -98,6 +109,7 @@ $(document).ready(function() {
                         } else {
                             foreach ($users as $user) {
                                 if ($user->getUser_id() !== $_SESSION['Id']) { ?>
+
           <div class="col-sm-12">
             <div class="card">
                 <a href="/arc/Client/profile?user_id= <?= $user->getUser_id(); ?>" > </a>
@@ -112,9 +124,7 @@ $(document).ready(function() {
                 </div>
             </div>
           </div>
-          <?php } else {
-                                ?>
-
+          <?php } else { ?>
           <div class="col-sm-12">
             <div class="card">
               <div class="card-body">
@@ -127,101 +137,110 @@ $(document).ready(function() {
                         }
                     }
                     ?>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-    <div class="col-xs-8 col-sm-8 col-md-8">
-      <div id="map_wrapper">
-        <div id="map_canvas" class="mapping"></div>
-      </div>
-      <script>
-      //reference - https://wrightshq.com/playground/placing-multiple-markers-on-a-google-map-using-api-3/
-      jQuery(function($) {
-        // Asynchronously Load the map API 
-        var script = document.createElement('script');
-        script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
-        document.body.appendChild(script);
-      });
-      function initialize() {
-        var map;
-        var bounds = new google.maps.LatLngBounds();
-        var mapOptions = {
-          mapTypeId: 'roadmap'
-        };
-        // Display a map on the page
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        map.setTilt(45);
-        // Multiple Markers
-        var markers = [ <
-          ? php
-          $first = true;
-          foreach($users as $user) {
-            if ($user - > getUser_id() !== $_SESSION['Id']) {
-              if ($user - > getLocation() != null) {
-                $location = Location::returnLatLongById($db, $user - > getLocation());
-                if ($first == false) {
-                  echo ", ";
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <div id="map_wrapper">
+                <div id="map_canvas" class="mapping"></div>
+            </div>
+            <script>
+                //reference - https://wrightshq.com/playground/placing-multiple-markers-on-a-google-map-using-api-3/
+                jQuery(function($) {
+                    // Asynchronously Load the map API 
+                    var script = document.createElement('script');
+                    script.src = "//maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+                    document.body.appendChild(script);
+                });
+                var markerObjs = [];
+                function initialize() {
+                    var map;
+                    var bounds = new google.maps.LatLngBounds();
+                    var mapOptions = {
+                        mapTypeId: 'roadmap'
+                    };
+
+                    // Display a map on the page
+                    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+                    map.setTilt(45);
+
+                    // Multiple Markers
+                    
+                    var markers = [
+                        <?php
+                        $first = true;
+                        foreach ($users as $user) {
+
+                            if ($user->getUser_id() !== $_SESSION['Id']) {
+                                if ($user->getLocation() != null) {
+                                    $location = Location::returnLatLongById($db, $user->getLocation());
+                                    if ($first == false) {
+                                        echo ", ";
+                                    }
+                                    echo "['" . $user->getName() . "', " . $location[0] . "," . $location[1] . "]";
+                                    $first = false;
+                                }
+                            }
+                        }
+                        ?>
+                    ];
+                    // Info Window Content
+                    var infoWindowContent = [
+                        <?php
+                        $first = true;
+                        foreach ($users as $user) {
+
+                            if ($user->getUser_id() !== $_SESSION['Id']) {
+                                if ($user->getLocation() != null) {
+                                    if ($first == false) {
+                                        echo ", ";
+                                    }
+                                    echo "[\"<div class='info_content'>" . "<h6>" . $user->getName() . "</h6></div>\"]";
+                                    $first = false;
+                                }
+                            }
+                        }
+                        ?>
+                    ];
+
+                    // Display multiple markers on a map
+                    var infoWindow = new google.maps.InfoWindow(),
+                        marker, i;
+
+                    // Loop through our array of markers & place each one on the map  
+                    for (i = 0; i < markers.length; i++) {
+                        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                        bounds.extend(position);
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: markers[i][0]
+                        });
+                        markerObjs.push(marker);
+                        // Allow each marker to have an info window    
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                infoWindow.setContent(infoWindowContent[i][0]);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i));
+
+                        // Automatically center the map fitting all markers on the screen
+                        map.fitBounds(bounds);
+                    }
+
+                    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+                    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                        this.setZoom(14);
+                        google.maps.event.removeListener(boundsListener);
+                    });
+
                 }
-                echo "['".$user - > getName().
-                "', ".$location[0].
-                ",".$location[1].
-                "]";
-                $first = false;
-              }
-            }
-          } ?
-          >
-        ];
-        // Info Window Content
-        var infoWindowContent = [ <
-          ? php
-          $first = true;
-          foreach($users as $user) {
-            if ($user - > getUser_id() !== $_SESSION['Id']) {
-              if ($user - > getLocation() != null) {
-                if ($first == false) {
-                  echo ", ";
-                }
-                echo "[\"<div class='info_content'>".
-                "<h6>".$user - > getName().
-                "</h6></div>\"]";
-                $first = false;
-              }
-            }
-          } ?
-          >
-        ];
-        // Display multiple markers on a map
-        var infoWindow = new google.maps.InfoWindow(),
-          marker, i;
-        // Loop through our array of markers & place each one on the map  
-        for (i = 0; i < markers.length; i++) {
-          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-          bounds.extend(position);
-          marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: markers[i][0]
-          });
-          // Allow each marker to have an info window    
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infoWindow.setContent(infoWindowContent[i][0]);
-              infoWindow.open(map, marker);
-            }
-          })(marker, i));
-          // Automatically center the map fitting all markers on the screen
-          map.fitBounds(bounds);
-        }
-        // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
-        var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-          this.setZoom(14);
-          google.maps.event.removeListener(boundsListener);
-        });
-      }
-      </script>
+            </script>
+        </div>
+
     </div>
-  </div>
+
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
