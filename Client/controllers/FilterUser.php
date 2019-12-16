@@ -25,20 +25,21 @@
         $results = array();
         $filter = array();
         if (sizeof($day) > 1) {
-            if ($gener == NULL && $day != NULL) {
-                foreach ($days as $day) {
-                    $results = User::getDriversByDay($db, $day);
-                    if ($day[0]) {
+            if ($gender == NULL && $day != NULL) {
+                foreach ($day as $d) {
+                    $results = User::getDriversByDay($db, $d);
+                    if ($d == $day[0]) {
                         $filter = $results;
                     } else {
-                        $filter = array_intersect($results, $filter);
+                        $filter = array_intersect( $results, $filter);
                     }
+                    //  w
                 }
                 $users = $filter;
-            } else {
-                foreach ($days as $day) {
-                    $results = User::getDriversByDayAndGender($db, $day, $gender);
-                    if ($day[0]) {
+            } else if($gender != NULL && $day != NULL) {
+                foreach ($day as $d) {
+                    $results = User::getDriversByDayAndGender($db, $d, $gender);
+                    if ($d == $day[0]) {
                         $filter = $results;
                     } else {
                         $filter = array_intersect($results, $filter);
@@ -46,13 +47,17 @@
                 }
                 $users = $filter;
             }
-        } else {
-            if ($gender != NULL && $day != NULL) {
-                $users = User::getDriversByDayAndGender($db, $day, $gender);
+            else 
+            {
+                $users = User::getDriversByGender($db, $gender);
+            }
+        }  else {
+            if ($gender != NULL && $day[0] != NULL) {
+                $users = User::getDriversByDayAndGender($db, $day[0], $gender);
             } else if ($gender != NULL && $day == NULL) {
                 $users = User::getDriversByGender($db, $gender);
             } else {
-                $users = User::getDriversByDay($db, $day);
+                $users = User::getDriversByDay($db, $day[0]);
             }
         }
 

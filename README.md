@@ -35,7 +35,7 @@ A non existing user will be not be able to view any pages on the website. A user
 - A collaborative Git repository
 
 ## Improvements
-There was some features which I would have wished to implement if I had more time:
+There was some features which we would have wished to implement if we had more time:
 1. Allow a user to only try enter an authentication code for an email 3 times 
 2. Making the site look more attractive to a user
 3. Error messages for the forms could be improved
@@ -48,4 +48,4 @@ There was some features which I would have wished to implement if I had more tim
 - Rapid library was given to use last year by our lecturer Shane Gavin
 
 ## Hosting
-- 
+- Tried AWS hosting but did not work alongside our PostgreSQL database.

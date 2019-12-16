@@ -123,9 +123,6 @@ form p.error {
         <div class="d-flex justify-content-center links">
           Don't have an account?<a id="regLink" href='<?= SITE_BASE_DIR ?>/register'>Sign Up</a>
         </div>
-        <div class="d-flex justify-content-center links">
-          <a id="regLink" href="<?= SITE_BASE_DIR ?>/404">Forgot your password?</a>
-        </div>
       </div>
     </div>
   </div>

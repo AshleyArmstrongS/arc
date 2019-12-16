@@ -47,16 +47,38 @@ body {
                     $("#usersResult").html(result);
                 }
             });
+            resetMarkers();
         });
     });
 
     function removeMarkers()
-
     {
         for(var i =0; i < markerObjs.length;i++)
         {
             markerObjs[i].setMap(null);
         }
+    }
+
+    function resetMarkers()
+    {
+      markerObjs = [
+      <?php
+      $first = true;
+      foreach ($users as $user) {
+
+          if ($user->getUser_id() !== $_SESSION['Id']) {
+              if ($user->getLocation() != null) {
+                  $location = Location::returnLatLongById($db, $user->getLocation());
+                  if ($first == false) {
+                      echo ", ";
+                  }
+                  echo "['" . $user->getName() . "', " . $location[0] . "," . $location[1] . "]";
+                  $first = false;
+              }
+          }
+      }
+      ?>
+  ];
     }
 </script>
 
@@ -264,11 +286,11 @@ $users = $locals['users'];
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Day: </label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Monday"><label>Monday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Tuesday"><label>Tuesday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Wednesday"><label>Wednesday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Thursday"><label>Thursday</label><br />
-            <input type="checkbox" id="check_list" name="check_list" value="Friday"><label>Friday</label><br />
+            <input type="checkbox" id="check_list" name="check_list[]" value="Monday"><label>Monday</label><br />
+            <input type="checkbox" id="check_list" name="check_list[]" value="Tuesday"><label>Tuesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list[]" value="Wednesday"><label>Wednesday</label><br />
+            <input type="checkbox" id="check_list" name="check_list[]" value="Thursday"><label>Thursday</label><br />
+            <input type="checkbox" id="check_list" name="check_list[]" value="Friday"><label>Friday</label><br />
           </div>
         </form>
       </div>

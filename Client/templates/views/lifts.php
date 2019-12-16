@@ -44,7 +44,7 @@
                     <p>Leaving:  <?= $passengerLifts['evening']; ?></p>
                     <p>Car make: <?= $passengerLifts['make']; ?></p>
                     <p>Colour:   <?= $passengerLifts['colour']; ?></p>
-                    <p>Est:     €<?= $passengerLifts['estimated_pay']; ?></p>
+                    <p>Est Payment per day:     €<?= $passengerLifts['estimated_pay']; ?></p>
                     <div class="btn btn-danger">
                         <a href="/arc/Client/removeSched?car_id=<?= $passengerLifts['car_id'] ?> &user_id=<?= $passengerLifts['user_id']; ?>">Remove lift</a>
                     </div>
