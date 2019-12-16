@@ -29,10 +29,13 @@
         $userPass = $user->getHash();
         $validUser = false;
 
-        // if($passwordEntered == $userPass)
-        // {
+        //compare plain text passwords from database 
+        if($passwordEntered == $userPass)
+        {
            $validUser = true;
-        // }
+        }
+
+        //compare hashed passwords when new user is registered
         //$validUser = password_verify($passwordEntered, $userPass);
 
         if($validUser)
